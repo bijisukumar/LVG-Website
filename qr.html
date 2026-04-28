@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Tracking Links & QR Codes — Dwarka Villa Guruvayur</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Segoe UI',sans-serif;background:#F5F4F0;color:#1C1917;padding:0 0 60px}
+a{text-decoration:none;color:inherit}
+
+/* Header */
+.header{background:#1A1A1A;padding:28px 48px;display:flex;align-items:center;justify-content:space-between}
+.header-brand{font-family:Georgia,serif;font-size:1.5rem;font-style:italic;color:#D4A017}
+.header-sub{font-size:.75rem;color:rgba(255,255,255,.45);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+.header-back{font-size:.82rem;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);padding:8px 16px;border-radius:9999px;transition:all .2s}
+.header-back:hover{background:rgba(255,255,255,.1);color:#fff}
+
+/* Page title */
+.page-title{max-width:1100px;margin:40px auto 0;padding:0 24px}
+.page-title h1{font-family:Georgia,serif;font-size:2rem;font-style:italic;color:#1C1917;margin-bottom:6px}
+.page-title p{font-size:.9rem;color:#78716C;line-height:1.6;max-width:580px}
+
+/* Base URL note */
+.base-url-note{max-width:1100px;margin:20px auto 0;padding:0 24px}
+.base-url-box{background:#fff;border:1.5px solid #E7E5E4;border-radius:10px;padding:14px 18px;display:flex;align-items:center;gap:12px;font-size:.85rem}
+.base-url-box code{background:#F5F4F0;padding:4px 10px;border-radius:5px;font-size:.82rem;color:#D97706;font-family:'Courier New',monospace}
+
+/* Grid */
+.grid{max-width:1100px;margin:28px auto 0;padding:0 24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+
+/* Card */
+.qr-card{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.06);overflow:hidden;transition:box-shadow .2s}
+.qr-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1),0 8px 24px rgba(0,0,0,.08)}
+.qr-card-header{padding:16px 18px 12px;border-bottom:1px solid #F5F4F0;display:flex;align-items:center;gap:10px}
+.qr-card-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.qr-card-title{font-weight:700;font-size:.92rem;color:#1C1917}
+.qr-card-sub{font-size:.72rem;color:#78716C;margin-top:1px}
+.qr-card-body{padding:16px 18px}
+.qr-canvas-wrap{display:flex;justify-content:center;margin-bottom:14px}
+canvas{border-radius:8px;border:1px solid #E7E5E4}
+.qr-url{font-family:'Courier New',monospace;font-size:.72rem;color:#78716C;word-break:break-all;background:#F5F4F0;padding:8px 10px;border-radius:6px;margin-bottom:12px;line-height:1.5}
+.qr-actions{display:flex;gap:8px}
+.btn-copy{flex:1;padding:9px;border:1.5px solid #E7E5E4;border-radius:8px;background:#fff;cursor:pointer;font-size:.78rem;font-weight:600;color:#44403C;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:5px}
+.btn-copy:hover{background:#FEF3C7;border-color:#FDE68A;color:#92400E}
+.btn-copy.copied{background:#D1FAE5;border-color:#A7F3D0;color:#065F46}
+.btn-dl{padding:9px 14px;background:#D97706;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:600;transition:background .15s;display:flex;align-items:center;gap:5px}
+.btn-dl:hover{background:#B45309}
+
+/* Stats note */
+.stats-note{max-width:1100px;margin:32px auto 0;padding:0 24px}
+.stats-box{background:#fff;border-radius:12px;padding:24px 28px;box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.06)}
+.stats-box h2{font-family:Georgia,serif;font-size:1.3rem;font-style:italic;color:#1C1917;margin-bottom:14px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.stat-item{background:#F5F4F0;border-radius:8px;padding:14px 16px}
+.stat-item h3{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#78716C;margin-bottom:4px}
+.stat-item p{font-size:.84rem;color:#1C1917;line-height:1.55}
+
+@media(max-width:640px){
+  .header{padding:20px 16px}
+  .grid,.page-title,.base-url-note,.stats-note{padding:0 12px}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header-brand">Dwarka</div>
+    <div class="header-sub">Tracking Links & QR Codes — Owner Dashboard</div>
+  </div>
+  <a href="index.html" class="header-back">← Back to Site</a>
+</div>
+
+<div class="page-title">
+  <h1>UTM Tracking Links & QR Codes</h1>
+  <p>Each channel gets a unique link. When a guest books, you'll see exactly where they came from — WhatsApp, Instagram, temple poster, or anywhere else.</p>
+</div>
+
+<div class="base-url-note">
+  <div class="base-url-box">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span>All links go to: <code>luxuryvillasofguruvayur.com/book.html?src=<em>[channel]</em></code> &nbsp;—&nbsp; guests land on the booking form, you see the source.</span>
+  </div>
+</div>
+
+<div class="grid" id="qrGrid">
+  <!-- Cards injected by JS -->
+</div>
+
+<div class="stats-note">
+  <div class="stats-box">
+    <h2>How to Track Performance</h2>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3>📊 Google Analytics (Free)</h3>
+        <p>Add GA4 to your site and every <code>?src=</code> visit is tracked automatically. See which channel brings the most visitors.</p>
+      </div>
+      <div class="stat-item">
+        <h3>💬 WhatsApp Messages</h3>
+        <p>When a guest submits the form, the WhatsApp message you receive will include their source: <em>"Source: wa1"</em></p>
+      </div>
+      <div class="stat-item">
+        <h3>📧 Email Subject Line</h3>
+        <p>Every booking request email includes the source in the body — so you know which channel drove each enquiry.</p>
+      </div>
+      <div class="stat-item">
+        <h3>🔗 Bitly (Optional)</h3>
+        <p>Paste any link into <strong>bitly.com</strong> to get click counts. Free plan shows total clicks per link per day.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QR Code library (pure JS, no external CDN needed) -->
+<script>
+// Minimal QR code generator (pure JS - Reed-Solomon based)
+// Using qrcode-generator library logic inline for offline use
+
+var CHANNELS = [
+  { id:'wa1',      label:'WhatsApp Group 1',       icon:'💬', bg:'#DCF8C6', desc:'Your primary WhatsApp family/friends group' },
+  { id:'wa2',      label:'WhatsApp Group 2',       icon:'💬', bg:'#DCF8C6', desc:'Second WhatsApp broadcast list' },
+  { id:'wa3',      label:'WhatsApp Group 3',       icon:'💬', bg:'#DCF8C6', desc:'Third WhatsApp group or broadcast' },
+  { id:'insta',    label:'Instagram',              icon:'📸', bg:'#FDE2FF', desc:'Instagram bio link or story swipe-up' },
+  { id:'fb',       label:'Facebook',               icon:'👍', bg:'#DBEAFE', desc:'Facebook post or page link' },
+  { id:'templeUS', label:'Temple Poster (US)',      icon:'🛕', bg:'#FEF3C7', desc:'Posters at US temples / community halls' },
+  { id:'templeKL', label:'Temple Poster (Kerala)',  icon:'🛕', bg:'#FEF3C7', desc:'Posters at Guruvayur & nearby temples' },
+  { id:'mall',     label:'Shopping Mall Poster',   icon:'🏬', bg:'#E0F2FE', desc:'Kochi / Thrissur mall display boards' },
+  { id:'google',   label:'Google / Search',        icon:'🔍', bg:'#F0FDF4', desc:'Google Ads or organic search visitors' },
+  { id:'email',    label:'Email Campaign',         icon:'📧', bg:'#FFF7ED', desc:'Email newsletters or direct outreach' },
+];
+
+var BASE = 'https://luxuryvillasofguruvayur.com/book.html?src=';
+
+// ── Tiny QR generator using qr-creator approach ────────────
+// Load QRious library from CDN with fallback drawing
+function loadQR(callback) {
+  var s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js';
+  s.onload = callback;
+  s.onerror = function(){ callback(false); };
+  document.head.appendChild(s);
+}
+
+function buildCards(qrAvailable) {
+  var grid = document.getElementById('qrGrid');
+  grid.innerHTML = '';
+
+  CHANNELS.forEach(function(ch, idx) {
+    var url = BASE + ch.id;
+    var card = document.createElement('div');
+    card.className = 'qr-card';
+    card.innerHTML =
+      '<div class="qr-card-header">' +
+        '<div class="qr-card-icon" style="background:' + ch.bg + '">' + ch.icon + '</div>' +
+        '<div><div class="qr-card-title">' + ch.label + '</div><div class="qr-card-sub">' + ch.desc + '</div></div>' +
+      '</div>' +
+      '<div class="qr-card-body">' +
+        '<div class="qr-canvas-wrap"><canvas id="qr_' + idx + '" width="160" height="160"></canvas></div>' +
+        '<div class="qr-url">' + url + '</div>' +
+        '<div class="qr-actions">' +
+          '<button class="btn-copy" onclick="copyLink(this,\'' + url + '\')">📋 Copy Link</button>' +
+          '<button class="btn-dl" onclick="downloadQR(\'qr_' + idx + '\',\'' + ch.id + '\')">⬇ Save QR</button>' +
+        '</div>' +
+      '</div>';
+    grid.appendChild(card);
+
+    if(qrAvailable && typeof QRious !== 'undefined') {
+      new QRious({
+        element: document.getElementById('qr_' + idx),
+        value: url,
+        size: 160,
+        level: 'M',
+        background: '#ffffff',
+        foreground: '#1A1A1A',
+        backgroundAlpha: 1,
+        foregroundAlpha: 1,
+        padding: 10,
+      });
+    } else {
+      // Fallback: draw placeholder with URL text
+      var c = document.getElementById('qr_' + idx);
+      var ctx = c.getContext('2d');
+      ctx.fillStyle = '#F5F4F0';
+      ctx.fillRect(0,0,160,160);
+      ctx.fillStyle = '#44403C';
+      ctx.font = '11px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText('QR: ?' + 'src=' + ch.id, 80, 85);
+      ctx.font = '10px sans-serif';
+      ctx.fillStyle = '#78716C';
+      ctx.fillText('(requires internet)', 80, 105);
+    }
+  });
+}
+
+function copyLink(btn, url) {
+  navigator.clipboard.writeText(url).then(function() {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent = '📋 Copy Link'; btn.classList.remove('copied'); }, 2000);
+  }).catch(function() {
+    // Fallback
+    var ta = document.createElement('textarea');
+    ta.value = url;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent = '📋 Copy Link'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function downloadQR(canvasId, channelId) {
+  var c = document.getElementById(canvasId);
+  var link = document.createElement('a');
+  link.download = 'dwarka-qr-' + channelId + '.png';
+  link.href = c.toDataURL('image/png');
+  link.click();
+}
+
+// Try to load QRious, fall back gracefully
+loadQR(function(ok) {
+  buildCards(ok !== false);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://luxuryvillasofguruvayur.com/</loc>
+    <priority>1.0</priority><changefreq>monthly</changefreq>
+    <image:image><image:loc>https://luxuryvillasofguruvayur.com/img/hero.jpg</image:loc>
+    <image:title>Dwarka Luxury Villa Guruvayur Kerala</image:title></image:image>
+  </url>
+  <url><loc>https://luxuryvillasofguruvayur.com/villa.html</loc><priority>0.95</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://luxuryvillasofguruvayur.com/attractions.html</loc><priority>0.85</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://luxuryvillasofguruvayur.com/services.html</loc><priority>0.80</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://luxuryvillasofguruvayur.com/contact.html</loc><priority>0.90</priority><changefreq>monthly</changefreq></url>
+</urlset>

@@ -253,12 +253,24 @@ footer{background:#1A1A1A;color:rgba(255,255,255,.55);padding:56px 0 26px}
   .spec-item{min-width:50%;border-bottom:1px solid var(--border)}
 }
 
-.scroll-row{display:flex;gap:18px;overflow-x:auto;padding-bottom:14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;cursor:grab}
-.scroll-row:active{cursor:grabbing}
-.scroll-row::-webkit-scrollbar{height:5px}
-.scroll-row::-webkit-scrollbar-track{background:var(--border);border-radius:3px}
-.scroll-row::-webkit-scrollbar-thumb{background:var(--orange);border-radius:3px}
 .ph-img{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:.8rem;color:rgba(255,255,255,.7);font-weight:500;letter-spacing:.04em;text-align:center;padding:12px}
+
+/* === SCROLL ROW WITH ARROWS === */
+.scroll-wrap{position:relative;}
+.scroll-row{display:flex;gap:18px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.scroll-row::-webkit-scrollbar{display:none;}
+.scroll-btn{position:absolute;top:50%;transform:translateY(-60%);z-index:10;width:42px;height:42px;border-radius:50%;background:#fff;border:1.5px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.12);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--text);font-size:1rem;}
+.scroll-btn:hover{background:var(--orange);color:#fff;border-color:var(--orange);box-shadow:0 4px 16px rgba(217,119,6,.3);}
+.scroll-btn.prev{left:-20px;}
+.scroll-btn.next{right:-20px;}
+.scroll-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+@media(max-width:960px){
+  .scroll-btn{display:none;}
+  .scroll-row{padding-bottom:10px;scrollbar-width:thin;}
+  .scroll-row::-webkit-scrollbar{display:block;height:4px;}
+  .scroll-row::-webkit-scrollbar-track{background:var(--border);border-radius:3px;}
+  .scroll-row::-webkit-scrollbar-thumb{background:var(--orange);border-radius:3px;}
+}
 
 
 /* === MOBILE ENHANCEMENTS === */
@@ -352,7 +364,10 @@ nav.solid .hamburger span{background:#fff!important}
     <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;color:var(--text)">&#x1F6D5; Temples</div>
     <span style="font-size:.7rem;color:var(--light);letter-spacing:.05em">scroll to explore &rarr;</span>
   </div>
-  <div class="scroll-row"><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
+  <div class="scroll-wrap">
+    <button class="scroll-btn prev" onclick="scrollRow(this,-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="scroll-btn next" onclick="scrollRow(this,1)"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+    <div class="scroll-row"><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
   <div class="attr-img"><img src="images/guruvayur_temple.jpg" alt="Guruvayur Sri Krishna Temple" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
   <div class="attr-body">
     <div class="attr-drive">&#x23F1; 5 min drive</div>
@@ -363,7 +378,7 @@ nav.solid .hamburger span{background:#fff!important}
 </div><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
   <div class="attr-img"><img src="images/mammiyur_temple.jpg" alt="Mammiyur Mahadeva Temple" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
   <div class="attr-body">
-    <div class="attr-drive">&#x23F1; 7 min drive</div>
+    <div class="attr-drive">&#x23F1; 3 min walk</div>
     <div class="attr-name">Mammiyur Mahadeva Temple</div>
     <p class="attr-desc">An ancient Shiva temple closely associated with Guruvayur Temple. A quieter, deeply meditative experience — according to legend, Lord Shiva himself chose this location.</p>
     <div class="attr-tags"><span class="attr-tag">Ancient Architecture</span><span class="attr-tag">Spiritual Significance</span><span class="attr-tag">Less Crowded</span></div>
@@ -371,7 +386,7 @@ nav.solid .hamburger span{background:#fff!important}
 </div><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
   <div class="attr-img"><img src="images/parthasarathy.jpg" alt="Parthasarathy Temple" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
   <div class="attr-body">
-    <div class="attr-drive">&#x23F1; 8 min drive</div>
+    <div class="attr-drive">&#x23F1; 5 min drive</div>
     <div class="attr-name">Parthasarathy Temple</div>
     <p class="attr-desc">Dedicated to Lord Krishna as the charioteer of Arjuna. Rich historical significance and serene atmosphere — part of the Guruvayur temple circuit.</p>
     <div class="attr-tags"><span class="attr-tag">Peaceful Ambiance</span><span class="attr-tag">Historical Significance</span></div>
@@ -379,34 +394,34 @@ nav.solid .hamburger span{background:#fff!important}
 </div><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
   <div class="attr-img"><img src="images/vadakanathan.jpg" alt="Vadaknathan Temple Thrissur" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
   <div class="attr-body">
-    <div class="attr-drive">&#x23F1; 25 min drive</div>
+    <div class="attr-drive">&#x23F1; 30 min drive</div>
     <div class="attr-name">Vadaknathan Temple Thrissur</div>
     <p class="attr-desc">The magnificent Vadaknathan Temple at the heart of Thrissur city, dedicated to Lord Shiva. Famous for Kerala-style architecture, ancient murals and the grand Thrissur Pooram.</p>
     <div class="attr-tags"><span class="attr-tag">Thrissur Pooram</span><span class="attr-tag">Ancient Murals</span><span class="attr-tag">Kerala Architecture</span></div>
   </div>
 </div><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
-  <div class="attr-img" style="background:linear-gradient(135deg,#7A1030 0%,#4E0A1E 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;position:relative">
-  <div style="font-size:3rem;line-height:1">🌺</div>
-  <div style="font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);text-align:center;padding:0 16px">Paremekavu Bhagavathy Temple</div>
-  <div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,.35);color:rgba(255,255,255,.9);font-size:.65rem;font-weight:600;letter-spacing:.1em;padding:4px 10px;border-radius:9999px;text-transform:uppercase">25 min drive</div>
-</div>
+  <div class="attr-img"><img src="images/ParamekkavuBagavathi.jpeg" alt="Paremekavu Bhagavathy Temple" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
   <div class="attr-body">
-    <div class="attr-drive">&#x23F1; 25 min drive</div>
+    <div class="attr-drive">&#x23F1; 30 min drive</div>
     <div class="attr-name">Paremekavu Bhagavathy Temple</div>
     <p class="attr-desc">One of the two temples from which the iconic Thrissur Pooram procession originates. Dedicated to Goddess Bhagavathi — central to Kerala's most spectacular festival.</p>
     <div class="attr-tags"><span class="attr-tag">Thrissur Pooram</span><span class="attr-tag">Goddess Bhagavathi</span><span class="attr-tag">Cultural Heritage</span></div>
   </div>
 </div></div>
+  </div>
 </div>
     <div class="cat-section fade-in">
   <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:1.5px solid var(--border)">
     <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;color:var(--text)">&#x1F418; Nature &amp; Wildlife</div>
     <span style="font-size:.7rem;color:var(--light);letter-spacing:.05em">scroll to explore &rarr;</span>
   </div>
-  <div class="scroll-row"><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
+  <div class="scroll-wrap">
+    <button class="scroll-btn prev" onclick="scrollRow(this,-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="scroll-btn next" onclick="scrollRow(this,1)"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+    <div class="scroll-row"><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
   <div class="attr-img"><img src="images/PunnathurKottaElephants.jpg" alt="Punnathur Kotta Elephant Sanctuary" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
   <div class="attr-body">
-    <div class="attr-drive">&#x23F1; 10 min drive</div>
+    <div class="attr-drive">&#x23F1; 12 min drive</div>
     <div class="attr-name">Punnathur Kotta Elephant Sanctuary</div>
     <p class="attr-desc">Home to 50+ elephants of the Guruvayur Devaswom — the world's largest captive elephant sanctuary. Watch them bathing and being fed every morning.</p>
     <div class="attr-tags"><span class="attr-tag">Elephant Feeding</span><span class="attr-tag">Photography</span><span class="attr-tag">Family-Friendly</span></div>
@@ -414,7 +429,7 @@ nav.solid .hamburger span{background:#fff!important}
 </div><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
   <div class="attr-img"><img src="images/chavakkadBeach.jpg" alt="Chavakkad Beach" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
   <div class="attr-body">
-    <div class="attr-drive">&#x23F1; 15 min drive</div>
+    <div class="attr-drive">&#x23F1; 10 min drive</div>
     <div class="attr-name">Chavakkad Beach</div>
     <p class="attr-desc">A pristine, uncrowded beach perfect for evening walks and spectacular Arabian Sea sunsets. Fresh seafood stalls nearby make this a favourite evening outing.</p>
     <div class="attr-tags"><span class="attr-tag">Sunset Views</span><span class="attr-tag">Beach Walks</span><span class="attr-tag">Seafood Nearby</span></div>
@@ -430,22 +445,26 @@ nav.solid .hamburger span{background:#fff!important}
 </div><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
   <div class="attr-img"><img src="images/Peechiwildlife.jpg" alt="Peechi Wildlife Sanctuary" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
   <div class="attr-body">
-    <div class="attr-drive">&#x23F1; 40 min drive</div>
+    <div class="attr-drive">&#x23F1; 50 min drive</div>
     <div class="attr-name">Peechi Wildlife Sanctuary</div>
     <p class="attr-desc">Rich forest reserve home to leopards, elephants, deer and extraordinary birdlife. Excellent trekking trails and the scenic Peechi dam reservoir.</p>
     <div class="attr-tags"><span class="attr-tag">Birdwatching</span><span class="attr-tag">Trekking</span><span class="attr-tag">Wildlife</span></div>
   </div>
 </div></div>
+  </div>
 </div>
     <div class="cat-section fade-in">
   <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:1.5px solid var(--border)">
     <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:400;color:var(--text)">&#x1F46A; Family Activities &amp; Culture</div>
     <span style="font-size:.7rem;color:var(--light);letter-spacing:.05em">scroll to explore &rarr;</span>
   </div>
-  <div class="scroll-row"><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
+  <div class="scroll-wrap">
+    <button class="scroll-btn prev" onclick="scrollRow(this,-1)"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="scroll-btn next" onclick="scrollRow(this,1)"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+    <div class="scroll-row"><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
   <div class="attr-img"><img src="images/thrissur-pooram.jpg" alt="Thrissur Pooram Festival" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
   <div class="attr-body">
-    <div class="attr-drive">&#x23F1; 25 min drive</div>
+    <div class="attr-drive">&#x23F1; 30 min drive</div>
     <div class="attr-name">Thrissur Pooram Festival</div>
     <p class="attr-desc">The cultural capital of Kerala — home to the world-famous Thrissur Pooram (April–May), Kathakali performances, and classical Carnatic music concerts.</p>
     <div class="attr-tags"><span class="attr-tag">Thrissur Pooram</span><span class="attr-tag">Kathakali</span><span class="attr-tag">Classical Music</span></div>
@@ -469,7 +488,7 @@ nav.solid .hamburger span{background:#fff!important}
 </div><div class="attr-card" style="flex:0 0 310px;scroll-snap-align:start">
   <div class="attr-img"><img src="images/MarineWorld.jpeg" alt="Marine World Public Aquarium" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
   <div class="attr-body">
-    <div class="attr-drive">&#x23F1; 30 min drive</div>
+    <div class="attr-drive">&#x23F1; 15 min drive</div>
     <div class="attr-name">Marine World Public Aquarium</div>
     <p class="attr-desc">One of Kerala's premier aquariums showcasing a stunning variety of marine life — from exotic tropical fish to majestic rays. A captivating experience for all ages.</p>
     <div class="attr-tags"><span class="attr-tag">Marine Life</span><span class="attr-tag">Family-Friendly</span><span class="attr-tag">Indoor</span></div>
@@ -491,6 +510,7 @@ nav.solid .hamburger span{background:#fff!important}
     <div class="attr-tags"><span class="attr-tag">Houseboat</span><span class="attr-tag">Sunset Cruise</span><span class="attr-tag">Traditional Kerala</span></div>
   </div>
 </div></div>
+  </div>
 </div>
 
     <div style="background:var(--dark);border-radius:12px;padding:28px;text-align:center" class="fade-in">
@@ -585,11 +605,11 @@ nav.solid .hamburger span{background:#fff!important}
   });
 })();
 </script>
-<script>document.querySelectorAll('.scroll-row').forEach(function(r){
-  var d=false,sx,sl;
-  r.addEventListener('mousedown',function(e){d=true;sx=e.pageX-r.offsetLeft;sl=r.scrollLeft;});
-  r.addEventListener('mouseleave',function(){d=false;});
-  r.addEventListener('mouseup',function(){d=false;});
-  r.addEventListener('mousemove',function(e){if(!d)return;e.preventDefault();r.scrollLeft=sl-(e.pageX-r.offsetLeft-sx)*1.5;});
-});</script>
+
+<script>
+function scrollRow(btn, dir) {
+  var row = btn.closest('.scroll-wrap').querySelector('.scroll-row');
+  row.scrollBy({left: dir * 340, behavior: 'smooth'});
+}
+</script>
 </body></html>

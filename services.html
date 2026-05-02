@@ -70,230 +70,67 @@ nav.solid .hamburger span{background:#fff}
 .mob-menu a{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--text);padding:14px 0;border-bottom:1px solid var(--border)}
 .mob-close{position:absolute;top:20px;right:24px;font-size:1.6rem;background:none;border:none;cursor:pointer;color:var(--muted)}
 
-/* HERO */
-.hero{height:100vh;min-height:680px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;overflow:hidden}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 28%;transform:scale(1.04);animation:hZ 24s ease-in-out infinite alternate}
-@keyframes hZ{from{transform:scale(1.04)}to{transform:scale(1.0) translateY(-18px)}}
-.hero-veil{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.24) 0%,rgba(0,0,0,.04) 34%,rgba(0,0,0,.52) 70%,rgba(0,0,0,.82) 100%)}
-.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;display:flex;flex-direction:column;align-items:center;animation:fadeUp .9s ease .2s both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:9999px;padding:7px 16px;font-size:.78rem;color:#fff;margin-bottom:20px;font-weight:500}
-.hero-badge-stars{color:#FBBF24;letter-spacing:1px}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.8rem,9vw,7.5rem);font-style:italic;font-weight:400;color:#fff;line-height:.95;text-shadow:0 2px 30px rgba(0,0,0,.3);margin-bottom:8px}
-.hero-sub1{font-size:clamp(1rem,2vw,1.3rem);color:rgba(255,255,255,.82);font-weight:400;margin-bottom:5px}
-.hero-loc{font-size:.78rem;color:rgba(255,255,255,.58);margin-bottom:16px;display:flex;align-items:center;justify-content:center;gap:4px}
-.hero-desc{font-size:.9rem;color:rgba(255,255,255,.62);max-width:430px;line-height:1.72;margin-bottom:30px}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.hero-statsbar{position:absolute;bottom:0;left:0;right:0;z-index:3;background:rgba(0,0,0,.48);backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.1);display:flex}
-.hstat{flex:1;padding:17px 10px;text-align:center;border-right:1px solid rgba(255,255,255,.08)}
-.hstat:last-child{border-right:none}
-.hstat-val{font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;display:block;margin-bottom:2px}
-.hstat-lbl{font-size:.56rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.48);display:block}
-
-/* Page hero dark */
 .page-hero{background:var(--dark);padding:96px 0 52px;margin-top:0}
 .page-hero .container{text-align:center}
 .page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:400;color:#fff;line-height:1}
 .page-hero h1 em{font-style:italic;color:var(--orange)}
 .page-hero .desc{font-size:.95rem;color:rgba(255,255,255,.58);margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7}
 
-/* ATTRACTION CARDS — identical to base44 */
 .attr-card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;transition:all .25s;display:flex;flex-direction:column}
 .attr-card:hover{box-shadow:var(--sh-h);transform:translateY(-4px)}
 .attr-img{height:196px;overflow:hidden}
 .attr-img img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
 .attr-card:hover .attr-img img{transform:scale(1.06)}
 .attr-body{padding:18px 20px;flex:1;display:flex;flex-direction:column}
-.attr-drive{font-size:.71rem;font-weight:600;color:var(--orange);display:flex;align-items:center;gap:5px;margin-bottom:5px}
 .attr-name{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:600;color:var(--text);margin-bottom:7px;line-height:1.2}
 .attr-desc{font-size:.83rem;color:var(--muted);line-height:1.68;flex:1;margin-bottom:12px}
 .attr-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
 .attr-tag{font-size:.69rem;font-weight:500;background:var(--stone-bg);color:var(--mid);padding:4px 10px;border-radius:9999px;border:1px solid var(--border)}
 
-/* Category */
 .cat-section{margin-bottom:52px}
 .cat-section:last-child{margin-bottom:0}
 .cat-title{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:400;color:var(--text);margin-bottom:18px;padding-bottom:12px;border-bottom:1.5px solid var(--border)}
 .cat-grid{display:grid;gap:18px}
-.cat-3{grid-template-columns:repeat(3,1fr)}
 .cat-2{grid-template-columns:repeat(2,1fr)}
 
-/* Spec bar */
-.spec-bar{display:flex;gap:0;background:var(--card);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;margin:28px 0}
-.spec-item{flex:1;padding:20px 14px;text-align:center;border-right:1px solid var(--border)}
-.spec-item:last-child{border-right:none}
-.spec-icon{font-size:1.4rem;margin-bottom:8px;display:block}
-.spec-val{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:600;color:var(--text);display:block}
-.spec-lbl{font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:3px;display:block}
-.spec-sub{font-size:.7rem;color:var(--light);margin-top:2px;display:block}
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.fade-in.visible{opacity:1;transform:none}
 
-/* Villa feature 2×2 */
-.feat-card{background:var(--card);border-radius:var(--r);padding:22px;box-shadow:var(--sh);transition:all .25s}
-.feat-card:hover{box-shadow:var(--sh-h);transform:translateY(-3px)}
-.feat-icon{font-size:1.6rem;margin-bottom:10px}
-.feat-name{font-weight:700;font-size:.94rem;color:var(--text);margin-bottom:5px}
-.feat-desc{font-size:.82rem;color:var(--muted);line-height:1.65}
-
-/* Amenity chips */
-.amenity-chip{display:flex;align-items:center;gap:9px;background:var(--card);border-radius:8px;padding:10px 14px;font-size:.84rem;font-weight:500;color:var(--mid);box-shadow:var(--sh)}
-.amenity-chip-icon{font-size:.95rem;width:24px;text-align:center;flex-shrink:0}
-
-/* Room cards */
-.room-card{background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);transition:all .25s}
-.room-card:hover{box-shadow:var(--sh-h)}
-.room-img{height:185px;overflow:hidden}
-.room-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.room-card:hover .room-img img{transform:scale(1.05)}
-.room-body{padding:14px 16px}
-.room-name{font-weight:700;font-size:.9rem;color:var(--text);margin-bottom:4px}
-.room-desc{font-size:.8rem;color:var(--muted);line-height:1.58}
-
-/* About section */
-.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.about-img-wrap{position:relative;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-h)}
-.about-img-wrap img{width:100%;height:440px;object-fit:cover}
-.about-badge{position:absolute;bottom:18px;left:18px;background:#fff;border-radius:10px;padding:12px 16px;box-shadow:var(--sh-h);display:flex;align-items:center;gap:10px}
-.about-badge-icon{width:34px;height:34px;background:var(--orange-lt);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem}
-.about-badge-text{font-size:.82rem;font-weight:700;color:var(--text);line-height:1.2}
-.about-badge-sub{font-size:.7rem;color:var(--muted)}
-.check-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:18px}
-.check-list li{display:flex;align-items:flex-start;gap:9px;font-size:.88rem;color:var(--mid)}
-.check-list li::before{content:'✓';color:var(--orange);font-weight:700;flex-shrink:0;margin-top:1px}
-
-/* Testimonials */
-.testi{background:var(--card);border-radius:var(--r);padding:24px;box-shadow:var(--sh)}
-.testi-stars{color:#FBBF24;font-size:.75rem;letter-spacing:2px;margin-bottom:12px}
-.testi-body{font-family:'Playfair Display',serif;font-size:.96rem;font-style:italic;color:var(--mid);line-height:1.75;margin-bottom:16px}
-.testi-name{font-size:.8rem;font-weight:700;color:var(--text)}
-.testi-loc{font-size:.72rem;color:var(--light)}
-
-/* Contact */
-.contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px}
-.cm-card{background:var(--card);border-radius:var(--r);padding:28px 20px;box-shadow:var(--sh);text-align:center;transition:all .25s}
-.cm-card:hover{box-shadow:var(--sh-h);transform:translateY(-3px)}
-.cm-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin:0 auto 14px}
-.cm-icon.ph{background:#FEF3C7}.cm-icon.wa{background:#D1FAE5}.cm-icon.em{background:#DBEAFE}
-.cm-title{font-weight:700;font-size:.94rem;color:var(--text);margin-bottom:6px}
-.cm-main{font-size:.9rem;color:var(--orange);font-weight:600}
-.cm-sub{font-size:.8rem;color:var(--muted);margin-top:3px}
-.loc-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:28px;align-items:start}
-.loc-card{background:var(--card);border-radius:var(--r);padding:24px;box-shadow:var(--sh)}
-.loc-card h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-style:italic;color:var(--orange);margin-bottom:18px}
-.loc-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
-.loc-item:last-child{border-bottom:none}
-.loc-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;margin-top:1px}
-.loc-icon.a{background:#FEF3C7}.loc-icon.t{background:#D1FAE5}.loc-icon.r{background:#DBEAFE}
-.loc-lbl{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--light);margin-bottom:3px}
-.loc-val{font-size:.86rem;color:var(--mid);line-height:1.55}
-.map-card{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
-.map-card iframe{width:100%;height:360px;border:none;display:block}
-.faq-item{background:var(--card);border-radius:var(--r);padding:18px 22px;box-shadow:var(--sh);margin-bottom:10px;cursor:pointer;transition:box-shadow .2s}
-.faq-item:hover{box-shadow:var(--sh-h)}
-.faq-q{font-weight:600;font-size:.93rem;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:12px}
-.faq-q::after{content:'＋';font-size:.95rem;color:var(--orange);flex-shrink:0;font-weight:400}
-.faq-a{font-size:.86rem;color:var(--muted);line-height:1.7;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
-
-/* Services */
-.svc-card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;transition:all .25s}
-.svc-card:hover{box-shadow:var(--sh-h);transform:translateY(-4px)}
-.svc-img{height:180px;overflow:hidden}
-.svc-img img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
-.svc-card:hover .svc-img img{transform:scale(1.06)}
-.svc-body{padding:18px 20px}
-.svc-name{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:600;color:var(--text);margin-bottom:6px}
-.svc-desc{font-size:.83rem;color:var(--muted);line-height:1.68;margin-bottom:12px}
-.svc-tags{display:flex;flex-wrap:wrap;gap:6px}
-.svc-tag{font-size:.69rem;font-weight:500;background:var(--orange-lt);color:var(--orange2);padding:4px 10px;border-radius:9999px}
-
-/* CTA dark section */
-.cta-dark{background:var(--dark);padding:52px 0;text-align:center}
-.cta-dark h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.3rem);font-weight:400;color:#fff;margin-bottom:8px}
-.cta-dark h2 em{font-style:italic;color:var(--orange)}
-.cta-dark p{font-size:.93rem;color:rgba(255,255,255,.58);margin-bottom:22px}
-
-/* Footer */
 footer{background:#1A1A1A;color:rgba(255,255,255,.55);padding:56px 0 26px}
 .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.08);max-width:1100px;margin:0 auto;padding-left:48px;padding-right:48px}
 .ft-brand{font-family:'Playfair Display',serif;font-size:1.6rem;font-style:italic;color:var(--orange);margin-bottom:10px}
 .ft-desc{font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.75;max-width:220px}
 .ft-rating{display:flex;align-items:center;gap:6px;margin-top:12px;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.5)}
-.ft-rating-stars{color:#FBBF24;letter-spacing:1px}
 .ft-col h4{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px}
 .ft-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.4);margin-bottom:9px;transition:color .2s}
 .ft-col a:hover{color:rgba(255,255,255,.85)}
 .ft-col .wa{color:#4ADE80}
 .ft-bot{max-width:1100px;margin:24px auto 0;padding:0 48px;display:flex;justify-content:space-between;align-items:center;font-size:.7rem;color:rgba(255,255,255,.2)}
 
-/* Float WA */
 .float-wa{position:fixed;bottom:26px;right:26px;z-index:700;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:1.45rem;box-shadow:0 4px 18px rgba(37,211,102,.4);animation:waP 3s ease-in-out infinite;transition:transform .2s}
 .float-wa:hover{transform:scale(1.1)}
 @keyframes waP{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,.68),0 0 0 6px rgba(37,211,102,.1)}}
 
-.fade-in{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
-.fade-in.visible{opacity:1;transform:none}
-
-/* Responsive */
 @media(max-width:960px){
-  .container{padding:0 20px}
-  .section{padding:52px 0}
-  nav{padding:0 20px}
+  .container{padding:0 16px!important}
+  nav{padding:0 16px!important}
+  .section{padding:44px 0!important}
   .nav-links,.nav-book{display:none!important}
   .hamburger{display:flex}
-  .hero-statsbar{display:none}
-  .about-wrap{grid-template-columns:1fr}
-  .cat-3,.cat-2{grid-template-columns:1fr 1fr}
-  .ft-grid{grid-template-columns:1fr 1fr;gap:28px;padding-left:20px;padding-right:20px}
-  .ft-bot{flex-direction:column;gap:6px;text-align:center;padding:0 20px}
-  .loc-grid{grid-template-columns:1fr}
-  .contact-cards{grid-template-columns:1fr}
+  .cat-2{grid-template-columns:1fr!important}
+  .ft-grid{grid-template-columns:1fr 1fr!important;padding-left:16px!important;padding-right:16px!important}
+  .ft-bot{flex-direction:column;gap:6px;text-align:center;padding:0 16px}
 }
 @media(max-width:640px){
-  .hero-title{font-size:clamp(2.8rem,12vw,4rem)}
-  .cat-3,.cat-2{grid-template-columns:1fr}
-  .ft-grid{grid-template-columns:1fr}
-  .spec-bar{flex-wrap:wrap}
-  .spec-item{min-width:50%;border-bottom:1px solid var(--border)}
+  .ft-grid{grid-template-columns:1fr!important}
 }
+.btn{min-height:44px;min-width:44px}
+nav a,.nav-book{min-height:44px;display:inline-flex;align-items:center}
+.hamburger{padding:10px!important}
+html,body{overflow-x:hidden}
+img{max-width:100%}
+</style>
 
-/* === MOBILE ENHANCEMENTS === */
--webkit-overflow-scrolling: touch; /* applied via scroll-row below */
-.scroll-row { -webkit-overflow-scrolling: touch; }
-
-@media (max-width: 960px) {
-  .container { padding: 0 16px !important; }
-  nav { padding: 0 16px !important; }
-  .section { padding: 44px 0 !important; }
-  .hero-statsbar { flex-wrap: wrap !important; }
-  .hstat { min-width: 50% !important; border-bottom: 1px solid rgba(255,255,255,.1) !important; }
-  .hstat:last-child { border-bottom: none !important; }
-  .about-wrap { grid-template-columns: 1fr !important; }
-  .spec-bar { flex-wrap: wrap !important; }
-  .spec-item { min-width: 50% !important; border-bottom: 1px solid var(--border) !important; }
-  .ft-grid { grid-template-columns: 1fr 1fr !important; padding-left: 16px !important; padding-right: 16px !important; }
-  .loc-grid { grid-template-columns: 1fr !important; }
-  .contact-cards { grid-template-columns: 1fr !important; }
-}
-@media (max-width: 640px) {
-  .hero-title { font-size: clamp(3rem, 13vw, 5rem) !important; }
-  .hero-sub1  { font-size: clamp(.95rem, 4vw, 1.2rem) !important; }
-  .hero-btns  { flex-direction: column; align-items: center; }
-  .hero-btns .btn { width: 100%; max-width: 270px; justify-content: center; }
-  .ft-grid    { grid-template-columns: 1fr !important; }
-  .cat-3, .cat-2 { grid-template-columns: 1fr !important; }
-  h1 { font-size: clamp(1.8rem, 8vw, 2.6rem) !important; }
-  .about-img-wrap img { height: 240px !important; }
-  .testi { margin-bottom: 12px; }
-}
-/* Larger touch targets */
-.btn { min-height: 44px; min-width: 44px; }
-nav a, .nav-book { min-height: 44px; display: inline-flex; align-items: center; }
-.hamburger { padding: 10px !important; }
-/* Prevent horizontal overflow on mobile */
-html, body { overflow-x: hidden; }
-img { max-width: 100%; }</style>
-
-  <!-- SEO: robots, canonical, OG, Twitter, favicon, schema -->
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="author" content="Dwarka Luxury Villas of Guruvayur">
   <meta name="geo.region" content="IN-KL">
@@ -318,10 +155,11 @@ img { max-width: 100%; }</style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Dwarka Villa Kerala Experiences","description":"Curated Ayurveda, wildlife, farm and cultural experiences near Guruvayur","provider":{"@type":"LodgingBusiness","name":"Dwarka — Luxury Villas of Guruvayur","url":"https://luxuryvillasofguruvayur.com/"}}</script>
-  <meta name="x-preload-hint" content="preloaded">
 </head>
 <body>
-<a class="float-wa" href="https://wa.me/918547141401?text=Hi" target="_blank">💬</a><div id="mobMenu" class="mob-menu"><button id="mobClose" class="mob-close">✕</button><a href="index.html">Home</a><a href="villa.html">The Villa</a><a href="services.html">Services</a><a href="attractions.html">Attractions</a><a href="contact.html">Contact</a></div><nav id="mainNav"><a href="index.html" class="nav-logo"><span class="nav-logo-name">Dwarka</span><span class="nav-logo-sub">Luxury Villas of Guruvayur</span></a><ul class="nav-links"><li><a href="index.html" >Home</a></li><li><a href="villa.html" >The Villa</a></li><li><a href="services.html" class="active">Services</a></li><li><a href="attractions.html" >Attractions</a></li><li><a href="contact.html" >Contact</a></li></ul><a href="contact.html" class="nav-book">Book Now</a><button class="hamburger"><span></span><span></span><span></span></button></nav>
+<a class="float-wa" href="https://wa.me/918547141401?text=Hi" target="_blank">💬</a>
+<div id="mobMenu" class="mob-menu"><button id="mobClose" class="mob-close">✕</button><a href="index.html">Home</a><a href="villa.html">The Villa</a><a href="services.html">Services</a><a href="attractions.html">Attractions</a><a href="contact.html">Contact</a></div>
+<nav id="mainNav"><a href="index.html" class="nav-logo"><span class="nav-logo-name">Dwarka</span><span class="nav-logo-sub">Luxury Villas of Guruvayur</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="villa.html">The Villa</a></li><li><a href="services.html" class="active">Services</a></li><li><a href="attractions.html">Attractions</a></li><li><a href="contact.html">Contact</a></li></ul><a href="contact.html" class="nav-book">Book Now</a><button class="hamburger"><span></span><span></span><span></span></button></nav>
 <script>document.getElementById("mainNav").classList.add("solid");</script>
 
 <div class="page-hero">
@@ -334,11 +172,12 @@ img { max-width: 100%; }</style>
 
 <section class="section" style="background:var(--stone-bg)">
   <div class="container">
+
     <div class="cat-section fade-in">
       <div class="cat-title">Wellness &amp; Ayurveda</div>
       <div class="cat-grid cat-2">
         <div class="attr-card">
-          <div class="attr-img"><img src="images/bedroom.jpg" alt="Ayurvedic Experience" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="attr-img"><img src="images/ayurveda.jpg" alt="Ayurvedic Experience" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="attr-body">
             <div class="attr-name">Ayurvedic Experience</div>
             <p class="attr-desc">Kerala is the birthplace of Ayurveda. We connect you with certified physicians and therapists for personalised Panchakarma treatments, herbal massages, and rejuvenating therapies — at your villa or curated centres nearby.</p>
@@ -346,7 +185,7 @@ img { max-width: 100%; }</style>
           </div>
         </div>
         <div class="attr-card">
-          <div class="attr-img"><img src="images/bedroom.jpg" alt="Yoga &amp; Meditation" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
+          <div class="attr-img"><img src="images/yoga.jpg" alt="Yoga &amp; Meditation" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="attr-body">
             <div class="attr-name">Yoga &amp; Meditation</div>
             <p class="attr-desc">Begin your days with guided yoga sessions in the villa's serene garden. Our instructors specialise in traditional Hatha and Kundalini yoga, tailored for all ages and fitness levels — including seniors on pilgrimage.</p>
@@ -360,7 +199,7 @@ img { max-width: 100%; }</style>
       <div class="cat-title">Wildlife &amp; Nature</div>
       <div class="cat-grid cat-2">
         <div class="attr-card">
-          <div class="attr-img"><img src="images/gate.jpg" alt="Wildlife Experience" loading="lazy"></div>
+          <div class="attr-img"><img src="images/WildLifeExperience.jpg" alt="Wildlife Experience" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="attr-body">
             <div class="attr-name">Wildlife Experience</div>
             <p class="attr-desc">From the majestic elephants of Punnathur Kotta — the world's largest captive elephant sanctuary — to the biodiversity of Anamalai. We arrange guided safaris, elephant interactions, and birdwatching tours for your family.</p>
@@ -368,7 +207,7 @@ img { max-width: 100%; }</style>
           </div>
         </div>
         <div class="attr-card">
-          <div class="attr-img"><img src="images/gate.jpg" alt="Farm Experience" loading="lazy"></div>
+          <div class="attr-img"><img src="images/RubberFarmExperience.jpeg" alt="Farm Experience" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="attr-body">
             <div class="attr-name">Farm Experience</div>
             <p class="attr-desc">Connect with Kerala's agricultural roots — pick coconuts, harvest rice, press coconut oil, or walk through paddy fields at golden hour. Ideal for children wanting to experience the authentic rhythms of rural Kerala life.</p>
@@ -382,7 +221,7 @@ img { max-width: 100%; }</style>
       <div class="cat-title">Culture &amp; Tradition</div>
       <div class="cat-grid cat-2">
         <div class="attr-card">
-          <div class="attr-img"><img src="images/garden.jpg" alt="Culture and Tradition" loading="lazy"></div>
+          <div class="attr-img"><img src="images/CultureAndTradition.jpeg" alt="Culture and Tradition" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="attr-body">
             <div class="attr-name">Indulge in Culture &amp; Tradition</div>
             <p class="attr-desc">Thrissur is the cultural capital of Kerala — and Dwarka places you at its heart. Witness Kathakali performances, attend Thrissur Pooram, or arrange an Arangettam (dance debut) for your child at the villa's dedicated practice hall.</p>
@@ -390,7 +229,7 @@ img { max-width: 100%; }</style>
           </div>
         </div>
         <div class="attr-card">
-          <div class="attr-img"><img src="images/bedroom.jpg" alt="Heritage Trail" loading="lazy"></div>
+          <div class="attr-img"><img src="images/HeritageTrail.jpeg" alt="Heritage Trail" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
           <div class="attr-body">
             <div class="attr-name">Heritage Trail</div>
             <p class="attr-desc">A curated trail connecting historically significant sites between Guruvayur and Thrissur — ancient temples, traditional Kerala homes (tharavadus), spice markets, and artisan workshops. We provide detailed maps and introduction letters.</p>
@@ -405,9 +244,13 @@ img { max-width: 100%; }</style>
       <p style="font-size:.9rem;color:rgba(255,255,255,.58);margin-bottom:18px">Every experience is arranged personally for your group. We'll craft an itinerary that blends your interests with the soul of Kerala.</p>
       <a href="contact.html" class="btn btn-orange">Plan My Experience</a>
     </div>
+
   </div>
 </section>
-<footer><div class="ft-grid"><div><div class="ft-brand">Dwarka</div><p class="ft-desc">Premium serviced villa near Guruvayur Sri Krishna Temple. Your home away from home for a peaceful pilgrimage experience.</p><div class="ft-rating"><span class="ft-rating-stars">★★★★★</span> Highly Rated</div></div><div class="ft-col"><h4>Quick Links</h4><a href="index.html">Home</a><a href="villa.html">Villa</a><a href="attractions.html">Attractions</a><a href="services.html">Services</a><a href="contact.html">Contact</a></div><div class="ft-col"><h4>Contact Us</h4><a href="tel:+918547141401">+91 85471 41401</a><a href="tel:+19728765101">+1 972 876 5101</a><a href="mailto:kerala.luxuryvillas@gmail.com">kerala.luxuryvillas@gmail.com</a><a href="https://wa.me/918547141401" target="_blank" class="wa">WhatsApp Us</a></div><div class="ft-col"><h4>Location</h4><a href="#">Near West Nada</a><a href="#">Guruvayur, Kerala 680101</a><a href="#" style="color:var(--orange)">5 min from Temple</a></div></div><div class="ft-bot"><span>© 2025 Dwarka Luxury Villas of Guruvayur. All rights reserved.</span><span>www.luxuryvillasofguruvayur.com</span></div></footer><script>// Nav scroll effect
+
+<footer><div class="ft-grid"><div><div class="ft-brand">Dwarka</div><p class="ft-desc">Premium serviced villa near Guruvayur Sri Krishna Temple. Your home away from home for a peaceful pilgrimage experience.</p><div class="ft-rating"><span style="color:#FBBF24">★★★★★</span> Highly Rated</div></div><div class="ft-col"><h4>Quick Links</h4><a href="index.html">Home</a><a href="villa.html">Villa</a><a href="attractions.html">Attractions</a><a href="services.html">Services</a><a href="contact.html">Contact</a></div><div class="ft-col"><h4>Contact Us</h4><a href="tel:+918547141401">+91 85471 41401</a><a href="tel:+19728765101">+1 972 876 5101</a><a href="mailto:kerala.luxuryvillas@gmail.com">kerala.luxuryvillas@gmail.com</a><a href="https://wa.me/918547141401" target="_blank" class="wa">WhatsApp Us</a></div><div class="ft-col"><h4>Location</h4><a href="#">Near West Nada</a><a href="#">Guruvayur, Kerala 680101</a><a href="#" style="color:var(--orange)">5 min from Temple</a></div></div><div class="ft-bot"><span>© 2025 Dwarka Luxury Villas of Guruvayur. All rights reserved.</span><span>www.luxuryvillasofguruvayur.com</span></div></footer>
+
+<script>
 (function(){
   const nav = document.getElementById('mainNav');
   if(!nav) return;
@@ -415,8 +258,6 @@ img { max-width: 100%; }</style>
   window.addEventListener('scroll', upd, {passive:true});
   upd();
 })();
-
-// Mobile menu
 (function(){
   const ham  = document.querySelector('.hamburger');
   const menu = document.getElementById('mobMenu');
@@ -426,17 +267,6 @@ img { max-width: 100%; }</style>
   if(cls) cls.addEventListener('click', ()=>menu.classList.remove('open'));
   menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
 })();
-
-// Active nav link
-(function(){
-  const page = window.location.pathname.split('/').pop()||'index.html';
-  document.querySelectorAll('.nav-links a, #mobMenu a').forEach(a=>{
-    const h = a.getAttribute('href')||'';
-    if(h===page||(page===''&&h==='index.html')) a.classList.add('active');
-  });
-})();
-
-// Fade-in on scroll
 (function(){
   const els = document.querySelectorAll('.fade-in');
   if(!els.length) return;
@@ -446,49 +276,6 @@ img { max-width: 100%; }</style>
     });
   },{threshold:.08});
   els.forEach(el=>obs.observe(el));
-})();
-
-// Enquiry form — WhatsApp + EmailJS
-(function(){
-  const form = document.getElementById('enquiryForm');
-  if(!form) return;
-  const WA      = '918547141401';
-  const EJS_KEY = 'YOUR_PUBLIC_KEY';   // replace after emailjs.com signup
-  const EJS_SVC = 'YOUR_SERVICE_ID';
-  const EJS_TPL = 'YOUR_TEMPLATE_ID';
-
-  const s = document.createElement('script');
-  s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-  s.onload = ()=>{ if(EJS_KEY!=='YOUR_PUBLIC_KEY') emailjs.init(EJS_KEY); };
-  document.head.appendChild(s);
-
-  form.addEventListener('submit', async function(e){
-    e.preventDefault();
-    const btn = document.getElementById('fBtn');
-    const st  = document.getElementById('fStatus');
-    btn.disabled=true; btn.textContent='Sending…';
-    const d = {
-      name:     this.name.value.trim(),
-      email:    this.email.value.trim(),
-      phone:    this.phone.value.trim(),
-      checkin:  this.checkin?.value||'',
-      checkout: this.checkout?.value||'',
-      guests:   this.guests?.value||'',
-      message:  this.message?.value?.trim()||''
-    };
-    if(EJS_KEY!=='YOUR_PUBLIC_KEY'&&typeof emailjs!=='undefined'){
-      try{ await emailjs.send(EJS_SVC,EJS_TPL,d); }catch(err){ console.warn(err); }
-    }
-    const msg = encodeURIComponent(
-      `🏡 *Dwarka Villa Enquiry*\n\n👤 ${d.name}\n📧 ${d.email}\n📱 ${d.phone}`+
-      (d.checkin?`\n📅 ${d.checkin} → ${d.checkout}`:'')+
-      (d.guests?`\n👨‍👩‍👧 ${d.guests}`:'')+
-      (d.message?`\n💬 ${d.message}`:'')
-    );
-    window.open(`https://wa.me/${WA}?text=${msg}`,'_blank');
-    if(st){ st.className='fstatus ok'; st.textContent='✓ Sent! We\'ll reply within a few hours.'; }
-    form.reset(); btn.disabled=false; btn.textContent='Send Enquiry';
-  });
 })();
 </script>
 </body>

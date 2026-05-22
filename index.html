@@ -113,7 +113,27 @@ a{text-decoration:none;color:inherit}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:900;height:68px;display:flex;align-items:center;padding:0 48px;transition:all .35s}
-nav.solid{background:rgba(0,0,0,.25);border-bottom:1px solid rgba(255,255,255,.1);backdrop-filter:blur(14px)}
+/* ============================================================
+   NAV SOLID STATE — darkened for better readability on scroll
+   CHANGED: background from rgba(0,0,0,.25) to rgba(0,0,0,.55)
+   ROLLBACK: revert background to rgba(0,0,0,.25)
+   ============================================================ */
+nav.solid{background:rgba(0,0,0,.55);border-bottom:1px solid rgba(255,255,255,.1);backdrop-filter:blur(14px)}
+
+/* ============================================================
+   NAV TOP GRADIENT VEIL
+   Adds a dark-to-transparent gradient at the very top of the hero
+   so nav links are always readable over bright hero images.
+   Industry standard technique for hero-section navs.
+   ROLLBACK: delete this entire .nav-top-veil block
+   ============================================================ */
+.nav-top-veil{
+  position:fixed;top:0;left:0;right:0;
+  height:120px;
+  background:linear-gradient(to bottom, rgba(0,0,0,.65) 0%, transparent 100%);
+  z-index:899;
+  pointer-events:none;
+}
 .nav-logo{display:flex;flex-direction:column;gap:1px;flex-shrink:0}
 .nav-logo-name{font-family:'Playfair Display',serif;font-size:1.7rem;font-style:italic;font-weight:400;color:#fff;transition:color .35s;line-height:1}
 nav.solid .nav-logo-name{color:#fff}
@@ -144,7 +164,13 @@ nav.solid .hamburger span{background:#fff}
 .hero-veil{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.12) 0%,rgba(0,0,0,.02) 28%,rgba(0,0,0,.52) 60%,rgba(0,0,0,.85) 100%)}
 .hero-content{position:relative;z-index:2;text-align:center;padding:0 24px 36px;display:flex;flex-direction:column;align-items:center;animation:fadeUp .9s ease .2s both;margin-top:auto}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);border-radius:9999px;padding:7px 16px;font-size:.78rem;color:#fff;margin-bottom:20px;font-weight:500}
+/* ============================================================
+   HERO BADGE — "Highly Rated by Families" pill
+   CHANGED: darkened background for better contrast over bright roof image
+   ROLLBACK: change background back to rgba(255,255,255,.12)
+             and border back to rgba(255,255,255,.2)
+   ============================================================ */
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.55);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);border-radius:9999px;padding:7px 16px;font-size:.78rem;color:#fff;margin-bottom:20px;font-weight:500}
 .hero-badge-stars{color:#FBBF24;letter-spacing:1px}
 .hero-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(4.5rem,9vw,7.5rem);font-style:italic;font-weight:400;color:#D4A017;line-height:1.0;letter-spacing:0.01em;text-shadow:0 2px 24px rgba(0,0,0,.4);margin-bottom:14px}
 .hero-sub1{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;font-size:clamp(1.1rem,2.2vw,1.5rem);color:rgba(255,255,255,.92);font-weight:300;margin-bottom:6px;letter-spacing:0;text-shadow:0 1px 8px rgba(0,0,0,.3)}
@@ -384,6 +410,13 @@ img { max-width: 100%; }</style>
 
 <a class="float-wa" href="https://wa.me/918547141401?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20Dwarka%20Villa%20Guruvayur." target="_blank" aria-label="WhatsApp">🪴</a>
 <div id="mobMenu" class="mob-menu"><button id="mobClose" class="mob-close">✕</button><a href="index.html">Home</a><a href="villa.html">The Villa</a><a href="services.html">Services</a><a href="attractions.html">Attractions</a><a href="contact.html">Contact</a></div>
+<!-- ============================================================
+     NAV TOP GRADIENT VEIL DIV
+     Renders the gradient behind the nav. z-index:899 sits just
+     below the nav (z-index:900) so it never blocks clicks.
+     ROLLBACK: delete this entire comment + div block
+     ============================================================ -->
+<div class="nav-top-veil" aria-hidden="true"></div>
 <nav id="mainNav">
   <a href="index.html" class="nav-logo"><span class="nav-logo-name">Dwarka</span><span class="nav-logo-sub">Luxury Villas of Guruvayur</span></a>
   <ul class="nav-links"><li><a href="index.html" class="active">Home</a></li><li><a href="villa.html" >The Villa</a></li><li><a href="services.html" >Services</a></li><li><a href="attractions.html" >Attractions</a></li><li><a href="contact.html" >Contact</a></li></ul>

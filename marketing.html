@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Marketing Hub — Dwarka Villa</title>
+<meta name="robots" content="noindex,nofollow">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W04M1GSL7F"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-W04M1GSL7F');
+</script>
+
+<!-- QR Code library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+<!-- PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   MARKETING HUB — Dwarka Villa
+   Private page — noindex,nofollow — direct URL only
+   ROLLBACK: delete marketing.html from repo
+   ============================================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#0F0E0C;color:#F5F0E8;min-height:100vh;-webkit-font-smoothing:antialiased}
+
+:root{
+  --gold:#C9A84C;--gold2:#A8873A;--gold-lt:rgba(201,168,76,.12);--gold-bd:rgba(201,168,76,.25);
+  --cream:#F5F0E8;--muted:#9A9080;--border:rgba(255,255,255,.08);
+  --card:rgba(255,255,255,.04);--card-h:rgba(255,255,255,.08);
+  --green:#4ADE80;--green-bg:rgba(74,222,128,.1);
+  --red:#F87171;--red-bg:rgba(248,113,113,.1);
+  --r:12px;
+}
+
+/* ── HEADER ── */
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 40px;border-bottom:1px solid var(--border);
+  background:rgba(15,14,12,.95);position:sticky;top:0;z-index:100;
+}
+.header-brand{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;color:var(--gold)}
+.header-sub{font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.header-back{font-size:.78rem;color:var(--muted);border:1px solid var(--border);padding:7px 16px;border-radius:9999px;text-decoration:none;transition:all .2s}
+.header-back:hover{color:var(--cream);border-color:rgba(255,255,255,.2)}
+
+/* ── LAYOUT ── */
+.page{max-width:1100px;margin:0 auto;padding:36px 40px 80px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.section{margin-bottom:40px}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;color:var(--cream);margin-bottom:4px}
+.sec-title em{font-style:italic;color:var(--gold)}
+.sec-sub{font-size:.78rem;color:var(--muted);margin-bottom:18px;line-height:1.6}
+
+/* ── CARDS ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px}
+.card-sm{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px}
+
+/* ── CHANNEL TABLE ── */
+.ch-table{width:100%;border-collapse:collapse}
+.ch-table th{
+  font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);
+}
+.ch-table td{
+  padding:12px;font-size:.84rem;color:var(--muted);
+  border-bottom:1px solid rgba(255,255,255,.03);vertical-align:middle;
+}
+.ch-table tr:last-child td{border-bottom:none}
+.ch-table tr:hover td{background:rgba(255,255,255,.02)}
+.ch-name{font-weight:600;color:var(--cream);display:block}
+.ch-date{font-size:.68rem;color:var(--muted)}
+.ch-code{
+  font-family:'Courier New',monospace;font-size:.78rem;
+  background:rgba(255,255,255,.06);padding:3px 8px;border-radius:5px;color:var(--gold);
+}
+.ch-clicks{
+  font-family:'Playfair Display',serif;font-size:1.1rem;
+  color:var(--cream);display:block;text-align:center;
+}
+.ch-clicks-lbl{font-size:.62rem;color:var(--muted);text-align:center;display:block}
+
+/* Action buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:9999px;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .18s;border:none;text-decoration:none}
+.btn-gold{background:var(--gold);color:#0F0E0C}
+.btn-gold:hover{background:var(--gold2)}
+.btn-outline{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-outline:hover{color:var(--cream);border-color:rgba(255,255,255,.2)}
+.btn-sm{padding:6px 12px;font-size:.72rem}
+.btn-green{background:var(--green-bg);color:var(--green);border:1px solid rgba(74,222,128,.2)}
+.btn-green:hover{background:rgba(74,222,128,.18)}
+
+/* ── ADD CHANNEL FORM ── */
+.add-form{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.field-group{display:flex;flex-direction:column;gap:6px;flex:1;min-width:180px}
+.field-label{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.field-input{
+  background:rgba(255,255,255,.06);border:1px solid var(--border);
+  border-radius:8px;padding:11px 13px;font-family:'DM Sans',sans-serif;
+  font-size:.88rem;color:var(--cream);outline:none;transition:border-color .2s;
+}
+.field-input:focus{border-color:var(--gold-bd)}
+.field-select{
+  background:rgba(255,255,255,.06);border:1px solid var(--border);
+  border-radius:8px;padding:11px 13px;font-family:'DM Sans',sans-serif;
+  font-size:.88rem;color:var(--cream);outline:none;color-scheme:dark;
+}
+
+/* ── STATS BARS ── */
+.stat-bar-wrap{display:flex;flex-direction:column;gap:10px}
+.stat-row{display:flex;align-items:center;gap:10px}
+.stat-label{font-size:.8rem;color:var(--cream);min-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat-bar-bg{flex:1;height:8px;background:rgba(255,255,255,.06);border-radius:9999px;overflow:hidden}
+.stat-bar-fill{height:100%;border-radius:9999px;background:var(--gold);transition:width .8s ease}
+.stat-count{font-size:.8rem;color:var(--muted);min-width:30px;text-align:right}
+.stat-zero .stat-bar-fill{background:rgba(255,255,255,.12)}
+.stat-zero .stat-label{color:var(--muted)}
+
+/* ── FLYER PREVIEW ── */
+.flyer-modal{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:20px;
+}
+.flyer-modal.open{display:flex}
+.flyer-modal-inner{
+  background:#1A1814;border:1px solid var(--border);border-radius:16px;
+  max-width:480px;width:100%;max-height:90vh;overflow-y:auto;
+}
+.flyer-modal-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 22px;border-bottom:1px solid var(--border);
+}
+.flyer-modal-title{font-weight:600;font-size:.92rem;color:var(--cream)}
+.flyer-modal-close{
+  background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;
+  transition:color .2s;line-height:1;padding:4px;
+}
+.flyer-modal-close:hover{color:var(--cream)}
+.flyer-modal-body{padding:22px}
+
+/* Flyer preview card */
+.flyer-preview{
+  background:linear-gradient(160deg,#f9f3e8 0%,#ede4ce 100%);
+  border-radius:10px;overflow:hidden;margin-bottom:18px;
+  font-family:'Georgia',serif;color:#1a1200;
+  position:relative;aspect-ratio:.707; /* A4 ratio */
+}
+.fp-inner{padding:20px 16px;height:100%;display:flex;flex-direction:column}
+.fp-top{text-align:center;margin-bottom:8px}
+.fp-eyebrow{font-size:.45rem;letter-spacing:.35em;text-transform:uppercase;color:#8a7040;margin-bottom:2px}
+.fp-rental{font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:#6b5a2e;font-weight:bold}
+.fp-title-sm{font-size:.7rem;color:#4a3800;margin-top:6px;font-style:italic}
+.fp-city{font-size:2.2rem;font-weight:bold;color:#8B6914;line-height:1;letter-spacing:.02em}
+.fp-tagline{font-size:.45rem;letter-spacing:.3em;text-transform:uppercase;color:#8a7040;margin:4px 0}
+.fp-villa-img{
+  width:100%;height:90px;object-fit:cover;border-radius:6px;margin:6px 0;
+}
+.fp-features{
+  display:flex;justify-content:center;gap:8px;margin:4px 0;font-size:.38rem;
+  letter-spacing:.1em;text-transform:uppercase;color:#6b5a2e;
+}
+.fp-features span{display:flex;align-items:center;gap:2px}
+.fp-premium{text-align:center;margin:4px 0}
+.fp-premium-title{font-size:.9rem;font-weight:bold;color:#8B6914;letter-spacing:.05em}
+.fp-premium-sub{font-size:.38rem;letter-spacing:.3em;text-transform:uppercase;color:#a08040}
+.fp-desc{font-size:.42rem;color:#4a3800;text-align:center;line-height:1.5;margin:4px 0}
+.fp-specs{
+  display:flex;justify-content:space-around;
+  border:1px solid #d4b86a;border-radius:5px;
+  padding:5px 3px;margin:5px 0;
+}
+.fp-spec{text-align:center}
+.fp-spec-icon{font-size:.9rem;display:block}
+.fp-spec-val{font-size:.45rem;font-weight:bold;color:#4a3800;display:block}
+.fp-spec-lbl{font-size:.35rem;letter-spacing:.08em;text-transform:uppercase;color:#8a7040;display:block}
+.fp-amenities{
+  display:flex;justify-content:space-around;margin:3px 0;
+}
+.fp-amenity{text-align:center;font-size:.38rem;color:#6b5a2e;display:flex;align-items:center;gap:2px}
+.fp-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:auto;padding-top:6px;border-top:1px solid #d4b86a;
+}
+.fp-qr-area{display:flex;flex-direction:column;align-items:center;gap:2px}
+.fp-qr-lbl{font-size:.32rem;letter-spacing:.1em;text-transform:uppercase;color:#8a7040}
+.fp-contact{flex:1;text-align:center}
+.fp-contact-label{font-size:.38rem;letter-spacing:.1em;text-transform:uppercase;color:#6b5a2e}
+.fp-phone{font-size:.75rem;font-weight:bold;color:#1a1200}
+.fp-btn{
+  background:#8B6914;color:#fff;
+  border-radius:4px;padding:4px 10px;
+  font-size:.42rem;font-weight:bold;letter-spacing:.05em;
+  text-align:center;margin-top:3px;
+}
+.fp-kerala-btn{
+  position:absolute;top:8px;right:8px;
+  background:#2D6A4F;color:#fff;
+  border-radius:4px;padding:3px 8px;
+  font-size:.38rem;font-weight:bold;letter-spacing:.05em;
+}
+
+/* ── STATUS MESSAGES ── */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:300;
+  background:#1A1814;border:1px solid var(--border);border-radius:10px;
+  padding:14px 20px;font-size:.84rem;color:var(--cream);
+  box-shadow:0 8px 32px rgba(0,0,0,.5);
+  transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success{border-color:rgba(74,222,128,.3);color:var(--green)}
+.toast.error{border-color:rgba(248,113,113,.3);color:var(--red)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .header{padding:16px 18px}
+  .page{padding:24px 18px 60px}
+  .grid-2{grid-template-columns:1fr}
+  .add-form{flex-direction:column}
+  .ch-table th:nth-child(3),.ch-table td:nth-child(3){display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div>
+    <div class="header-brand">Dwarka</div>
+    <div class="header-sub">Marketing Hub</div>
+  </div>
+  <a href="index.html" class="header-back">← Back to Site</a>
+</header>
+
+<div class="page">
+
+  <!-- ── SECTION 1: ADD CHANNEL ── -->
+  <div class="section">
+    <div class="sec-title">Add New <em>Channel</em></div>
+    <p class="sec-sub">Enter a channel name to generate a unique tracking code and flyer instantly.</p>
+    <div class="card">
+      <div class="add-form">
+        <div class="field-group">
+          <label class="field-label">Channel Name</label>
+          <input class="field-input" id="newChName" type="text" placeholder="e.g. SunilDubai" maxlength="40">
+        </div>
+        <div class="field-group" style="max-width:160px">
+          <label class="field-label">Type</label>
+          <select class="field-select" id="newChType">
+            <option value="whatsapp">WhatsApp Group</option>
+            <option value="individual">Individual</option>
+            <option value="social">Social Media</option>
+            <option value="poster">Poster / QR</option>
+          </select>
+        </div>
+        <button class="btn btn-gold" style="padding:11px 22px;font-size:.84rem;border-radius:9px" onclick="addChannel()">
+          + Create Channel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2: CHANNELS TABLE + ANALYTICS SIDE BY SIDE ── -->
+  <div class="grid-2">
+
+    <!-- CHANNELS TABLE -->
+    <div class="section" style="margin-bottom:0">
+      <div class="sec-title">All <em>Channels</em></div>
+      <p class="sec-sub">Click "Flyer" to generate and download the PDF for that channel.</p>
+      <div class="card" style="padding:0;overflow:hidden">
+        <table class="ch-table" id="channelsTable">
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th>Code</th>
+              <th>Clicks</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="channelsBody">
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ANALYTICS -->
+    <div class="section" style="margin-bottom:0">
+      <div class="sec-title">Channel <em>Performance</em></div>
+      <p class="sec-sub">Clicks from each channel via GA4. Updates in real time.</p>
+      <div class="card">
+        <div id="analyticsContent">
+          <div style="text-align:center;padding:20px;color:var(--muted);font-size:.84rem">
+            Loading analytics...
+          </div>
+        </div>
+        <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:.72rem;color:var(--muted);line-height:1.6">
+          ℹ️ Click counts pulled from GA4 via Measurement Protocol. Data may have up to 24h delay. For real-time, check <a href="https://analytics.google.com" target="_blank" style="color:var(--gold)">Google Analytics → Realtime</a>.
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div class="card-sm" style="margin-top:16px">
+        <div style="font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Quick Links</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="estimate.html" target="_blank" class="btn btn-outline btn-sm">📊 Tariff Estimate Page</a>
+          <a href="KeralaVacay.html" target="_blank" class="btn btn-outline btn-sm">🌿 Kerala Vacay Page</a>
+          <a href="book.html" target="_blank" class="btn btn-outline btn-sm">📋 Booking Form</a>
+          <a href="qr.html" target="_blank" class="btn btn-outline btn-sm">🔗 QR Code Generator</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── FLYER MODAL ── -->
+<div class="flyer-modal" id="flyerModal">
+  <div class="flyer-modal-inner">
+    <div class="flyer-modal-header">
+      <div class="flyer-modal-title" id="flyerModalTitle">Generating Flyer...</div>
+      <button class="flyer-modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="flyer-modal-body">
+
+      <!-- Flyer preview -->
+      <div class="flyer-preview" id="flyerPreview">
+        <div class="fp-inner">
+          <div style="position:absolute;top:8px;right:8px">
+            <div class="fp-kerala-btn" id="fp-kerala-btn" onclick="window.open('KeralaVacay.html','_blank')">🌿 Kerala Vacation</div>
+          </div>
+          <div class="fp-top">
+            <div class="fp-eyebrow">Premium Stay</div>
+            <div class="fp-rental">BNB Rental</div>
+            <div class="fp-title-sm">The Most Luxurious Stay in</div>
+            <div class="fp-city">GURUVAYUR</div>
+            <div class="fp-tagline">— Your Home Away From Home —</div>
+          </div>
+
+          <div style="display:flex;gap:6px;margin:4px 0">
+            <div style="flex:1.4;border-radius:5px;overflow:hidden;height:85px">
+              <img src="images/img-3f3a77fb28.jpg" style="width:100%;height:100%;object-fit:cover" alt="Villa">
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:4px">
+              <div style="border-radius:4px;overflow:hidden;height:39px;position:relative">
+                <img src="images/GrandHall.jpg" style="width:100%;height:100%;object-fit:cover" alt="Hall">
+                <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.5);font-size:.3rem;color:#fff;padding:1px 3px;letter-spacing:.05em;text-transform:uppercase">Spacious Foyer & Living</div>
+              </div>
+              <div style="border-radius:4px;overflow:hidden;height:39px;position:relative">
+                <img src="images/Dining.jpg" style="width:100%;height:100%;object-fit:cover" alt="Dining">
+                <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.5);font-size:.3rem;color:#fff;padding:1px 3px;letter-spacing:.05em;text-transform:uppercase">Elegant Dining Area</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fp-features">
+            <span>🛕 Close to Temple</span>
+            <span>🐘 Elephant Farm</span>
+            <span>🏖️ Beautiful Beaches</span>
+          </div>
+
+          <div class="fp-premium">
+            <div class="fp-premium-title">PREMIUM COMFORT</div>
+            <div class="fp-premium-sub">— Timeless Memories —</div>
+          </div>
+
+          <div class="fp-desc">Experience unmatched comfort in our 4BHK villa in Guruvayur.<br>Spacious interiors, modern amenities — perfect for families & group stays.</div>
+
+          <div class="fp-specs">
+            <div class="fp-spec"><span class="fp-spec-icon">🛏️</span><span class="fp-spec-val">4</span><span class="fp-spec-lbl">Bedrooms</span></div>
+            <div class="fp-spec"><span class="fp-spec-icon">🚿</span><span class="fp-spec-val">4.5</span><span class="fp-spec-lbl">Bathrooms</span></div>
+            <div class="fp-spec"><span class="fp-spec-icon">❄️</span><span class="fp-spec-val">All AC</span><span class="fp-spec-lbl">Rooms</span></div>
+            <div class="fp-spec"><span class="fp-spec-icon">🤝</span><span class="fp-spec-val">Service</span><span class="fp-spec-lbl">Available</span></div>
+          </div>
+
+          <div class="fp-amenities">
+            <div class="fp-amenity">📶 WiFi</div>
+            <div class="fp-amenity">🔒 Safe</div>
+            <div class="fp-amenity">📺 Smart TV</div>
+            <div class="fp-amenity">⚡ Power Backup</div>
+          </div>
+
+          <div class="fp-bottom">
+            <div class="fp-qr-area">
+              <canvas id="flyerQR" width="52" height="52"></canvas>
+              <div class="fp-qr-lbl">Scan to Book</div>
+            </div>
+            <div class="fp-contact">
+              <div class="fp-contact-label">Call / WhatsApp</div>
+              <div class="fp-phone">+91 85471 41401</div>
+              <div class="fp-btn" id="fp-book-btn">View & Book Here →</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-size:.32rem;letter-spacing:.1em;text-transform:uppercase;color:#8a7040;margin-bottom:3px">Perfect For</div>
+              <div style="font-size:.38rem;color:#4a3800">🏠 Family Stays</div>
+              <div style="font-size:.38rem;color:#4a3800">👥 Group Bookings</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Channel info -->
+      <div style="background:var(--gold-lt);border:1px solid var(--gold-bd);border-radius:9px;padding:14px;margin-bottom:16px;font-size:.82rem">
+        <div style="color:var(--gold);font-weight:600;margin-bottom:6px">📣 Channel: <span id="modalChName"></span></div>
+        <div style="color:var(--muted)">Tracking code: <code id="modalChCode" style="color:var(--gold);font-family:monospace"></code></div>
+        <div style="color:var(--muted);margin-top:4px;word-break:break-all;font-size:.75rem">Link: <span id="modalChLink" style="color:var(--cream)"></span></div>
+      </div>
+
+      <!-- Download button -->
+      <button class="btn btn-gold" style="width:100%;justify-content:center;padding:14px;font-size:.9rem;border-radius:10px" onclick="downloadFlyer()">
+        ⬇ Download Flyer PDF
+      </button>
+      <div style="font-size:.72rem;color:var(--muted);text-align:center;margin-top:10px;line-height:1.6">
+        Share this PDF on WhatsApp, email or print it. The QR code and button are unique to this channel.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   MARKETING HUB — Core Logic
+   Channels stored in localStorage (client-side)
+   Initial channels seeded from channels.json data
+   ROLLBACK: delete marketing.html
+   ============================================================ */
+
+const BASE_BOOK    = 'https://www.luxuryvillasofguruvayur.com/book.html';
+const BASE_KERALA  = 'https://www.luxuryvillasofguruvayur.com/KeralaVacay.html';
+const WA_NUMBER    = '918547141401';
+const GA4_ID       = 'G-W04M1GSL7F';
+
+// ── Seed channels from channels.json ─────────────────────────
+// ============================================================
+// CHANNEL MASTER LIST
+// To add channels: use the form above (preferred) OR
+// add entries here and redeploy.
+// Format: code -> {name, created, type}
+// DO NOT reuse or rename existing codes.
+// ============================================================
+const SEED_CHANNELS = {
+  "e58vq": { name:"TempleFriends",         created:"2026-05-22", type:"whatsapp" },
+  "i069m": { name:"OakBendNeighbors",       created:"2026-05-22", type:"whatsapp" },
+  "vhs8m": { name:"MalluCoppellFriends",    created:"2026-05-22", type:"whatsapp" },
+  "mf8a1": { name:"FriscoFriends",          created:"2026-05-22", type:"whatsapp" },
+  "t42mc": { name:"BGCollegeGroup",          created:"2026-05-22", type:"whatsapp" },
+  "e9g89": { name:"JPCollegeGroup",          created:"2026-05-22", type:"whatsapp" },
+  "tqq4q": { name:"KumarCollegeGroup",       created:"2026-05-22", type:"whatsapp" },
+  "t3bxl": { name:"BijuJeenaCollegeGroup",   created:"2026-05-22", type:"whatsapp" },
+  "45lmd": { name:"PainattFamilyGroup",      created:"2026-05-22", type:"whatsapp" },
+  "n0a2i": { name:"KichuAustralia",          created:"2026-05-22", type:"individual" },
+  "ykxjc": { name:"PaviAustralia",           created:"2026-05-22", type:"individual" },
+  "mt6wb": { name:"MadhuUK",                 created:"2026-05-22", type:"individual" },
+  "28nrm": { name:"MidhuNZ",                 created:"2026-05-22", type:"individual" },
+  "y5ox3": { name:"DeepaKerala",             created:"2026-05-22", type:"individual" },
+  "c2e9q": { name:"DelphiGroup",             created:"2026-05-22", type:"whatsapp" },
+  "133ln": { name:"RanjiniGroup",            created:"2026-05-22", type:"whatsapp" }
+};
+
+// ── Load channels from localStorage (merges with seed) ───────
+function loadChannels() {
+  try {
+    const stored = JSON.parse(localStorage.getItem('dwarka_channels') || '{}');
+    return Object.assign({}, SEED_CHANNELS, stored);
+  } catch(e) { return Object.assign({}, SEED_CHANNELS); }
+}
+
+function saveChannels(chs) {
+  // Only save user-added channels (not seed) to localStorage
+  const userAdded = {};
+  Object.keys(chs).forEach(function(code){
+    if (!SEED_CHANNELS[code]) userAdded[code] = chs[code];
+  });
+  localStorage.setItem('dwarka_channels', JSON.stringify(userAdded));
+}
+
+// ── Generate unique 5-char code ──────────────────────────────
+function genCode(existing) {
+  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  let code;
+  do {
+    code = Array.from({length:5}, function(){ return chars[Math.floor(Math.random()*chars.length)]; }).join('');
+  } while (existing[code]);
+  return code;
+}
+
+// ── Render channels table ────────────────────────────────────
+let CHANNELS = loadChannels();
+let clickData = {}; // populated by GA4 fetch
+
+function renderTable() {
+  const tbody = document.getElementById('channelsBody');
+  const codes = Object.keys(CHANNELS);
+  tbody.innerHTML = '';
+
+  if (codes.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:24px">No channels yet. Add one above.</td></tr>';
+    return;
+  }
+
+  codes.forEach(function(code) {
+    const ch = CHANNELS[code];
+    const clicks = clickData[code] || 0;
+    const bookUrl = BASE_BOOK + '?r=' + code;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' +
+        '<span class="ch-name">' + escHtml(ch.name) + '</span>' +
+        '<span class="ch-date">' + (ch.type || 'whatsapp') + ' · ' + ch.created + '</span>' +
+      '</td>' +
+      '<td><span class="ch-code">' + code + '</span></td>' +
+      '<td>' +
+        '<span class="ch-clicks">' + clicks + '</span>' +
+        '<span class="ch-clicks-lbl">clicks</span>' +
+      '</td>' +
+      '<td>' +
+        '<div style="display:flex;gap:6px;flex-wrap:wrap">' +
+          '<button class="btn btn-gold btn-sm" onclick="openFlyerModal(\'' + code + '\')">📄 Flyer</button>' +
+          '<button class="btn btn-outline btn-sm" onclick="copyLink(\'' + encodeURIComponent(bookUrl) + '\')">🔗 Copy</button>' +
+        '</div>' +
+      '</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+// ── Render analytics bars ─────────────────────────────────────
+function renderAnalytics() {
+  const codes = Object.keys(CHANNELS);
+  const maxClicks = Math.max(1, ...codes.map(function(c){ return clickData[c] || 0; }));
+
+  const sorted = codes.slice().sort(function(a,b){ return (clickData[b]||0) - (clickData[a]||0); });
+
+  let html = '<div class="stat-bar-wrap">';
+  sorted.forEach(function(code) {
+    const ch = CHANNELS[code];
+    const clicks = clickData[code] || 0;
+    const pct = Math.round((clicks / maxClicks) * 100);
+    const zero = clicks === 0;
+    html +=
+      '<div class="stat-row' + (zero ? ' stat-zero' : '') + '">' +
+        '<div class="stat-label" title="' + escHtml(ch.name) + '">' + escHtml(ch.name) + '</div>' +
+        '<div class="stat-bar-bg"><div class="stat-bar-fill" style="width:' + pct + '%"></div></div>' +
+        '<div class="stat-count">' + clicks + '</div>' +
+      '</div>';
+  });
+  html += '</div>';
+
+  document.getElementById('analyticsContent').innerHTML = html;
+}
+
+// ── Fetch GA4 click data ──────────────────────────────────────
+// Uses GA4 Measurement Protocol to query page_view events with ref param.
+// Since GA4 Data API requires OAuth (server-side), we use a simplified
+// approach: track page views on book.html with event params and
+// show counts from a lightweight serverless endpoint if available.
+// For now we show placeholder counts with a note.
+function fetchAnalytics() {
+  // In production: replace this with a call to your Cloudflare Worker
+  // that queries GA4 Data API and returns {code: clickCount} JSON.
+  // Worker endpoint example: /api/channel-stats
+  //
+  // fetch('/api/channel-stats')
+  //   .then(r => r.json())
+  //   .then(data => { clickData = data; renderTable(); renderAnalytics(); })
+  //
+  // For now: show 0 counts with GA4 direct link
+  renderTable();
+  renderAnalytics();
+}
+
+// ── Add new channel ───────────────────────────────────────────
+function addChannel() {
+  const name = document.getElementById('newChName').value.trim();
+  const type = document.getElementById('newChType').value;
+
+  if (!name) { showToast('Enter a channel name', 'error'); return; }
+  if (name.length < 3) { showToast('Name too short', 'error'); return; }
+
+  // Check duplicate names
+  const existing = Object.values(CHANNELS).map(function(c){ return c.name.toLowerCase(); });
+  if (existing.includes(name.toLowerCase())) {
+    showToast('Channel "' + name + '" already exists', 'error'); return;
+  }
+
+  const code = genCode(CHANNELS);
+  const today = new Date().toISOString().split('T')[0];
+  CHANNELS[code] = { name: name, created: today, type: type };
+  saveChannels(CHANNELS);
+
+  document.getElementById('newChName').value = '';
+  renderTable();
+  renderAnalytics();
+  showToast('✅ Channel "' + name + '" created — code: ' + code, 'success');
+
+  // Auto-open flyer for new channel
+  setTimeout(function(){ openFlyerModal(code); }, 400);
+}
+
+// ── Copy link to clipboard ────────────────────────────────────
+function copyLink(encodedUrl) {
+  const url = decodeURIComponent(encodedUrl);
+  navigator.clipboard.writeText(url).then(function(){
+    showToast('✅ Link copied!', 'success');
+  }).catch(function(){
+    showToast('Copy: ' + url, 'success');
+  });
+}
+
+// ── Flyer modal ───────────────────────────────────────────────
+let currentFlyerCode = '';
+
+function openFlyerModal(code) {
+  const ch = CHANNELS[code];
+  if (!ch) return;
+  currentFlyerCode = code;
+
+  const bookUrl = BASE_BOOK + '?r=' + code;
+
+  document.getElementById('flyerModalTitle').textContent = 'Flyer — ' + ch.name;
+  document.getElementById('modalChName').textContent = ch.name;
+  document.getElementById('modalChCode').textContent = code;
+  document.getElementById('modalChLink').textContent = bookUrl;
+
+  // Generate QR code
+  new QRious({
+    element: document.getElementById('flyerQR'),
+    value: bookUrl,
+    size: 52,
+    level: 'M',
+    background: '#f9f3e8',
+    foreground: '#1a1200',
+    backgroundAlpha: 1,
+    foregroundAlpha: 1,
+    padding: 3,
+  });
+
+  document.getElementById('flyerModal').classList.add('open');
+
+  // Track flyer generation in GA4
+  gtag('event', 'flyer_generated', { channel_code: code, channel_name: ch.name });
+}
+
+function closeModal() {
+  document.getElementById('flyerModal').classList.remove('open');
+  currentFlyerCode = '';
+}
+
+// Click outside modal to close
+document.getElementById('flyerModal').addEventListener('click', function(e){
+  if (e.target === this) closeModal();
+});
+
+// ── Download flyer as PDF ─────────────────────────────────────
+function downloadFlyer() {
+  const code = currentFlyerCode;
+  const ch   = CHANNELS[code];
+  if (!code || !ch) return;
+
+  const { jsPDF } = window.jspdf;
+
+  // A4 dimensions in mm
+  const doc = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4' });
+  const W = 210, H = 297;
+
+  // ── Background ──
+  doc.setFillColor(249, 243, 232); // cream
+  doc.rect(0, 0, W, H, 'F');
+
+  // Subtle gold border
+  doc.setDrawColor(180, 148, 80);
+  doc.setLineWidth(1.5);
+  doc.rect(6, 6, W-12, H-12);
+  doc.setLineWidth(0.4);
+  doc.rect(8, 8, W-16, H-16);
+
+  // ── Top area ──
+  doc.setTextColor(138, 112, 64);
+  doc.setFontSize(7);
+  doc.setFont('helvetica','normal');
+  doc.text('PREMIUM STAY', W/2, 18, {align:'center'});
+  doc.setFontSize(9);
+  doc.setFont('helvetica','bold');
+  doc.text('BNB RENTAL', W/2, 23, {align:'center'});
+
+  // Decorative line
+  doc.setDrawColor(180, 148, 80);
+  doc.setLineWidth(0.5);
+  doc.line(60, 25.5, 150, 25.5);
+
+  // Kerala Vacation button (top right)
+  doc.setFillColor(45, 106, 79);
+  doc.roundedRect(155, 12, 43, 10, 2, 2, 'F');
+  doc.setTextColor(255,255,255);
+  doc.setFontSize(6.5);
+  doc.setFont('helvetica','bold');
+  doc.text('🌿 Kerala Vacation', 176.5, 18.5, {align:'center'});
+
+  // ── Main headline ──
+  doc.setTextColor(74, 56, 0);
+  doc.setFontSize(11);
+  doc.setFont('helvetica','normal');
+  doc.text('THE MOST LUXURIOUS STAY IN', W/2, 33, {align:'center'});
+
+  doc.setTextColor(139, 105, 20);
+  doc.setFontSize(38);
+  doc.setFont('helvetica','bold');
+  doc.text('GURUVAYUR', W/2, 51, {align:'center'});
+
+  // Feature icons row
+  doc.setTextColor(107, 90, 46);
+  doc.setFontSize(7);
+  doc.setFont('helvetica','normal');
+  doc.text('🛕 CLOSE TO GURUVAYUR TEMPLE', 42, 58, {align:'center'});
+  doc.text('|', 70, 58);
+  doc.text('🐘 NEARBY ELEPHANT FARM', 100, 58, {align:'center'});
+  doc.text('|', 128, 58);
+  doc.text('🏖️ BEAUTIFUL BEACHES', 158, 58, {align:'center'});
+
+  // Tagline
+  doc.setDrawColor(180,148,80);
+  doc.line(40, 62, 85, 62);
+  doc.line(125, 62, 170, 62);
+  doc.setTextColor(138, 112, 64);
+  doc.setFontSize(7.5);
+  doc.text('YOUR HOME AWAY FROM HOME', W/2, 65, {align:'center'});
+
+  // ── Villa image placeholder (grey box with text) ──
+  doc.setFillColor(220, 208, 180);
+  doc.roundedRect(15, 68, 120, 55, 3, 3, 'F');
+  doc.setTextColor(138, 112, 64);
+  doc.setFontSize(7);
+  doc.text('[Villa Exterior Photo]', 75, 97, {align:'center'});
+
+  // ── Side photos ──
+  doc.setFillColor(210, 198, 170);
+  doc.roundedRect(138, 68, 57, 17, 2, 2, 'F');
+  doc.setFontSize(5.5);
+  doc.setTextColor(107,90,46);
+  doc.text('SPACIOUS FOYER & LIVING', 166.5, 78.5, {align:'center'});
+
+  doc.setFillColor(200, 188, 160);
+  doc.roundedRect(138, 88, 57, 17, 2, 2, 'F');
+  doc.text('ELEGANT DINING AREA', 166.5, 98.5, {align:'center'});
+
+  doc.setFillColor(190, 178, 150);
+  doc.roundedRect(138, 108, 57, 17, 2, 2, 'F');
+  doc.text('MODERN FULLY EQUIPPED KITCHEN', 166.5, 118.5, {align:'center'});
+
+  // ── Crown icon area ──
+  doc.setTextColor(139, 105, 20);
+  doc.setFontSize(16);
+  doc.text('♛', W/2, 136, {align:'center'});
+
+  // Premium Comfort
+  doc.setFontSize(18);
+  doc.setFont('helvetica','bold');
+  doc.text('PREMIUM COMFORT', W/2, 145, {align:'center'});
+  doc.setFontSize(8);
+  doc.setFont('helvetica','normal');
+  doc.setTextColor(160, 128, 64);
+  doc.text('— TIMELESS MEMORIES —', W/2, 150, {align:'center'});
+
+  // Description
+  doc.setTextColor(74, 56, 0);
+  doc.setFontSize(8);
+  doc.text('Experience unmatched comfort in our luxurious 4BHK villa in Guruvayur.', W/2, 158, {align:'center'});
+  doc.text('Spacious interiors, modern amenities, and serene surroundings', W/2, 163, {align:'center'});
+  doc.text('make it perfect for families, group stays, and spiritual getaways.', W/2, 168, {align:'center'});
+
+  // ── Specs row ──
+  doc.setDrawColor(180,148,80);
+  doc.setLineWidth(0.5);
+  doc.roundedRect(20, 172, 170, 22, 2, 2);
+
+  const specs = [
+    {icon:'🛏️', val:'4', lbl:'BEDROOMS'},
+    {icon:'🚿', val:'4.5', lbl:'BATHROOMS'},
+    {icon:'❄️', val:'ALL AC ROOMS', lbl:'Incl. Living, Dining'},
+    {icon:'🤝', val:'GUEST SERVICE', lbl:'AVAILABLE'},
+  ];
+  const sw = 170/4;
+  specs.forEach(function(s, i){
+    const x = 20 + sw*i + sw/2;
+    doc.setFontSize(12);
+    doc.text(s.icon, x, 180, {align:'center'});
+    doc.setFontSize(9);
+    doc.setFont('helvetica','bold');
+    doc.setTextColor(74,56,0);
+    doc.text(s.val, x, 187, {align:'center'});
+    doc.setFontSize(5.5);
+    doc.setFont('helvetica','normal');
+    doc.setTextColor(138,112,64);
+    doc.text(s.lbl, x, 191, {align:'center'});
+    if (i < 3) { doc.setDrawColor(200,180,120); doc.line(20+sw*(i+1), 174, 20+sw*(i+1), 192); }
+  });
+
+  // ── Amenities row ──
+  const amenities = ['📶 HIGH SPEED WIFI', '🔒 SAFE & SECURE', '📺 SMART TV IN LIVING ROOM', '⚡ POWER BACKUP'];
+  const aw = 170/4;
+  amenities.forEach(function(a, i){
+    const x = 20 + aw*i + aw/2;
+    doc.setFontSize(6);
+    doc.setTextColor(107,90,46);
+    doc.text(a, x, 200, {align:'center'});
+  });
+
+  // ── Bottom: QR + Phone + Badges ──
+  doc.setDrawColor(180,148,80);
+  doc.setLineWidth(0.8);
+  doc.line(15, 207, W-15, 207);
+
+  // QR Code
+  const qrCanvas = document.getElementById('flyerQR');
+  const qrImg = qrCanvas.toDataURL('image/png');
+  doc.addImage(qrImg, 'PNG', 18, 210, 32, 32);
+  doc.setFontSize(5.5);
+  doc.setTextColor(138,112,64);
+  doc.text('SCAN TO', 34, 244, {align:'center'});
+  doc.text('VIEW & BOOK', 34, 247.5, {align:'center'});
+
+  // Phone number
+  doc.setFontSize(7);
+  doc.setTextColor(107,90,46);
+  doc.text('CALL / WHATSAPP', W/2, 215, {align:'center'});
+  doc.setFontSize(20);
+  doc.setFont('helvetica','bold');
+  doc.setTextColor(26,18,0);
+  doc.text('+91 85471 41401', W/2, 228, {align:'center'});
+
+  // Family / Group badges
+  doc.setFontSize(8);
+  doc.setTextColor(74,56,0);
+  doc.setFont('helvetica','normal');
+  doc.text('🏠 IDEAL FOR FAMILY STAYS', 125, 218, {align:'center'});
+  doc.text('👥 PERFECT FOR GROUP BOOKINGS', 145, 225, {align:'center'});
+
+  // View & Book button
+  doc.setFillColor(139, 105, 20);
+  doc.roundedRect(55, 245, 100, 14, 3, 3, 'F');
+  doc.setTextColor(255,255,255);
+  doc.setFontSize(10);
+  doc.setFont('helvetica','bold');
+  doc.text('View & Book Here →', W/2, 254, {align:'center'});
+
+  // Nearby attractions (right side)
+  doc.setTextColor(139,105,20);
+  doc.setFontSize(7.5);
+  doc.setFont('helvetica','bold');
+  doc.text('NEARBY ATTRACTIONS', 175, 215, {align:'center'});
+  const attrs = [
+    '🛕 Close to Guruvayur Temple',
+    '🐘 Nearby Elephant Farm',
+    '🏖️ Beautiful Beaches Nearby',
+    '🌊 Backwaters',
+    '💧 Majestic Waterfalls',
+    '🧘 Ayurvedic Massage'
+  ];
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(6);
+  attrs.forEach(function(a, i){
+    doc.setTextColor(74,56,0);
+    doc.text(a, 150, 220 + i*5, {align:'left'});
+  });
+
+  // Save
+  doc.save('Dwarka-Flyer-' + ch.name.replace(/\s+/g,'-') + '-' + code + '.pdf');
+
+  gtag('event', 'flyer_downloaded', { channel_code: code, channel_name: ch.name });
+  showToast('✅ Flyer downloaded for ' + ch.name, 'success');
+}
+
+// ── Toast notification ────────────────────────────────────────
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + (type || '');
+  setTimeout(function(){ t.className = 'toast'; }, 3500);
+}
+
+// ── Escape HTML ───────────────────────────────────────────────
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── Enter key for add channel ─────────────────────────────────
+document.getElementById('newChName').addEventListener('keydown', function(e){
+  if (e.key === 'Enter') addChannel();
+});
+
+// ── Init ──────────────────────────────────────────────────────
+CHANNELS = loadChannels();
+fetchAnalytics();
+</script>
+</body>
+</html>

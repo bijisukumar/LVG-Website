@@ -268,28 +268,13 @@
 
     /* ── HIDDEN ── */
     .hidden { display: none !important; }
-
     /* ── CHECKBOX OPTIONS ── */
-    .check-option {
-      display: flex; align-items: flex-start; gap: 10px;
-      padding: 11px 14px; border-radius: 10px; cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.02);
-      margin-bottom: 8px; transition: all 0.15s;
-    }
-    .check-option.checked {
-      border-color: rgba(139,92,246,0.4);
-      background: rgba(139,92,246,0.08);
-    }
-    .check-box {
-      width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0;
-      border: 1px solid rgba(255,255,255,0.2); background: transparent;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; color: #fff; margin-top: 1px;
-    }
-    .check-option.checked .check-box { border-color: #8B5CF6; background: #8B5CF6; }
-    .check-label { font-size: 0.85rem; font-weight: 600; color: #D0D0D0; }
-    .check-hint  { font-size: 0.7rem; color: #6B7280; margin-top: 2px; }
+    .check-option { display:flex; align-items:flex-start; gap:10px; padding:11px 14px; border-radius:10px; cursor:pointer; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02); margin-bottom:8px; transition:all 0.15s; }
+    .check-option.checked { border-color:rgba(139,92,246,0.4); background:rgba(139,92,246,0.08); }
+    .check-box { width:20px; height:20px; border-radius:6px; flex-shrink:0; border:1px solid rgba(255,255,255,0.2); background:transparent; display:flex; align-items:center; justify-content:center; font-size:0.75rem; color:#fff; margin-top:1px; }
+    .check-option.checked .check-box { border-color:#8B5CF6; background:#8B5CF6; }
+    .check-label { font-size:0.85rem; font-weight:600; color:#D0D0D0; }
+    .check-hint  { font-size:0.7rem; color:#6B7280; margin-top:2px; }
   </style>
 </head>
 <body>
@@ -547,9 +532,6 @@
         </div>
         <input type="file" id="idFile" accept="image/*,application/pdf" capture="environment"
           style="display:none" onchange="handleUpload(this,'id-preview-wrap','id-ok')" />
-        <div class="hint" style="margin-top:4px;color:#F59E0B">
-          Max 2MB &middot; Clear photo with all 4 corners visible &middot; JPEG or PDF
-        </div>
         <div class="upload-ok hidden" id="id-ok">✅ Document uploaded</div>
       </div>
     </div>
@@ -718,99 +700,19 @@
     </div>
 
     <!-- SECTION 5: ADDITIONAL REQUESTS -->
-    <div class="section-label" style="color:#8B5CF6;border-color:rgba(139,92,246,0.2);margin-top:28px">
-      5 · ADDITIONAL REQUESTS
-    </div>
-    <div class="field">
-      <div class="hint" style="margin-bottom:10px">Select any services you'd like us to arrange:</div>
-      <div class="check-option" id="opt-early" onclick="toggleOption('early')">
-        <div class="check-box" id="box-early"></div>
-        <div><div class="check-label">Request early check-in</div>
-        <div class="check-hint">Subject to availability · Additional charges apply</div></div>
-      </div>
-      <div class="check-option" id="opt-late" onclick="toggleOption('late')">
-        <div class="check-box" id="box-late"></div>
-        <div><div class="check-label">Request late check-out</div>
-        <div class="check-hint">Subject to availability · Additional charges apply · No last-minute extensions</div></div>
-      </div>
-      <div class="check-option" id="opt-breakfast" onclick="toggleOption('breakfast')">
-        <div class="check-box" id="box-breakfast"></div>
-        <div><div class="check-label">Breakfast (₹275 per person)</div>
-        <div class="check-hint">Traditional Kerala breakfast served at the villa</div></div>
-      </div>
-      <div id="breakfast-options" class="hidden" style="margin-left:30px;margin-top:-2px;margin-bottom:8px">
-        <div class="hint" style="margin-bottom:6px">Select breakfast type:</div>
-        <div class="check-option" id="opt-idli" onclick="toggleBreakfast('Idli')">
-          <div class="check-box" id="box-idli"></div><div class="check-label">Idli</div>
-        </div>
-        <div class="check-option" id="opt-puttu" onclick="toggleBreakfast('Puttu')">
-          <div class="check-box" id="box-puttu"></div><div class="check-label">Puttu</div>
-        </div>
-        <div class="check-option" id="opt-appam" onclick="toggleBreakfast('Appam')">
-          <div class="check-box" id="box-appam"></div><div class="check-label">Appam</div>
-        </div>
-      </div>
-      <div class="check-option" id="opt-cab" onclick="toggleOption('cab')">
-        <div class="check-box" id="box-cab"></div>
-        <div><div class="check-label">Cab service</div>
-        <div class="check-hint">Airport / railway transfers and local trips · Our team will contact you</div></div>
-      </div>
-    </div>
-
-    <!-- SECTION 5: ADDITIONAL REQUESTS -->
-    <div class="section-label" style="color:#8B5CF6;border-color:rgba(139,92,246,0.2);margin-top:28px">
-      5 · ADDITIONAL REQUESTS
-    </div>
+    <div class="section-label" style="color:#8B5CF6;border-color:rgba(139,92,246,0.2);margin-top:28px">5 &middot; ADDITIONAL REQUESTS</div>
     <div class="field">
       <div class="hint" style="margin-bottom:10px">Select any services you would like us to arrange:</div>
-      <div class="check-option" id="opt-early" onclick="toggleOption('early')">
-        <div class="check-box" id="box-early"></div>
-        <div><div class="check-label">Request early check-in</div>
-        <div class="check-hint">Subject to availability &middot; Additional charges apply</div></div>
-      </div>
-      <div class="check-option" id="opt-late" onclick="toggleOption('late')">
-        <div class="check-box" id="box-late"></div>
-        <div><div class="check-label">Request late check-out</div>
-        <div class="check-hint">Subject to availability &middot; Additional charges apply &middot; No last-minute extensions</div></div>
-      </div>
-      <div class="check-option" id="opt-breakfast" onclick="toggleOption('breakfast')">
-        <div class="check-box" id="box-breakfast"></div>
-        <div><div class="check-label">Breakfast (&#8377;275 per person)</div>
-        <div class="check-hint">Traditional Kerala breakfast served at the villa</div></div>
-      </div>
-      <div id="breakfast-options" class="hidden" style="margin-left:30px;margin-top:-2px;margin-bottom:8px">
-        <div class="hint" style="margin-bottom:6px">Select breakfast type:</div>
-        <div class="check-option" id="opt-idli" onclick="toggleBreakfast('Idli')">
-          <div class="check-box" id="box-idli"></div><div class="check-label">Idli</div>
-        </div>
-        <div class="check-option" id="opt-puttu" onclick="toggleBreakfast('Puttu')">
-          <div class="check-box" id="box-puttu"></div><div class="check-label">Puttu</div>
-        </div>
-        <div class="check-option" id="opt-appam" onclick="toggleBreakfast('Appam')">
-          <div class="check-box" id="box-appam"></div><div class="check-label">Appam</div>
-        </div>
-      </div>
-      <div class="check-option" id="opt-cab" onclick="toggleOption('cab')">
-        <div class="check-box" id="box-cab"></div>
-        <div><div class="check-label">Cab service</div>
-        <div class="check-hint">Airport / railway transfers and local trips &middot; Our team will contact you</div></div>
-      </div>
-    </div>
-
-        <!-- SECTION 5: ADDITIONAL REQUESTS -->
-    <div class="section-label" style="color:#8B5CF6;border-color:rgba(139,92,246,0.2);margin-top:28px">5 · ADDITIONAL REQUESTS</div>
-    <div class="field">
-      <div class="hint" style="margin-bottom:10px">Select any services you would like us to arrange:</div>
-      <div class="check-option" id="opt-early" onclick="toggleOption('early')"><div class="check-box" id="box-early"></div><div><div class="check-label">Request early check-in</div><div class="check-hint">Subject to availability · Additional charges apply</div></div></div>
-      <div class="check-option" id="opt-late" onclick="toggleOption('late')"><div class="check-box" id="box-late"></div><div><div class="check-label">Request late check-out</div><div class="check-hint">Subject to availability · Additional charges apply · No last-minute extensions</div></div></div>
-      <div class="check-option" id="opt-breakfast" onclick="toggleOption('breakfast')"><div class="check-box" id="box-breakfast"></div><div><div class="check-label">Breakfast (₹275 per person)</div><div class="check-hint">Traditional Kerala breakfast served at the villa</div></div></div>
+      <div class="check-option" id="opt-early" onclick="toggleOption('early')"><div class="check-box" id="box-early"></div><div><div class="check-label">Request early check-in</div><div class="check-hint">Subject to availability &middot; Additional charges apply</div></div></div>
+      <div class="check-option" id="opt-late" onclick="toggleOption('late')"><div class="check-box" id="box-late"></div><div><div class="check-label">Request late check-out</div><div class="check-hint">Subject to availability &middot; No last-minute extensions</div></div></div>
+      <div class="check-option" id="opt-breakfast" onclick="toggleOption('breakfast')"><div class="check-box" id="box-breakfast"></div><div><div class="check-label">Breakfast (&#8377;275 per person)</div><div class="check-hint">Traditional Kerala breakfast served at the villa</div></div></div>
       <div id="breakfast-options" class="hidden" style="margin-left:30px;margin-bottom:8px">
         <div class="hint" style="margin-bottom:6px">Select breakfast type:</div>
         <div class="check-option" id="opt-idli" onclick="toggleBreakfast('Idli')"><div class="check-box" id="box-idli"></div><div class="check-label">Idli</div></div>
         <div class="check-option" id="opt-puttu" onclick="toggleBreakfast('Puttu')"><div class="check-box" id="box-puttu"></div><div class="check-label">Puttu</div></div>
         <div class="check-option" id="opt-appam" onclick="toggleBreakfast('Appam')"><div class="check-box" id="box-appam"></div><div class="check-label">Appam</div></div>
       </div>
-      <div class="check-option" id="opt-cab" onclick="toggleOption('cab')"><div class="check-box" id="box-cab"></div><div><div class="check-label">Cab service</div><div class="check-hint">Airport / railway transfers · Our team will contact you</div></div></div>
+      <div class="check-option" id="opt-cab" onclick="toggleOption('cab')"><div class="check-box" id="box-cab"></div><div><div class="check-label">Cab service</div><div class="check-hint">Airport / railway transfers &middot; Our team will contact you</div></div></div>
     </div>
 
     <!-- SUBMIT -->
@@ -851,24 +753,18 @@
 
   // ── INIT — resolve token from URL ──────────────────────────
   async function init() {
-    var qs      = new URLSearchParams(location.search)
-    var qVilla  = qs.get('villa')
-    var qPartner= qs.get('partner')
-
-    // If query params provided directly — use them, skip token resolution
-    if (qVilla || qPartner) {
-      villaId = qVilla   || 'dwarka'
-      partner = qPartner || 'direct'
+    var qs = new URLSearchParams(location.search)
+    // If query params present — use directly, no token resolution needed
+    if (qs.get('villa') || qs.get('partner')) {
+      villaId = qs.get('villa')   || 'dwarka'
+      partner = qs.get('partner') || 'direct'
       renderHeader()
       show('screen-form')
       hide('screen-loading')
       return
     }
-
-    // Otherwise resolve opaque token from URL path e.g. /gvr-airbnb
-    var linkToken = location.pathname.replace(/\//g, '').trim()
-      || qs.get('token')
-
+    // Resolve opaque token from path e.g. checkin.*/gvr-airbnb
+    var linkToken = location.pathname.replace(/\//g, '').trim() || qs.get('token')
     if (linkToken) {
       try {
         var res  = await fetch(API + '/resolveCheckinLink', {
@@ -884,9 +780,7 @@
         return
       }
     } else {
-      // No token, no params — show generic form
-      villaId = 'dwarka'
-      partner = 'direct'
+      villaId = 'dwarka'; partner = 'direct'
     }
     renderHeader()
     show('screen-form')
@@ -1071,12 +965,6 @@
       requestBreakfast:     requests.breakfast,
       breakfastChoice:      requests.breakfast ? breakfastChoice : null,
       requestCab:           requests.cab,
-      // Additional requests
-      requestEarlyCheckIn: requests.early,
-      requestLateCheckOut: requests.late,
-      requestBreakfast:    requests.breakfast,
-      breakfastChoice:     requests.breakfast ? breakfastChoice : null,
-      requestCab:          requests.cab,
     }
 
     try {
@@ -1163,76 +1051,17 @@
   }
 
   // ── ADDITIONAL REQUESTS ──────────────────────────────────
-  const requests = { early: false, late: false, breakfast: false, cab: false }
-  let breakfastChoice = ''
-
-  function toggleOption(key) {
-    requests[key] = !requests[key]
-    document.getElementById('opt-' + key).classList.toggle('checked', requests[key])
-    document.getElementById('box-' + key).textContent = requests[key] ? '✓' : ''
-    if (key === 'breakfast') {
-      toggleClass('breakfast-options', requests[key] ? 'remove' : 'add', 'hidden')
-      if (!requests[key]) {
-        breakfastChoice = ''
-        ;['idli','puttu','appam'].forEach(b => {
-          document.getElementById('opt-'+b).classList.remove('checked')
-          document.getElementById('box-'+b).textContent = ''
-        })
-      }
-    }
-  }
-
-  function toggleBreakfast(choice) {
-    breakfastChoice = breakfastChoice === choice ? '' : choice
-    ;['Idli','Puttu','Appam'].forEach(b => {
-      const active = b === breakfastChoice
-      document.getElementById('opt-'+b.toLowerCase()).classList.toggle('checked', active)
-      document.getElementById('box-'+b.toLowerCase()).textContent = active ? '✓' : ''
-    })
-  }
-
-  // ── ADDITIONAL REQUESTS ──────────────────────────────────
-  const requests = { early: false, late: false, breakfast: false, cab: false }
-  let breakfastChoice = ''
-
-  function toggleOption(key) {
-    requests[key] = !requests[key]
-    document.getElementById('opt-' + key).classList.toggle('checked', requests[key])
-    document.getElementById('box-' + key).textContent = requests[key] ? '\u2713' : ''
-    if (key === 'breakfast') {
-      toggleClass('breakfast-options', requests[key] ? 'remove' : 'add', 'hidden')
-      if (!requests[key]) {
-        breakfastChoice = ''
-        ;['idli','puttu','appam'].forEach(function(b) {
-          document.getElementById('opt-'+b).classList.remove('checked')
-          document.getElementById('box-'+b).textContent = ''
-        })
-      }
-    }
-  }
-
-  function toggleBreakfast(choice) {
-    breakfastChoice = breakfastChoice === choice ? '' : choice
-    ;['Idli','Puttu','Appam'].forEach(function(b) {
-      var active = b === breakfastChoice
-      document.getElementById('opt-'+b.toLowerCase()).classList.toggle('checked', active)
-      document.getElementById('box-'+b.toLowerCase()).textContent = active ? '\u2713' : ''
-    })
-  }
-
-  // ── BOOT ───────────────────────────────────────────────────
-  // ── ADDITIONAL REQUESTS ──────────────────────────
-  var reqState = { early:false, late:false, breakfast:false, cab:false }
-  var bfChoice = ''
+  var reqOpts = { early:false, late:false, breakfast:false, cab:false }
+  var bfPick  = ''
   function toggleOption(k) {
-    reqState[k] = !reqState[k]
-    document.getElementById('opt-'+k).classList.toggle('checked', reqState[k])
-    document.getElementById('box-'+k).textContent = reqState[k] ? '✓' : ''
+    reqOpts[k] = !reqOpts[k]
+    document.getElementById('opt-'+k).classList.toggle('checked', reqOpts[k])
+    document.getElementById('box-'+k).textContent = reqOpts[k] ? '✓' : ''
     if (k === 'breakfast') {
       var el = document.getElementById('breakfast-options')
-      if (reqState[k]) { el.classList.remove('hidden') }
+      if (reqOpts[k]) { el.classList.remove('hidden') }
       else {
-        el.classList.add('hidden'); bfChoice = ''
+        el.classList.add('hidden'); bfPick = ''
         ;['idli','puttu','appam'].forEach(function(b) {
           document.getElementById('opt-'+b).classList.remove('checked')
           document.getElementById('box-'+b).textContent = ''
@@ -1241,14 +1070,15 @@
     }
   }
   function toggleBreakfast(c) {
-    bfChoice = bfChoice === c ? '' : c
+    bfPick = bfPick === c ? '' : c
     ;['Idli','Puttu','Appam'].forEach(function(b) {
-      var active = b === bfChoice
-      document.getElementById('opt-'+b.toLowerCase()).classList.toggle('checked', active)
-      document.getElementById('box-'+b.toLowerCase()).textContent = active ? '✓' : ''
+      var a = b === bfPick
+      document.getElementById('opt-'+b.toLowerCase()).classList.toggle('checked', a)
+      document.getElementById('box-'+b.toLowerCase()).textContent = a ? '✓' : ''
     })
   }
 
+  // ── BOOT ───────────────────────────────────────────────────
   init()
 </script>
 </body>

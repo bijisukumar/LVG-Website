@@ -299,6 +299,26 @@
   <div class="icon">🙏</div>
   <div class="title" style="color:#34A853">Registration Complete</div>
   <div class="sub" id="success-msg"></div>
+  <!-- Cartoon: staff rushing to prepare room -->
+  <svg viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg" style="width:180px;margin:16px auto;display:block">
+    <line x1="10" y1="98" x2="190" y2="98" stroke="#2A3A4A" stroke-width="2"/>
+    <rect x="115" y="68" width="65" height="28" rx="4" fill="#1A2A3A" stroke="#C8903A" stroke-width="1.5"/>
+    <rect x="115" y="58" width="20" height="16" rx="3" fill="#2A3A4A" stroke="#C8903A" stroke-width="1"/>
+    <rect x="117" y="70" width="61" height="7" rx="2" fill="#C8903A" opacity="0.3"/>
+    <path d="M95 52 Q118 34 148 48" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.8)"/>
+    <circle cx="58" cy="43" r="9" fill="#C8903A"/>
+    <line x1="58" y1="52" x2="58" y2="76" stroke="#C8903A" stroke-width="3" stroke-linecap="round"/>
+    <line x1="58" y1="60" x2="40" y2="53" stroke="#C8903A" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="58" y1="60" x2="78" y2="56" stroke="#C8903A" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="58" y1="76" x2="46" y2="96" stroke="#C8903A" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="58" y1="76" x2="70" y2="93" stroke="#C8903A" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M78 56 Q93 43 103 53 Q98 63 83 60 Z" fill="white" opacity="0.9"/>
+    <line x1="18" y1="48" x2="33" y2="48" stroke="#C8903A" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+    <line x1="14" y1="58" x2="30" y2="58" stroke="#C8903A" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+    <line x1="20" y1="68" x2="34" y2="68" stroke="#C8903A" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+    <text x="152" y="52" font-size="10" fill="#C8903A">✨</text>
+  </svg>
+  <div style="font-size:0.75rem;color:rgba(200,144,58,0.7);margin-top:4px">Our team is getting your room ready!</div>
 </div>
 
 <!-- MAIN FORM -->
@@ -934,6 +954,8 @@
         `Your check-in registration has been received.<br><br>` +
         `Our team will verify your details and prepare your room.` +
         (docsLater ? `<br><br><span style="color:#F59E0B">⚠️ Please bring your passport and visa documents at check-in.</span>` : '') +
+        `<br><br>In the meantime, if you need any information please feel free to reach us at ` +
+        `<strong style="color:#C8903A">+91 97287 65101</strong> for a faster response.` +
         `<br><br><strong style="color:#C8903A">${VILLA_NAMES[villaId]||'Guruvayur Villa'}</strong>` +
         `<br><span style="font-size:0.78rem">${addr.phone}</span>`
 

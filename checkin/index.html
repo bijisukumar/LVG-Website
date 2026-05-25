@@ -1203,6 +1203,34 @@
   }
 
   // ── BOOT ───────────────────────────────────────────────────
+  // ── ADDITIONAL REQUESTS ──────────────────────────
+  var reqState = { early:false, late:false, breakfast:false, cab:false }
+  var bfChoice = ''
+  function toggleOption(k) {
+    reqState[k] = !reqState[k]
+    document.getElementById('opt-'+k).classList.toggle('checked', reqState[k])
+    document.getElementById('box-'+k).textContent = reqState[k] ? '✓' : ''
+    if (k === 'breakfast') {
+      var el = document.getElementById('breakfast-options')
+      if (reqState[k]) { el.classList.remove('hidden') }
+      else {
+        el.classList.add('hidden'); bfChoice = ''
+        ;['idli','puttu','appam'].forEach(function(b) {
+          document.getElementById('opt-'+b).classList.remove('checked')
+          document.getElementById('box-'+b).textContent = ''
+        })
+      }
+    }
+  }
+  function toggleBreakfast(c) {
+    bfChoice = bfChoice === c ? '' : c
+    ;['Idli','Puttu','Appam'].forEach(function(b) {
+      var active = b === bfChoice
+      document.getElementById('opt-'+b.toLowerCase()).classList.toggle('checked', active)
+      document.getElementById('box-'+b.toLowerCase()).textContent = active ? '✓' : ''
+    })
+  }
+
   init()
 </script>
 </body>

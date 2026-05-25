@@ -709,10 +709,7 @@
     var linkToken = location.pathname.replace(/\//g, '').trim() || qs.get('token')
     if (linkToken) {
       try {
-        var res  = await fetch(API + 'resolveCheckinLink', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token: linkToken })
-        })
+        var res  = await fetch(API + 'resolveCheckinLink&token=' + encodeURIComponent(linkToken))
         var data = await res.json()
         if (!data.success) { showError(data.error || 'Invalid link'); return }
         villaId = data.data.villaId || 'dwarka'
@@ -912,10 +909,10 @@
     try {
       var res, data
       try {
-        res = await fetch(API + 'submitGuestCheckIn', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        })
+        // Use no-cors-triggering approach: encode payload as base64 in query string
+        // This avoids OPTIONS preflight which Cloudflare blocks
+        var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))))
+        res = await fetch(API + 'submitGuestCheckIn&d=' + encodeURIComponent(encoded))
       } catch(fetchErr) {
         throw new Error('Network error — could not reach server: ' + fetchErr.message)
       }

@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guest Check-In — Guruvayur Villa (Dwarka)</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0D1117;
+      color: #F0F0F0;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, #111827 0%, #1A2332 100%);
+      padding: 20px 20px 18px;
+      border-bottom: 1px solid rgba(200,144,58,0.2);
+    }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .brand-logo {
+      width: 56px; height: 56px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid rgba(200,144,58,0.3);
+      box-shadow: 0 4px 12px rgba(200,144,58,0.15);
+    }
+    .brand-logo-fallback {
+      width: 56px; height: 56px;
+      border-radius: 12px;
+      font-size: 1.8rem;
+      background: rgba(200,144,58,0.15);
+      border: 1px solid rgba(200,144,58,0.3);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-name {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #E8B86D;
+      letter-spacing: 0.5px;
+    }
+    .brand-sub {
+      font-size: 0.6rem;
+      color: #5C7080;
+      letter-spacing: 3px;
+      margin-top: 2px;
+    }
+    .partner-badge {
+      display: inline-block;
+      background: rgba(133,183,235,0.12);
+      border: 1px solid rgba(133,183,235,0.25);
+      border-radius: 20px;
+      padding: 3px 12px;
+      color: #85B7EB;
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .welcome-text {
+      font-size: 0.82rem;
+      color: #9AA5B4;
+      line-height: 1.6;
+    }
+    .welcome-text strong { color: #D0D0D0; }
+
+    /* ── BODY ── */
+    .body { padding: 20px 16px 48px; max-width: 520px; margin: 0 auto; }
+
+    /* ── SECTIONS ── */
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #C8903A;
+      margin-bottom: 10px;
+      margin-top: 24px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(200,144,58,0.2);
+    }
+    .section-label.blue { color: #85B7EB; border-color: rgba(133,183,235,0.2); }
+
+    /* ── FIELDS ── */
+    .field { margin-bottom: 14px; }
+    .field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #9AA5B4;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .field label .req { color: #EF4444; margin-left: 3px; }
+    .field .hint { font-size: 0.68rem; color: #6B7280; margin-top: 4px; }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      color: #F0F0F0;
+      font-size: 0.9rem;
+      outline: none;
+      font-family: inherit;
+    }
+    select { background: #1A2332; appearance: none; }
+    select option { background: #1A2332; }
+    textarea { resize: vertical; min-height: 70px; }
+    input[readonly] { opacity: 0.55; cursor: not-allowed; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; }
+
+    /* ── NATIONALITY TOGGLE ── */
+    .nat-toggle { display: flex; gap: 8px; }
+    .nat-btn {
+      flex: 1; padding: 11px 8px; border-radius: 10px; cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.03);
+      color: #9AA5B4; font-size: 0.83rem; font-weight: 400;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: all 0.15s;
+    }
+    .nat-btn.active {
+      border-color: #C8903A;
+      background: rgba(200,144,58,0.15);
+      color: #C8903A; font-weight: 700;
+    }
+    .nat-btn img { width: 20px; height: 14px; border-radius: 2px; object-fit: cover; }
+
+    /* ── NIGHTS DISPLAY ── */
+    .nights-display {
+      text-align: center; color: #C8903A; font-size: 0.82rem;
+      font-weight: 600; margin-bottom: 14px; margin-top: -6px;
+    }
+
+    /* ── DOCS LATER CHECKBOX ── */
+    .docs-later {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px; padding: 12px 14px; border-radius: 10px;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      transition: all 0.15s;
+    }
+    .docs-later.checked {
+      border-color: rgba(245,158,11,0.4);
+      background: rgba(245,158,11,0.08);
+    }
+    .docs-later-box {
+      width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; color: #111;
+    }
+    .docs-later.checked .docs-later-box {
+      border-color: #F59E0B; background: #F59E0B;
+    }
+
+    /* ── UPLOAD BOX ── */
+    .upload-box {
+      padding: 16px; border-radius: 10px;
+      border: 1px dashed rgba(200,144,58,0.5);
+      background: rgba(200,144,58,0.04);
+      cursor: pointer; text-align: center;
+    }
+    .upload-box.blue {
+      border-color: rgba(133,183,235,0.5);
+      background: rgba(133,183,235,0.04);
+    }
+    .upload-box img.preview {
+      max-width: 100%; max-height: 150px;
+      border-radius: 6px; object-fit: contain;
+    }
+    .upload-icon { font-size: 1.8rem; margin-bottom: 6px; }
+    .upload-label { font-size: 0.82rem; font-weight: 600; color: #C8903A; }
+    .upload-box.blue .upload-label { color: #85B7EB; }
+    .upload-hint { font-size: 0.7rem; color: #6B7280; margin-top: 3px; }
+    .upload-ok { font-size: 0.7rem; color: #34A853; margin-top: 4px; }
+
+    /* ── VILLA ADDRESS BOX ── */
+    .villa-addr-box {
+      background: rgba(200,144,58,0.06);
+      border: 1px solid rgba(200,144,58,0.2);
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 14px;
+    }
+    .villa-addr-box .addr-label {
+      font-size: 0.68rem; font-weight: 700; color: #C8903A;
+      letter-spacing: 1px; margin-bottom: 6px;
+    }
+    .villa-addr-box .addr-text {
+      font-size: 0.82rem; color: #D0D0D0; line-height: 1.6;
+    }
+    .villa-addr-box .addr-note {
+      font-size: 0.68rem; color: #6B7280; margin-top: 6px;
+    }
+
+    /* ── ERROR ── */
+    .error-box {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 10px; padding: 12px 16px;
+      color: #EF4444; font-size: 0.85rem; margin-bottom: 16px;
+    }
+
+    /* ── SUBMIT ── */
+    .submit-btn {
+      width: 100%; padding: 16px; border-radius: 12px;
+      background: #C8903A; color: #111;
+      font-weight: 800; font-size: 1rem; border: none;
+      cursor: pointer; letter-spacing: 0.5px;
+      transition: opacity 0.15s;
+    }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .privacy-note {
+      color: #6B7280; font-size: 0.7rem;
+      text-align: center; line-height: 1.5; margin-top: 10px;
+    }
+
+    /* ── LOADING / SUCCESS / ERROR SCREENS ── */
+    .full-screen {
+      min-height: 80vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 32px 24px;
+      max-width: 400px; margin: 0 auto;
+    }
+    .full-screen .icon { font-size: 3rem; margin-bottom: 16px; }
+    .full-screen .title { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+    .full-screen .sub { font-size: 0.88rem; color: #9AA5B4; line-height: 1.7; }
+
+    /* ── HIDDEN ── */
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="screen-loading" class="full-screen">
+  <div class="icon">⏳</div>
+  <div class="title" style="color:#9AA5B4">Verifying your check-in link…</div>
+</div>
+
+<!-- ERROR SCREEN -->
+<div id="screen-error" class="full-screen hidden">
+  <div class="icon">⚠️</div>
+  <div class="title" style="color:#EF4444">Invalid Check-in Link</div>
+  <div class="sub">This link is invalid or has been deactivated.<br>Please contact the villa for a valid link.<br><br>
+    <strong style="color:#C8903A">+91 99950 43283</strong>
+  </div>
+</div>
+
+<!-- SUCCESS SCREEN -->
+<div id="screen-success" class="full-screen hidden">
+  <div class="icon">🙏</div>
+  <div class="title" style="color:#34A853">Registration Complete</div>
+  <div class="sub" id="success-msg"></div>
+</div>
+
+<!-- MAIN FORM -->
+<div id="screen-form" class="hidden">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand-row">
+      <img class="brand-logo" src="https://manage.luxuryvillasofguruvayur.com/icons/logo-black.png"
+        alt="Guruvayur Estates"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+      <div class="brand-logo-fallback">🏡</div>
+      <div>
+        <div class="brand-name" id="villa-name">Guruvayur Villa (Dwarka)</div>
+        <div class="brand-sub">GURUVAYUR · KERALA</div>
+      </div>
+    </div>
+    <div id="partner-badge" class="partner-badge hidden"></div>
+    <div class="welcome-text" id="welcome-text"></div>
+  </div>
+
+  <!-- FORM BODY -->
+  <div class="body">
+
+    <div id="error-banner" class="error-box hidden"></div>
+
+    <!-- NATIONALITY -->
+    <div class="field">
+      <label>Nationality <span class="req">*</span></label>
+      <div class="nat-toggle">
+        <button class="nat-btn active" id="btn-indian" onclick="setNationality('Indian')">
+          <img src="https://flagcdn.com/w20/in.png" alt="India" onerror="this.style.display='none'" />
+          Indian
+        </button>
+        <button class="nat-btn" id="btn-foreign" onclick="setNationality('Foreign')">
+          🌍 Foreign National
+        </button>
+      </div>
+    </div>
+
+    <!-- SECTION 1: PERSONAL -->
+    <div class="section-label">1 · PERSONAL DETAILS</div>
+
+    <div class="field">
+      <label>Full name (as on ID) <span class="req">*</span></label>
+      <input type="text" id="fullName" placeholder="e.g. Bharat L Rao" />
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Date of birth</label>
+        <input type="date" id="dob" />
+      </div>
+      <div class="field">
+        <label>Gender</label>
+        <select id="gender">
+          <option value="">Select</option>
+          <option>Male</option><option>Female</option><option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Phone number <span class="req">*</span></label>
+        <input type="tel" id="phone" placeholder="9880335522" />
+      </div>
+      <div class="field">
+        <label>Email address</label>
+        <input type="email" id="email" placeholder="you@example.com" />
+      </div>
+    </div>
+
+    <!-- SECTION 2: ADDRESS -->
+    <div class="section-label" id="addr-label">2 · HOME ADDRESS</div>
+
+    <!-- Foreign: home country address + prefilled villa address -->
+    <div id="foreign-addr" class="hidden">
+      <div class="field">
+        <label>Permanent address in home country <span class="req">*</span></label>
+        <textarea id="homeCountryAddr" placeholder="Full address including city and country"></textarea>
+      </div>
+      <div class="villa-addr-box">
+        <div class="addr-label">ADDRESS IN INDIA (VILLA)</div>
+        <div class="addr-text">
+          Guruvayur Villa (Dwarka)<br>
+          Edappully Gandhinagar Rd, Palayoor<br>
+          Guruvayur, Kerala 680101, India<br>
+          <span style="color:#9AA5B4">+91 99950 43283</span>
+        </div>
+        <div class="addr-note">Auto-filled as your India address for Form C</div>
+      </div>
+    </div>
+
+    <!-- Indian: home address fields -->
+    <div id="indian-addr">
+      <div class="field">
+        <label>Street address</label>
+        <input type="text" id="address" placeholder="Flat / House, Street, Area" />
+      </div>
+      <div class="grid-2-1">
+        <div class="field">
+          <label>City / Town <span class="req">*</span></label>
+          <input type="text" id="city" placeholder="Bengaluru" />
+        </div>
+        <div class="field">
+          <label>Pincode</label>
+          <input type="tel" id="pincode" placeholder="560001" maxlength="6" />
+        </div>
+      </div>
+      <div class="field">
+        <label>State <span class="req">*</span></label>
+        <select id="state">
+          <option value="">Select state</option>
+          <option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option>
+          <option>Bihar</option><option>Chhattisgarh</option><option>Goa</option>
+          <option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option>
+          <option>Jharkhand</option><option>Karnataka</option><option>Kerala</option>
+          <option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option>
+          <option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option>
+          <option>Odisha</option><option>Punjab</option><option>Rajasthan</option>
+          <option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option>
+          <option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option>
+          <option>West Bengal</option><option>Delhi</option><option>Jammu & Kashmir</option>
+          <option>Ladakh</option><option>Puducherry</option><option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SECTION 3: STAY DETAILS -->
+    <div class="section-label">3 · STAY DETAILS</div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Check-in date <span class="req">*</span></label>
+        <input type="date" id="checkIn" onchange="calcNights()" />
+      </div>
+      <div class="field">
+        <label>Check-out date <span class="req">*</span></label>
+        <input type="date" id="checkOut" onchange="calcNights()" />
+      </div>
+    </div>
+    <div class="nights-display hidden" id="nights-display"></div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Adults <span class="req">*</span></label>
+        <select id="adults">
+          <option>1</option><option>2</option><option>3</option><option>4</option>
+          <option>5</option><option>6</option><option>7</option><option>8</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Children (under 12)</label>
+        <select id="children">
+          <option>0</option><option>1</option><option>2</option>
+          <option>3</option><option>4</option><option>5</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Names of other guests in your group</label>
+      <textarea id="guestList" placeholder="e.g. Priya Rao, Arjun Rao (age 8)"></textarea>
+      <div class="hint">Optional — helps us prepare</div>
+    </div>
+
+    <div class="field">
+      <label>Purpose of visit <span class="req">*</span></label>
+      <select id="purpose">
+        <option value="">Select…</option>
+        <option>Pilgrimage / Temple visit</option><option>Tourism</option>
+        <option>Family visit</option><option>Wedding / Function</option>
+        <option>Business</option><option>Arangettam</option><option>Other</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Mode of transport <span class="req">*</span></label>
+      <select id="transport" onchange="toggleVehicle()">
+        <option value="">Select…</option>
+        <option>Car / SUV</option><option>Train</option>
+        <option>Flight</option><option>Bus</option><option>Auto / Taxi</option>
+      </select>
+    </div>
+
+    <div class="field hidden" id="vehicle-field">
+      <label>Vehicle registration number</label>
+      <input type="text" id="vehicle" placeholder="KA 01 AB 1234"
+        oninput="this.value=this.value.toUpperCase()" />
+      <div class="hint">Noted for villa security</div>
+    </div>
+
+    <div class="field">
+      <label>Estimated arrival time (ETA)</label>
+      <input type="time" id="eta" />
+      <div class="hint">So we can be ready for you</div>
+    </div>
+
+    <!-- SECTION 4A: INDIAN ID -->
+    <div id="indian-id">
+      <div class="section-label">4 · IDENTITY DOCUMENT</div>
+      <div class="field">
+        <label>ID type <span class="req">*</span></label>
+        <select id="idType">
+          <option value="">Select…</option>
+          <option>Aadhaar Card</option><option>PAN Card</option>
+          <option>Driving License</option><option>Voter ID</option><option>Passport</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>ID number <span class="req">*</span></label>
+        <input type="text" id="idNumber" placeholder="Enter ID number" />
+      </div>
+      <div class="field">
+        <label>Upload ID document</label>
+        <div class="upload-box" onclick="document.getElementById('idFile').click()">
+          <div id="id-preview-wrap">
+            <div class="upload-icon">📷</div>
+            <div class="upload-label">Tap to upload ID</div>
+            <div class="upload-hint">Aadhaar / PAN / Licence — photo or PDF</div>
+          </div>
+        </div>
+        <input type="file" id="idFile" accept="image/*,application/pdf" capture="environment"
+          style="display:none" onchange="handleUpload(this,'id-preview-wrap','id-ok')" />
+        <div class="upload-ok hidden" id="id-ok">✅ Document uploaded</div>
+      </div>
+    </div>
+
+    <!-- SECTION 4B: FOREIGN (FORM C) -->
+    <div id="foreign-id" class="hidden">
+      <div class="section-label blue">4 · PASSPORT DETAILS (FORM C)</div>
+      <div class="field">
+        <label>Passport number <span class="req">*</span></label>
+        <input type="text" id="passportNo" placeholder="A1234567" />
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Issue date</label>
+          <input type="date" id="passportIssueDate" />
+        </div>
+        <div class="field">
+          <label>Expiry date <span class="req">*</span></label>
+          <input type="date" id="passportExpiry" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Place of issue</label>
+        <input type="text" id="passportIssuePlace" placeholder="New Delhi / Mumbai" />
+      </div>
+      <div class="field">
+        <label>Upload passport photo page <span class="req">*</span></label>
+        <div class="upload-box blue" onclick="document.getElementById('passportFile').click()">
+          <div id="passport-preview-wrap">
+            <div class="upload-icon">🛂</div>
+            <div class="upload-label">Upload passport photo page</div>
+            <div class="upload-hint">Biographical data page with photo</div>
+          </div>
+        </div>
+        <input type="file" id="passportFile" accept="image/*,application/pdf" capture="environment"
+          style="display:none" onchange="handleUpload(this,'passport-preview-wrap','passport-ok')" />
+        <div class="upload-ok hidden" id="passport-ok">✅ Passport uploaded</div>
+      </div>
+
+      <div class="section-label blue">5 · VISA DETAILS (FORM C)</div>
+      <div class="docs-later" id="docs-later-toggle" onclick="toggleDocsLater()">
+        <div class="docs-later-box" id="docs-later-box"></div>
+        <div>
+          <div style="font-size:0.85rem;font-weight:600;color:#D0D0D0">
+            I will submit visa documents at check-in
+          </div>
+          <div style="font-size:0.7rem;color:#6B7280;margin-top:2px">
+            Skip visa details now — please bring originals when you arrive
+          </div>
+        </div>
+      </div>
+
+      <div id="visa-fields">
+        <div class="field">
+          <label>Visa number <span class="req">*</span></label>
+          <input type="text" id="visaNo" placeholder="IN-XXXXXXXX" />
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label>Visa type <span class="req">*</span></label>
+            <select id="visaType">
+              <option value="">Select…</option>
+              <option>Tourist</option><option>Business</option><option>e-Visa</option>
+              <option>OCI Card</option><option>PIO Card</option><option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Issue date</label>
+            <input type="date" id="visaIssueDate" />
+          </div>
+        </div>
+        <div class="field">
+          <label>Place of visa issue</label>
+          <input type="text" id="visaIssuePlace" placeholder="Embassy / Consulate city" />
+        </div>
+        <div class="field">
+          <label>Upload visa page</label>
+          <div class="upload-box blue" onclick="document.getElementById('visaFile').click()">
+            <div id="visa-preview-wrap">
+              <div class="upload-icon">📋</div>
+              <div class="upload-label">Upload visa page</div>
+              <div class="upload-hint">Visa stamp, sticker, or e-Visa printout</div>
+            </div>
+          </div>
+          <input type="file" id="visaFile" accept="image/*,application/pdf" capture="environment"
+            style="display:none" onchange="handleUpload(this,'visa-preview-wrap','visa-ok')" />
+          <div class="upload-ok hidden" id="visa-ok">✅ Visa page uploaded</div>
+        </div>
+      </div>
+
+      <div class="section-label blue">6 · ARRIVAL IN INDIA (FORM C)</div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Date of arrival in India</label>
+          <input type="date" id="arrivalIndia" />
+        </div>
+        <div class="field">
+          <label>Port of arrival</label>
+          <input type="text" id="portOfArrival" placeholder="Kochi / Chennai" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Next destination after this stay</label>
+        <input type="text" id="nextDest" placeholder="Kovalam / Mumbai / Home country" />
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div style="margin-top:28px">
+      <div id="submit-error" class="error-box hidden"></div>
+      <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">
+        ✅ Complete Registration
+      </button>
+      <p class="privacy-note">
+        Your information is collected for hotel registration compliance only
+        and is not shared with third parties.
+      </p>
+    </div>
+
+  </div><!-- /body -->
+</div><!-- /screen-form -->
+
+<script>
+  const API = 'https://manage.luxuryvillasofguruvayur.com/api'
+  const VILLA_NAMES   = { dwarka: 'Guruvayur Villa (Dwarka)' }
+  const PARTNER_NAMES = {
+    direct: 'Direct Booking', airbnb: 'Airbnb',
+    makemytrip: 'MakeMyTrip', booking: 'Booking.com', goibibo: 'Goibibo'
+  }
+  const VILLA_ADDR = {
+    dwarka: {
+      address: 'Edappully Gandhinagar Rd, Palayoor',
+      city: 'Guruvayur', state: 'Kerala', pincode: '680101', country: 'India',
+      phone: '+91 99950 43283'
+    }
+  }
+
+  let villaId   = 'dwarka'
+  let partner   = 'direct'
+  let nationality = 'Indian'
+  let docsLater = false
+  let uploadData = { id: null, idName: null, passport: null, visa: null }
+
+  // ── INIT — resolve token from URL ──────────────────────────
+  async function init() {
+    const token = location.pathname.replace(/\//g, '').trim()
+      || new URLSearchParams(location.search).get('token')
+
+    if (token) {
+      try {
+        const res  = await fetch(API + '/resolveCheckinLink', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token })
+        })
+        const data = await res.json()
+        if (!data.success) { showError(data.error || 'Invalid link'); return }
+        villaId = data.data.villaId || 'dwarka'
+        partner = data.data.partner || 'direct'
+      } catch(e) {
+        showError('Unable to verify check-in link. Please try again.')
+        return
+      }
+    } else {
+      // Fallback to query params (for testing: ?villa=dwarka&partner=direct)
+      villaId = new URLSearchParams(location.search).get('villa') || 'dwarka'
+      partner = new URLSearchParams(location.search).get('partner') || 'direct'
+    }
+    renderHeader()
+    show('screen-form')
+    hide('screen-loading')
+  }
+
+  function renderHeader() {
+    const vName = VILLA_NAMES[villaId] || 'Guruvayur Villa'
+    const pName = PARTNER_NAMES[partner] || partner
+    document.getElementById('villa-name').textContent = vName
+
+    if (partner !== 'direct') {
+      const badge = document.getElementById('partner-badge')
+      badge.textContent = 'Booked via ' + pName
+      show('partner-badge')
+    }
+
+    const welcomeEl = document.getElementById('welcome-text')
+    const partnerLine = partner !== 'direct'
+      ? `Welcome to <strong>${vName}</strong> — booked through <strong style="color:#85B7EB">${pName}</strong>.`
+      : `Welcome to <strong>${vName}</strong>.`
+    welcomeEl.innerHTML = partnerLine +
+      `<br><br>As required under the <strong>Registration of Foreigners Act</strong> and the
+      <strong>Kerala Police Hotel Guest Rules</strong>, all guests must complete this
+      registration before check-in. This is a mandatory government requirement —
+      please complete it at the earliest.`
+  }
+
+  // ── NATIONALITY ────────────────────────────────────────────
+  function setNationality(nat) {
+    nationality = nat
+    document.getElementById('btn-indian').classList.toggle('active', nat === 'Indian')
+    document.getElementById('btn-foreign').classList.toggle('active', nat === 'Foreign')
+    toggleClass('indian-addr',  nat === 'Indian' ? 'remove' : 'add', 'hidden')
+    toggleClass('foreign-addr', nat === 'Foreign' ? 'remove' : 'add', 'hidden')
+    toggleClass('indian-id',    nat === 'Indian' ? 'remove' : 'add', 'hidden')
+    toggleClass('foreign-id',   nat === 'Foreign' ? 'remove' : 'add', 'hidden')
+    document.getElementById('addr-label').textContent =
+      nat === 'Indian' ? '2 · HOME ADDRESS' : '2 · HOME COUNTRY ADDRESS'
+  }
+
+  // ── VEHICLE ────────────────────────────────────────────────
+  function toggleVehicle() {
+    const t = document.getElementById('transport').value
+    toggleClass('vehicle-field', t === 'Car / SUV' ? 'remove' : 'add', 'hidden')
+  }
+
+  // ── NIGHTS ─────────────────────────────────────────────────
+  function calcNights() {
+    const ci = document.getElementById('checkIn').value
+    const co = document.getElementById('checkOut').value
+    const el = document.getElementById('nights-display')
+    if (ci && co) {
+      const n = Math.max(0, Math.round((new Date(co) - new Date(ci)) / 86400000))
+      if (n > 0) {
+        el.textContent = n + ' night' + (n !== 1 ? 's' : '')
+        el.classList.remove('hidden')
+        return
+      }
+    }
+    el.classList.add('hidden')
+  }
+
+  // ── DOCS LATER ─────────────────────────────────────────────
+  function toggleDocsLater() {
+    docsLater = !docsLater
+    const toggle = document.getElementById('docs-later-toggle')
+    const box    = document.getElementById('docs-later-box')
+    toggle.classList.toggle('checked', docsLater)
+    box.textContent = docsLater ? '✓' : ''
+    toggleClass('visa-fields', docsLater ? 'add' : 'remove', 'hidden')
+  }
+
+  // ── FILE UPLOAD ────────────────────────────────────────────
+  function handleUpload(input, previewId, okId) {
+    const file = input.files?.[0]
+    if (!file) return
+    const key = input.id === 'idFile' ? 'id'
+              : input.id === 'passportFile' ? 'passport' : 'visa'
+    const nameKey = key === 'id' ? 'idName' : null
+
+    const reader = new FileReader()
+    reader.onload = ev => {
+      uploadData[key] = ev.target.result.split(',')[1]
+      if (nameKey) uploadData[nameKey] = file.name
+
+      // Show preview or just the ok message
+      const wrap = document.getElementById(previewId)
+      if (file.type.startsWith('image/')) {
+        wrap.innerHTML = `<img class="preview" src="${ev.target.result}" alt="upload" />`
+      } else {
+        wrap.innerHTML = `<div class="upload-label">📄 ${file.name}</div>`
+      }
+      show(okId)
+    }
+    reader.readAsDataURL(file)
+  }
+
+  // ── VALIDATE ───────────────────────────────────────────────
+  function validate() {
+    const v = val
+    if (!v('fullName'))  return 'Full name is required'
+    if (!v('phone'))     return 'Phone number is required'
+    if (!v('checkIn'))   return 'Check-in date is required'
+    if (!v('checkOut'))  return 'Check-out date is required'
+    if (new Date(v('checkOut')) <= new Date(v('checkIn')))
+      return 'Check-out must be after check-in'
+    if (!v('purpose'))   return 'Purpose of visit is required'
+    if (!v('transport')) return 'Mode of transport is required'
+    if (nationality === 'Indian') {
+      if (!v('idType'))   return 'Please select your ID type'
+      if (!v('idNumber')) return 'Please enter your ID number'
+    } else {
+      if (!v('passportNo'))    return 'Passport number is required'
+      if (!v('passportExpiry')) return 'Passport expiry date is required'
+      if (!docsLater && !v('visaNo'))   return 'Visa number is required (or check submit later)'
+      if (!docsLater && !v('visaType')) return 'Visa type is required'
+    }
+    return null
+  }
+
+  // ── SUBMIT ─────────────────────────────────────────────────
+  async function handleSubmit() {
+    hide('submit-error')
+    const err = validate()
+    if (err) { showSubmitError(err); window.scrollTo(0,0); return }
+
+    const btn = document.getElementById('submit-btn')
+    btn.disabled = true; btn.textContent = 'Submitting…'
+
+    const ci = val('checkIn'), co = val('checkOut')
+    const nights = Math.max(1, Math.round((new Date(co)-new Date(ci))/86400000))
+    const addr = VILLA_ADDR[villaId] || VILLA_ADDR.dwarka
+
+    const payload = {
+      villaId, partner,
+      guestName:    val('fullName'),
+      dob:          val('dob'),
+      gender:       val('gender'),
+      nationality,
+      phone:        val('phone'),
+      email:        val('email'),
+      // Address
+      homeAddress:       nationality==='Foreign' ? `${addr.address}, ${addr.city}` : val('address'),
+      city:              nationality==='Foreign' ? addr.city    : val('city'),
+      state:             nationality==='Foreign' ? addr.state   : val('state'),
+      pincode:           nationality==='Foreign' ? addr.pincode : val('pincode'),
+      country:           nationality==='Foreign' ? addr.country : 'India',
+      fromCity:          nationality==='Indian'  ? val('city')  : '',
+      homeCountryAddress:nationality==='Foreign' ? val('homeCountryAddr') : null,
+      // Stay
+      checkInDate:  ci, checkOutDate: co, nights,
+      adults:       parseInt(val('adults'))   || 1,
+      children:     parseInt(val('children')) || 0,
+      guestList:    val('guestList')   || null,
+      purposeOfVisit:   val('purpose'),
+      modeOfTransport:  val('transport') || null,
+      vehicleNumber:    val('vehicle')   || null,
+      eta:              val('eta')       || null,
+      // Indian ID
+      govtIdType: nationality==='Indian' ? val('idType')   : null,
+      govtIdNum:  nationality==='Indian' ? val('idNumber') : null,
+      // Foreign (Form C)
+      passportNumber:     nationality==='Foreign' ? val('passportNo')        : null,
+      passportIssueDate:  nationality==='Foreign' ? val('passportIssueDate') : null,
+      passportIssuePlace: nationality==='Foreign' ? val('passportIssuePlace'): null,
+      passportExpiry:     nationality==='Foreign' ? val('passportExpiry')    : null,
+      visaNumber:         nationality==='Foreign' && !docsLater ? val('visaNo')       : null,
+      visaType:           nationality==='Foreign' && !docsLater ? val('visaType')     : null,
+      visaIssueDate:      nationality==='Foreign' && !docsLater ? val('visaIssueDate'): null,
+      visaIssuePlace:     nationality==='Foreign' && !docsLater ? val('visaIssuePlace'):null,
+      arrivalDateIndia:   nationality==='Foreign' ? val('arrivalIndia')  : null,
+      portOfArrival:      nationality==='Foreign' ? val('portOfArrival') : null,
+      nextDestination:    nationality==='Foreign' ? val('nextDest')      : null,
+      docsSubmitLater:    docsLater,
+      // Files
+      idFileB64:      uploadData.id       || null,
+      idFileName:     uploadData.idName   || null,
+      passportFileB64:uploadData.passport || null,
+      visaFileB64:    uploadData.visa     || null,
+    }
+
+    try {
+      const res  = await fetch(API + '/submitGuestCheckIn', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      const data = await res.json()
+      if (!data.success) throw new Error(data.error || 'Submission failed')
+
+      // Show success
+      const firstName = payload.guestName.split(' ')[0]
+      document.getElementById('success-msg').innerHTML =
+        `Thank you, <strong style="color:#F0F0F0">${firstName}</strong>. ` +
+        `Your check-in registration has been received.<br><br>` +
+        `Our team will verify your details and prepare your room.` +
+        (docsLater ? `<br><br><span style="color:#F59E0B">⚠️ Please bring your passport and visa documents at check-in.</span>` : '') +
+        `<br><br><strong style="color:#C8903A">${VILLA_NAMES[villaId]||'Guruvayur Villa'}</strong>` +
+        `<br><span style="font-size:0.78rem">${addr.phone}</span>`
+
+      hide('screen-form')
+      show('screen-success')
+    } catch(e) {
+      showSubmitError(e.message)
+      btn.disabled = false; btn.textContent = '✅ Complete Registration'
+    }
+  }
+
+  // ── HELPERS ────────────────────────────────────────────────
+  function val(id) {
+    const el = document.getElementById(id)
+    return el ? el.value.trim() : ''
+  }
+  function show(id) { document.getElementById(id)?.classList.remove('hidden') }
+  function hide(id) { document.getElementById(id)?.classList.add('hidden') }
+  function toggleClass(id, action, cls) {
+    document.getElementById(id)?.classList[action](cls)
+  }
+  function showError(msg) {
+    hide('screen-loading')
+    const el = document.getElementById('screen-error')
+    el.querySelector('.sub').innerHTML =
+      `${msg}<br><br>Please contact the villa for a valid link.<br><br>` +
+      `<strong style="color:#C8903A">+91 99950 43283</strong>`
+    show('screen-error')
+  }
+  function showSubmitError(msg) {
+    const el = document.getElementById('submit-error')
+    el.textContent = '⚠️ ' + msg
+    show('submit-error')
+    window.scrollTo(0,0)
+  }
+
+  // ── BOOT ───────────────────────────────────────────────────
+  init()
+</script>
+</body>
+</html>

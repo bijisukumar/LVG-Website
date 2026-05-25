@@ -673,7 +673,7 @@
 </div><!-- /screen-form -->
 
 <script>
-  const API = 'https://manage.luxuryvillasofguruvayur.com/api'
+  const API = '/checkin/proxy.php?action='
   const VILLA_NAMES   = { dwarka: 'Guruvayur Villa (Dwarka)' }
   const PARTNER_NAMES = {
     direct: 'Direct Booking', airbnb: 'Airbnb',
@@ -709,7 +709,7 @@
     var linkToken = location.pathname.replace(/\//g, '').trim() || qs.get('token')
     if (linkToken) {
       try {
-        var res  = await fetch(API + '/resolveCheckinLink', {
+        var res  = await fetch(API + 'resolveCheckinLink', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ token: linkToken })
         })
@@ -910,7 +910,7 @@
     }
 
     try {
-      const res  = await fetch(API + '/submitGuestCheckIn', {
+      const res  = await fetch(API + 'submitGuestCheckIn', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })

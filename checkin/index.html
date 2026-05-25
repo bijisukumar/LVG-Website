@@ -910,12 +910,22 @@
     }
 
     try {
-      const res  = await fetch(API + 'submitGuestCheckIn', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-      const data = await res.json()
-      if (!data.success) throw new Error(data.error || 'Submission failed')
+      var res, data
+      try {
+        res = await fetch(API + 'submitGuestCheckIn', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+      } catch(fetchErr) {
+        throw new Error('Network error — could not reach server: ' + fetchErr.message)
+      }
+      var rawText = await res.text()
+      try {
+        data = JSON.parse(rawText)
+      } catch(parseErr) {
+        throw new Error('Server returned unexpected response (HTTP ' + res.status + '): ' + rawText.substring(0,200))
+      }
+      if (!data.success) throw new Error(data.error || 'Submission failed (server error)')
 
       // Show success
       const firstName = payload.guestName.split(' ')[0]

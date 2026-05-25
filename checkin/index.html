@@ -848,16 +848,31 @@
 
   // ── INIT — resolve token from URL ──────────────────────────
   async function init() {
-    const token = location.pathname.replace(/\//g, '').trim()
-      || new URLSearchParams(location.search).get('token')
+    var qs      = new URLSearchParams(location.search)
+    var qVilla  = qs.get('villa')
+    var qPartner= qs.get('partner')
 
-    if (token) {
+    // If query params provided directly — use them, skip token resolution
+    if (qVilla || qPartner) {
+      villaId = qVilla   || 'dwarka'
+      partner = qPartner || 'direct'
+      renderHeader()
+      show('screen-form')
+      hide('screen-loading')
+      return
+    }
+
+    // Otherwise resolve opaque token from URL path e.g. /gvr-airbnb
+    var linkToken = location.pathname.replace(/\//g, '').trim()
+      || qs.get('token')
+
+    if (linkToken) {
       try {
-        const res  = await fetch(API + '/resolveCheckinLink', {
+        var res  = await fetch(API + '/resolveCheckinLink', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token })
+          body: JSON.stringify({ token: linkToken })
         })
-        const data = await res.json()
+        var data = await res.json()
         if (!data.success) { showError(data.error || 'Invalid link'); return }
         villaId = data.data.villaId || 'dwarka'
         partner = data.data.partner || 'direct'
@@ -866,9 +881,9 @@
         return
       }
     } else {
-      // Fallback to query params (for testing: ?villa=dwarka&partner=direct)
-      villaId = new URLSearchParams(location.search).get('villa') || 'dwarka'
-      partner = new URLSearchParams(location.search).get('partner') || 'direct'
+      // No token, no params — show generic form
+      villaId = 'dwarka'
+      partner = 'direct'
     }
     renderHeader()
     show('screen-form')

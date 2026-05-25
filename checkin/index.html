@@ -1018,38 +1018,6 @@
     window.scrollTo(0,0)
   }
 
-  // ── ADDITIONAL REQUESTS STATE ────────────────────────────
-  const requests = { early: false, late: false, breakfast: false, cab: false }
-  let breakfastChoice = ''
-
-  function toggleOption(key) {
-    requests[key] = !requests[key]
-    const opt = document.getElementById('opt-' + key)
-    const box = document.getElementById('box-' + key)
-    opt.classList.toggle('checked', requests[key])
-    box.textContent = requests[key] ? '✓' : ''
-    if (key === 'breakfast') {
-      toggleClass('breakfast-options', requests[key] ? 'remove' : 'add', 'hidden')
-      if (!requests[key]) {
-        breakfastChoice = ''
-        ;['idli','puttu','appam'].forEach(b => {
-          document.getElementById('opt-'+b)?.classList.remove('checked')
-          document.getElementById('box-'+b).textContent = ''
-        })
-      }
-    }
-  }
-
-  function toggleBreakfast(choice) {
-    breakfastChoice = breakfastChoice === choice ? '' : choice
-    ;['idli','puttu','appam'].forEach(b => {
-      const key = b.charAt(0).toUpperCase() + b.slice(1)
-      const active = key === breakfastChoice
-      document.getElementById('opt-'+b)?.classList.toggle('checked', active)
-      document.getElementById('box-'+b).textContent = active ? '✓' : ''
-    })
-  }
-
   // ── ADDITIONAL REQUESTS ──────────────────────────────────
   var reqOpts = { early:false, late:false, breakfast:false, cab:false }
   var bfPick  = ''

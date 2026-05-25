@@ -902,11 +902,11 @@
       // Actual files will be uploaded to Drive by staff at check-in
       idFileName:      uploadData.idName   || null,
       // Additional requests
-      requestEarlyCheckIn:  requests.early,
-      requestLateCheckOut:  requests.late,
-      requestBreakfast:     requests.breakfast,
-      breakfastChoice:      reqOpts.breakfast ? bfPick : null,
-      requestCab:           requests.cab,
+      requestEarlyCheckIn:  reqOpts.early,
+      requestLateCheckOut:  reqOpts.late,
+      requestBreakfast:     reqOpts.breakfast,
+      bfPick:      reqOpts.breakfast ? bfPick : null,
+      requestCab:           reqOpts.cab,
     }
 
     try {

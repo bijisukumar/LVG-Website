@@ -794,6 +794,22 @@
       </div>
     </div>
 
+        <!-- SECTION 5: ADDITIONAL REQUESTS -->
+    <div class="section-label" style="color:#8B5CF6;border-color:rgba(139,92,246,0.2);margin-top:28px">5 · ADDITIONAL REQUESTS</div>
+    <div class="field">
+      <div class="hint" style="margin-bottom:10px">Select any services you would like us to arrange:</div>
+      <div class="check-option" id="opt-early" onclick="toggleOption('early')"><div class="check-box" id="box-early"></div><div><div class="check-label">Request early check-in</div><div class="check-hint">Subject to availability · Additional charges apply</div></div></div>
+      <div class="check-option" id="opt-late" onclick="toggleOption('late')"><div class="check-box" id="box-late"></div><div><div class="check-label">Request late check-out</div><div class="check-hint">Subject to availability · Additional charges apply · No last-minute extensions</div></div></div>
+      <div class="check-option" id="opt-breakfast" onclick="toggleOption('breakfast')"><div class="check-box" id="box-breakfast"></div><div><div class="check-label">Breakfast (₹275 per person)</div><div class="check-hint">Traditional Kerala breakfast served at the villa</div></div></div>
+      <div id="breakfast-options" class="hidden" style="margin-left:30px;margin-bottom:8px">
+        <div class="hint" style="margin-bottom:6px">Select breakfast type:</div>
+        <div class="check-option" id="opt-idli" onclick="toggleBreakfast('Idli')"><div class="check-box" id="box-idli"></div><div class="check-label">Idli</div></div>
+        <div class="check-option" id="opt-puttu" onclick="toggleBreakfast('Puttu')"><div class="check-box" id="box-puttu"></div><div class="check-label">Puttu</div></div>
+        <div class="check-option" id="opt-appam" onclick="toggleBreakfast('Appam')"><div class="check-box" id="box-appam"></div><div class="check-label">Appam</div></div>
+      </div>
+      <div class="check-option" id="opt-cab" onclick="toggleOption('cab')"><div class="check-box" id="box-cab"></div><div><div class="check-label">Cab service</div><div class="check-hint">Airport / railway transfers · Our team will contact you</div></div></div>
+    </div>
+
     <!-- SUBMIT -->
     <div style="margin-top:28px">
       <div id="submit-error" class="error-box hidden"></div>

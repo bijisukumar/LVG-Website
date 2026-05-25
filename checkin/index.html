@@ -944,9 +944,11 @@
       portOfArrival:      nationality==='Foreign' ? val('portOfArrival') : null,
       nextDestination:    nationality==='Foreign' ? val('nextDest')      : null,
       docsSubmitLater:    docsLater,
-      // File names only — base64 not sent to avoid Cloudflare 100KB limit
-      // Actual files will be uploaded to Drive by staff at check-in
+      // Files compressed in browser to ~80KB before encoding
+      idFileB64:       uploadData.id       || null,
       idFileName:      uploadData.idName   || null,
+      passportFileB64: uploadData.passport || null,
+      visaFileB64:     uploadData.visa     || null,
       // Additional requests
       requestEarlyCheckIn:  reqOpts.early,
       requestLateCheckOut:  reqOpts.late,

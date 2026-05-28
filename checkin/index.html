@@ -725,10 +725,10 @@
       hide('screen-loading')
       return
     }
-    // Resolve opaque token — works both ways:
-    // 1. Direct path: checkin.luxuryvillasofguruvayur.com/gvr-airbnb (pathname = /gvr-airbnb)
-    // 2. After .htaccess rewrite: index.html?token=gvr-airbnb (qs.token = gvr-airbnb)
-    var rawPath   = location.pathname.replace(/\//g, '').replace('indexhtml','').replace('index.html','').trim()
+    // Resolve opaque token from path e.g. checkin.*/gvr-airbnb
+    // .htaccess rewrites /gvr-airbnb → index.html?token=gvr-airbnb
+    // So read qs.get('token') first, then fall back to raw pathname
+    var rawPath   = location.pathname.replace(/\/+/g, '').replace(/^index\.html$/i,'').trim()
     var linkToken = qs.get('token') || rawPath
     if (linkToken) {
       try {

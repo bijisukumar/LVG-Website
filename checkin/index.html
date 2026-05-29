@@ -288,8 +288,9 @@
 <!-- ERROR SCREEN -->
 <div id="screen-error" class="full-screen hidden">
   <div class="icon">⚠️</div>
-  <div class="title" style="color:#EF4444">Invalid Check-in Link</div>
-  <div class="sub">This link is invalid or has been deactivated.<br>Please contact the villa for a valid link.<br><br>
+  <div class="title" style="color:#EF4444">Check-in Link Unavailable</div>
+  <div class="sub">This check-in link may have expired or is no longer active.
+        Please contact our host team and we'll help you right away.<br>Please contact the villa for a valid link.<br><br>
     <strong style="color:#C8903A">+91 99950 43283</strong>
   </div>
 </div>
@@ -318,7 +319,8 @@
     <line x1="20" y1="68" x2="34" y2="68" stroke="#C8903A" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
     <text x="152" y="52" font-size="10" fill="#C8903A">✨</text>
   </svg>
-  <div style="font-size:0.75rem;color:rgba(200,144,58,0.7);margin-top:4px">Our team is getting your room ready!</div>
+  <div style="font-size:0.75rem;color:rgba(200,144,58,0.7);margin-top:4px">We're preparing your villa for a comfortable stay.
+      <div style="font-size:0.75rem;color:#6B7280;margin-top:6px">✏️ This form usually takes less than 3 minutes.</div></div>
 </div>
 
 <!-- MAIN FORM -->
@@ -413,7 +415,7 @@
           Guruvayur, Kerala 680101, India<br>
           <span style="color:#9AA5B4">+91 99950 43283</span>
         </div>
-        <div class="addr-note">Auto-filled as your India address for Form C</div>
+        <div class="addr-note">This villa address will automatically be used for Form C registration requirements.</div>
       </div>
     </div>
 
@@ -515,22 +517,22 @@
       <label>Vehicle registration number</label>
       <input type="text" id="vehicle" placeholder="KA 01 AB 1234"
         oninput="this.value=this.value.toUpperCase()" />
-      <div class="hint">Noted for villa security</div>
+      <div class="hint">Helps our team assist with parking and property access.</div>
     </div>
 
     <div class="field">
       <label>Estimated arrival time (ETA) &mdash; <span style="color:#FBBF24;font-weight:600">Standard check-in after 4:00 PM</span></label>
       <input type="time" id="eta" />
       <div class="hint">
-        <strong style="color:#C8903A">Standard check-in: after 4:00 PM.</strong><br>
-        Early check-in or late check-out available at additional cost, subject to villa availability.
-        No last-minute extensions — please plan ahead.
+        <strong style="color:#C8903A">Standard check-in begins after 4:00 PM.</strong><br>
+        Early check-in and late check-out may be available based on villa availability — additional charges may apply.
+        To help us plan your stay smoothly, we kindly request advance notice for any extension requests.
       </div>
     </div>
 
     <!-- SECTION 4A: INDIAN ID -->
     <div id="indian-id">
-      <div class="section-label">4 · IDENTITY DOCUMENT</div>
+      <div class="section-label">4 · GOVERNMENT ID VERIFICATION</div>
       <div class="field">
         <label>ID type <span class="req">*</span></label>
         <select id="idType">
@@ -550,14 +552,14 @@
         <div class="upload-box" onclick="document.getElementById('idFile').click()">
           <div id="id-preview-wrap">
             <div class="upload-icon">📷</div>
-            <div class="upload-label">Tap to upload ID</div>
+            <div class="upload-label">Upload a clear photo or PDF of your ID</div>
             <div class="upload-hint">Aadhaar / PAN / Licence — photo or PDF</div>
           </div>
         </div>
         <input type="file" id="idFile" accept="image/*,application/pdf" capture="environment"
           style="display:none" onchange="handleUpload(this,'id-preview-wrap','id-ok')" />
         
-        <div class="hint" style="margin-top:4px;color:#F59E0B">Max 2MB &middot; Clear photo, all 4 corners visible &middot; JPEG or PDF</div>
+        <div class="hint" style="margin-top:4px;color:#F59E0B">Please ensure the document is clear and all corners are visible for faster verification. JPEG or PDF accepted.</div>
         <div class="upload-ok hidden" id="id-ok">✅ Document uploaded</div>
       </div>
     </div>
@@ -602,10 +604,10 @@
         <div class="docs-later-box" id="docs-later-box"></div>
         <div>
           <div style="font-size:0.85rem;font-weight:600;color:#D0D0D0">
-            I will submit visa documents at check-in
+            I prefer to provide my visa documents during check-in
           </div>
           <div style="font-size:0.7rem;color:#6B7280;margin-top:2px">
-            Skip visa details now — please bring originals when you arrive
+            You may skip this section and provide the original documents during check-in.
           </div>
         </div>
       </div>
@@ -665,21 +667,21 @@
       </div>
     </div>
 
-    <!-- SECTION 5: ADDITIONAL REQUESTS -->
-    <div class="section-label" style="color:#8B5CF6;border-color:rgba(139,92,246,0.2);margin-top:28px">5 &middot; ADDITIONAL REQUESTS</div>
+    <!-- SECTION 5: ENHANCE YOUR STAY -->
+    <div class="section-label" style="color:#8B5CF6;border-color:rgba(139,92,246,0.2);margin-top:28px">5 &middot; ENHANCE YOUR STAY</div>
     <div class="field">
       <div class="hint" style="margin-bottom:10px">Select any services you would like us to arrange:</div>
       <div class="check-option" id="opt-early" onclick="toggleOption('early')"><div class="check-box" id="box-early"></div><div><div class="check-label">Request early check-in</div><div class="check-hint">Subject to availability &middot; Additional charges apply</div></div></div>
       <div class="check-option" id="opt-late" onclick="toggleOption('late')"><div class="check-box" id="box-late"></div><div><div class="check-label">Request late check-out</div><div class="check-hint">Subject to availability &middot; No last-minute extensions</div></div></div>
-      <div class="check-option" id="opt-breakfast" onclick="toggleOption('breakfast')"><div class="check-box" id="box-breakfast"></div><div><div class="check-label">Breakfast (&#8377;275 per person)</div><div class="check-hint">Traditional Kerala breakfast served at the villa</div></div></div>
+      <div class="check-option" id="opt-breakfast" onclick="toggleOption('breakfast')"><div class="check-box" id="box-breakfast"></div><div><div class="check-label">Breakfast (&#8377;275 per person)</div><div class="check-hint">Fresh traditional Kerala breakfast prepared and served at the villa.</div></div></div>
       <div id="breakfast-options" class="hidden" style="margin-left:30px;margin-bottom:8px">
         <div class="hint" style="margin-bottom:6px">Select breakfast type:</div>
-        <div class="check-option" id="opt-idli" onclick="toggleBreakfast('Idli')"><div class="check-box" id="box-idli"></div><div class="check-label">Idli</div></div>
-        <div class="check-option" id="opt-puttu" onclick="toggleBreakfast('Puttu')"><div class="check-box" id="box-puttu"></div><div class="check-label">Puttu</div></div>
-        <div class="check-option" id="opt-appam" onclick="toggleBreakfast('Appam')"><div class="check-box" id="box-appam"></div><div class="check-label">Appam</div></div>
+        <div class="check-option" id="opt-idli" onclick="toggleBreakfast('Idli')"><div class="check-box" id="box-idli"></div><div class="check-label">Idli, Vada, Chutney, Coffee/Tea &amp; Water</div></div>
+        <div class="check-option" id="opt-puttu" onclick="toggleBreakfast('Puttu')"><div class="check-box" id="box-puttu"></div><div class="check-label">Puttu, Kadala, Kerala Banana, Coffee/Tea &amp; Water</div></div>
+        <div class="check-option" id="opt-appam" onclick="toggleBreakfast('Appam')"><div class="check-box" id="box-appam"></div><div class="check-label">Appam, Curry, Coffee/Tea &amp; Water</div></div>
       </div>
       <div class="check-option" id="opt-beds" onclick="toggleOption('extraBeds')"><div class="check-box" id="box-extraBeds"></div><div>
-          <div class="check-label">Extra floor beds &nbsp;<span style="color:#C8903A;font-size:0.78rem">₹750 / bed / night</span><span style="color:#6B7280;font-size:0.72rem"> &nbsp;(₹1,000 if not pre-booked)</span></div>
+          <div class="check-label">Extra floor beds &nbsp;<span style="color:#C8903A;font-size:0.78rem">₹750 per night</span> when reserved in advance <span style="color:#6B7280;font-size:0.72rem">(₹1,000 at the villa)</span></div>
           <div class="check-hint">Additional sleeping arrangements &middot; Please specify count below</div>
         </div></div>
       <div id="extraBeds-count-row" class="hidden" style="margin:6px 0 0 32px">
@@ -687,15 +689,15 @@
         <input type="number" id="extraBedsCount" min="1" max="10" value="1"
           style="width:70px;margin-left:8px;padding:4px 8px;border-radius:6px;border:1px solid #3A4553;background:#1E2530;color:#F0F0F0;font-size:0.85rem" />
       </div>
-      <div class="check-option" id="opt-cab" onclick="toggleOption('cab')"><div class="check-box" id="box-cab"></div><div><div class="check-label">Cab service</div><div class="check-hint">Airport / railway transfers &middot; Our team will contact you</div></div></div>
+      <div class="check-option" id="opt-cab" onclick="toggleOption('cab')"><div class="check-box" id="box-cab"></div><div><div class="check-label">Cab service</div><div class="check-hint">Airport and railway station pickup/drop arrangements coordinated by our team.</div></div></div>
     </div>
 
     <!-- WHAT HAPPENS NEXT -->
     <div style="margin:28px 0 20px;padding:16px;background:rgba(200,144,58,0.06);border:1px solid rgba(200,144,58,0.2);border-radius:10px">
       <div style="font-size:0.72rem;font-weight:700;letter-spacing:1.2px;color:#C8903A;margin-bottom:10px">ONCE SUBMITTED</div>
       <div style="font-size:0.8rem;color:#9AA5B4;line-height:1.7">
-        <div style="margin-bottom:6px">✅ &nbsp;Your registration will be reviewed by our host team shortly.</div>
-        <div style="margin-bottom:6px">📞 &nbsp;We will contact you to confirm your check-in details.</div>
+        <div style="margin-bottom:6px">✅ &nbsp;Thank you for completing your registration. Our host team will review your details and contact you shortly.</div>
+        <div style="margin-bottom:6px">📞 &nbsp;We will reach out to assist with your arrival and check-in arrangements.</div>
         <div style="margin-bottom:6px">🛏️ &nbsp;Extra floor beds pre-booked here: <strong style="color:#C8903A">₹750 / bed / night.</strong></div>
         <div>🛏️ &nbsp;Extra floor beds requested at villa: <strong style="color:#9AA5B4">₹1,000 / bed / night.</strong></div>
       </div>
@@ -707,8 +709,7 @@
         ✅ Complete Registration
       </button>
       <p class="privacy-note">
-        Your information is collected for hotel registration compliance only
-        and is not shared with third parties.
+        Your information is collected only for guest registration and compliance purposes and is handled securely by our team.
       </p>
     </div>
 
@@ -764,7 +765,7 @@
         villaId = data.data.villaId || 'dwarka'
         partner = data.data.partner || 'direct'
       } catch(e) {
-        showError('Unable to verify check-in link. Please try again.')
+        showError('')
         return
       }
     } else {
@@ -1048,7 +1049,7 @@
     window.scrollTo(0,0)
   }
 
-  // ── ADDITIONAL REQUESTS ──────────────────────────────────
+  // ── ENHANCE YOUR STAY ──────────────────────────────────
   var reqOpts = { early:false, late:false, breakfast:false, cab:false }
   var bfPick  = ''
   function toggleOption(k) {

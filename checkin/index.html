@@ -364,7 +364,7 @@
 
     <div class="field">
       <label>Full name (as on ID) <span class="req">*</span></label>
-      <input type="text" id="fullName" placeholder="e.g. Bharat L Rao" autocomplete="off" />
+      <input type="text" id="fullName" placeholder="e.g. Arjun Kumar" autocomplete="off" />
     </div>
 
     <div class="grid-2">
@@ -674,6 +674,15 @@
         <div class="check-option" id="opt-puttu" onclick="toggleBreakfast('Puttu')"><div class="check-box" id="box-puttu"></div><div class="check-label">Puttu</div></div>
         <div class="check-option" id="opt-appam" onclick="toggleBreakfast('Appam')"><div class="check-box" id="box-appam"></div><div class="check-label">Appam</div></div>
       </div>
+      <div class="check-option" id="opt-beds" onclick="toggleOption('extraBeds')"><div class="check-box" id="box-extraBeds"></div><div>
+          <div class="check-label">Extra floor beds &nbsp;<span style="color:#C8903A;font-size:0.78rem">₹1,000 / bed / night</span></div>
+          <div class="check-hint">Additional sleeping arrangements &middot; Please specify count below</div>
+        </div></div>
+      <div id="extraBeds-count-row" class="hidden" style="margin:6px 0 0 32px">
+        <label style="font-size:0.78rem;color:#9AA5B4">Number of extra beds needed</label>
+        <input type="number" id="extraBedsCount" min="1" max="10" value="1"
+          style="width:70px;margin-left:8px;padding:4px 8px;border-radius:6px;border:1px solid #3A4553;background:#1E2530;color:#F0F0F0;font-size:0.85rem" />
+      </div>
       <div class="check-option" id="opt-cab" onclick="toggleOption('cab')"><div class="check-box" id="box-cab"></div><div><div class="check-label">Cab service</div><div class="check-hint">Airport / railway transfers &middot; Our team will contact you</div></div></div>
     </div>
 
@@ -958,6 +967,8 @@
       requestBreakfast:     reqOpts.breakfast,
       bfPick:      reqOpts.breakfast ? bfPick : null,
       requestCab:           reqOpts.cab,
+      requestExtraBeds:     reqOpts.extraBeds,
+      extraBedsCount:       reqOpts.extraBeds ? (parseInt(document.getElementById('extraBedsCount')?.value) || 1) : 0,
     }
 
     try {

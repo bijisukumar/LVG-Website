@@ -2,3 +2,6 @@
 Thumbs.db
 *.swp
 .vscode/
+Archive/
+.wrangler/
+codebase_summary.txt

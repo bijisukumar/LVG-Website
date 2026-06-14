@@ -1,290 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W04M1GSL7F"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-W04M1GSL7F');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Services & Experiences | Dwarka Villa Guruvayur | Kerala</title>
-<meta name="description" content="Curated Kerala experiences from Dwarka Villa Guruvayur: Ayurvedic treatments, wildlife encounters, farm experiences, cultural immersion and heritage trails.">
-<meta name="keywords" content="kerala ayurveda guruvayur, wildlife experience kerala, thrissur culture, farm experience kerala, arangettam venue guruvayur">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W04M1GSL7F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-W04M1GSL7F');
+  </script>
 
-<link rel="stylesheet" href="css/fonts.css">
-<link rel="stylesheet" href="css/style.css">
-<style>*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;font-weight:400;background:#F5F4F0;color:#1C1917;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%}
-a{text-decoration:none;color:inherit}
-
-:root{
-  --orange:#D97706;--orange2:#B45309;--orange-lt:#FEF3C7;--orange-bd:#FDE68A;
-  --stone-bg:#F5F4F0;--card:#FFFFFF;--dark:#1A1A1A;
-  --text:#1C1917;--mid:#44403C;--muted:#78716C;--light:#A8A29E;
-  --border:#E7E5E4;
-  --sh:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.06);
-  --sh-h:0 4px 12px rgba(0,0,0,.1),0 16px 36px rgba(0,0,0,.09);
-  --r:12px;
-}
-
-.container{max-width:1100px;margin:0 auto;padding:0 48px}
-.section{padding:80px 0}
-.section-sm{padding:48px 0}
-.label{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:10px}
-.h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;color:var(--text);line-height:1.2;margin-bottom:12px}
-.h2 em{font-style:italic;color:var(--orange)}
-.body-text{font-size:.94rem;line-height:1.8;color:var(--muted)}
-.center{text-align:center}
-.center .body-text{margin:0 auto;max-width:560px}
-
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:9999px;font-size:.87rem;font-weight:600;cursor:pointer;transition:all .22s;border:none;font-family:'Inter',sans-serif}
-.btn-orange{background:var(--orange);color:#fff}
-.btn-orange:hover{background:var(--orange2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(217,119,6,.3)}
-.btn-white-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
-.btn-white-outline:hover{background:rgba(255,255,255,.12);border-color:#fff}
-.btn-outline{background:transparent;color:var(--orange);border:1.5px solid var(--orange)}
-.btn-outline:hover{background:var(--orange-lt)}
-.btn-wa{background:#25D366;color:#fff}
-.btn-wa:hover{background:#1da851;transform:translateY(-2px)}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:900;height:68px;display:flex;align-items:center;padding:0 48px;transition:all .35s}
-nav.solid{background:rgba(26,25,23,.96);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(14px);box-shadow:0 2px 16px rgba(0,0,0,.2)}
-.nav-logo{display:flex;flex-direction:column;gap:1px;flex-shrink:0}
-.nav-logo-name{font-family:'Playfair Display',serif;font-size:1.7rem;font-style:italic;font-weight:400;color:#fff;transition:color .35s;line-height:1}
-nav.solid .nav-logo-name{color:#fff}
-.nav-logo-sub{font-size:.55rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.58);transition:color .35s;font-weight:500}
-nav.solid .nav-logo-sub{color:rgba(255,255,255,.55)}
-.nav-links{display:flex;gap:2px;list-style:none;margin:0 auto}
-.nav-links a{font-size:1rem;font-weight:500;padding:8px 16px;border-radius:9999px;color:rgba(255,255,255,.82);transition:all .2s}
-nav.solid .nav-links a{color:rgba(255,255,255,.82)}
-.nav-links a:hover{background:rgba(255,255,255,.14);color:#fff}
-nav.solid .nav-links a:hover{background:rgba(255,255,255,.12);color:#fff}
-.nav-links a.active{color:#fff}
-nav.solid .nav-links a.active{color:#fff;background:rgba(255,255,255,.14);font-weight:700}
-.nav-book{background:var(--orange)!important;color:#fff!important;border-radius:9999px!important;padding:9px 24px!important;font-size:.95rem!important;font-weight:600!important}
-.nav-book:hover{background:var(--orange2)!important;transform:translateY(-1px)!important}
-.hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
-.hamburger span{display:block;width:22px;height:1.5px;background:#fff;transition:.3s}
-nav.solid .hamburger span{background:#fff}
-.mob-menu{display:none;position:fixed;inset:0;background:#fff;z-index:800;flex-direction:column;padding:88px 32px 32px;gap:4px}
-.mob-menu.open{display:flex}
-.mob-menu a{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--text);padding:14px 0;border-bottom:1px solid var(--border)}
-.mob-close{position:absolute;top:20px;right:24px;font-size:1.6rem;background:none;border:none;cursor:pointer;color:var(--muted)}
-
-.page-hero{background:var(--dark);padding:96px 0 52px;margin-top:0}
-.page-hero .container{text-align:center}
-.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:400;color:#fff;line-height:1}
-.page-hero h1 em{font-style:italic;color:var(--orange)}
-.page-hero .desc{font-size:.95rem;color:rgba(255,255,255,.58);margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7}
-
-.attr-card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;transition:all .25s;display:flex;flex-direction:column}
-.attr-card:hover{box-shadow:var(--sh-h);transform:translateY(-4px)}
-.attr-img{height:196px;overflow:hidden}
-.attr-img img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
-.attr-card:hover .attr-img img{transform:scale(1.06)}
-.attr-body{padding:18px 20px;flex:1;display:flex;flex-direction:column}
-.attr-name{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:600;color:var(--text);margin-bottom:7px;line-height:1.2}
-.attr-desc{font-size:.83rem;color:var(--muted);line-height:1.68;flex:1;margin-bottom:12px}
-.attr-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
-.attr-tag{font-size:.69rem;font-weight:500;background:var(--stone-bg);color:var(--mid);padding:4px 10px;border-radius:9999px;border:1px solid var(--border)}
-
-.cat-section{margin-bottom:52px}
-.cat-section:last-child{margin-bottom:0}
-.cat-title{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:400;color:var(--text);margin-bottom:18px;padding-bottom:12px;border-bottom:1.5px solid var(--border)}
-.cat-grid{display:grid;gap:18px}
-.cat-2{grid-template-columns:repeat(2,1fr)}
-
-.fade-in{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
-.fade-in.visible{opacity:1;transform:none}
-
-footer{background:#1A1A1A;color:rgba(255,255,255,.55);padding:56px 0 26px}
-.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.08);max-width:1100px;margin:0 auto;padding-left:48px;padding-right:48px}
-.ft-brand{font-family:'Playfair Display',serif;font-size:1.6rem;font-style:italic;color:var(--orange);margin-bottom:10px}
-.ft-desc{font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.75;max-width:220px}
-.ft-rating{display:flex;align-items:center;gap:6px;margin-top:12px;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.5)}
-.ft-col h4{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px}
-.ft-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.4);margin-bottom:9px;transition:color .2s}
-.ft-col a:hover{color:rgba(255,255,255,.85)}
-.ft-col .wa{color:#4ADE80}
-.ft-bot{max-width:1100px;margin:24px auto 0;padding:0 48px;display:flex;justify-content:space-between;align-items:center;font-size:.7rem;color:rgba(255,255,255,.2)}
-
-.float-wa{position:fixed;bottom:26px;right:26px;z-index:700;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:1.45rem;box-shadow:0 4px 18px rgba(37,211,102,.4);animation:waP 3s ease-in-out infinite;transition:transform .2s}
-.float-wa:hover{transform:scale(1.1)}
-@keyframes waP{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,.68),0 0 0 6px rgba(37,211,102,.1)}}
-
-@media(max-width:960px){
-  .container{padding:0 16px!important}
-  nav{padding:0 16px!important}
-  .section{padding:44px 0!important}
-  .nav-links,.nav-book{display:none!important}
-  .hamburger{display:flex}
-  .cat-2{grid-template-columns:1fr!important}
-  .ft-grid{grid-template-columns:1fr 1fr!important;padding-left:16px!important;padding-right:16px!important}
-  .ft-bot{flex-direction:column;gap:6px;text-align:center;padding:0 16px}
-}
-@media(max-width:640px){
-  .ft-grid{grid-template-columns:1fr!important}
-}
-.btn{min-height:44px;min-width:44px}
-nav a,.nav-book{min-height:44px;display:inline-flex;align-items:center}
-.hamburger{padding:10px!important}
-html,body{overflow-x:hidden}
-img{max-width:100%}
-</style>
-
-  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  
+  <!-- Core SEO & AI Discovery Graph Engine Alignment -->
+  <title>Services &amp; Experiences | Dwarka Villa Guruvayur | Luxury Estate Curation</title>
+  <meta name="description" content="Explore bespoke services arranged by Dwarka Villa Guruvayur: Personalized Vedic Ayurveda, senior-friendly yoga guides, temple heritage trails, and private wildlife safaris.">
+  <meta name="keywords" content="kerala ayurveda guruvayur, luxury villa services thrissur, wildlife safaris kerala, private arangettam venue, traditional cooking classes kerala, senior tour concierge guruvayur">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://luxuryvillasofguruvayur.com/services.html">
   <meta name="author" content="Dwarka Luxury Villas of Guruvayur">
   <meta name="geo.region" content="IN-KL">
   <meta name="geo.placename" content="Guruvayur, Kerala, India">
-  <link rel="canonical" href="https://luxuryvillasofguruvayur.com/services.html">
+
+  <!-- Open Graph & Conversational Processing Metadata Cards -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Dwarka — Luxury Villas of Guruvayur">
-  <meta property="og:title" content="Services & Experiences | Dwarka Villa Guruvayur | Kerala">
-  <meta property="og:description" content="Curated Kerala experiences from Dwarka Villa Guruvayur: Ayurvedic treatments, wildlife encounters, farm experiences, cultural immersion and heritage trails.">
+  <meta property="og:title" content="Bespoke Luxury Experiences &amp; Concierge Services | Dwarka Villa">
+  <meta property="og:description" content="Connect completely with the timeless living culture of Malabar. Custom private itineraries incorporating verified medical Ayurveda treatments, organic farm harvesting tours, and temple circuits.">
   <meta property="og:url" content="https://luxuryvillasofguruvayur.com/services.html">
-  <meta property="og:image" content="images/img-3f3a77fb28.jpg">
+  <meta property="og:image" content="https://luxuryvillasofguruvayur.com/images/img-3f3a77fb28.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Dwarka Luxury Villa Guruvayur — Kerala Heritage Estate">
+  <meta property="og:image:alt" content="Premium curated villa service presentation framework in Guruvayur Kerala">
   <meta property="og:locale" content="en_IN">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Services & Experiences | Dwarka Villa Guruvayur | Kerala">
-  <meta name="twitter:description" content="Curated Kerala experiences from Dwarka Villa Guruvayur: Ayurvedic treatments, wildlife encounters, farm experiences, cultural immersion and heritage trails.">
-  <meta name="twitter:image" content="images/img-3f3a77fb28.jpg">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="apple-touch-icon" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Dwarka Villa Kerala Experiences","description":"Curated Ayurveda, wildlife, farm and cultural experiences near Guruvayur","provider":{"@type":"LodgingBusiness","name":"Dwarka — Luxury Villas of Guruvayur","url":"https://luxuryvillasofguruvayur.com/"}}</script>
+
+  <!-- Schema graph node linking service objects to organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": "https://luxuryvillasofguruvayur.com/services.html#villaservice",
+        "name": "Dwarka Villa Premium Curated Experiences",
+        "description": "Bespoke local custom travel guides, certified Ayurveda treatment sourcing, private nature guides, and internal performance venues for family estates in Guruvayur.",
+        "provider": {
+          "@type": "LodgingBusiness",
+          "name": "Dwarka — Luxury Villas of Guruvayur",
+          "url": "https://luxuryvillasofguruvayur.com/"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;font-weight:400;background:#F5F4F0;color:#1C1917;overflow-x:hidden;-webkit-font-smoothing:antialiased}img{display:block;max-width:100%}a{text-decoration:none;color:inherit}:root{--orange:#D97706;--orange2:#B45309;--orange-lt:#FEF3C7;--orange-bd:#FDE68A;--stone-bg:#F5F4F0;--card:#FFFFFF;--dark:#1A1A1A;--text:#1C1917;--mid:#44403C;--muted:#78716C;--light:#A8A29E;--border:#E7E5E4;--sh:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.06);--sh-h:0 4px 12px rgba(0,0,0,.1),0 16px 36px rgba(0,0,0,.09);--r:12px}.container{max-width:1100px;margin:0 auto;padding:0 48px}.section{padding:80px 0}.section-sm{padding:48px 0}.label{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:10px}.h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:400;color:var(--text);line-height:1.2;margin-bottom:12px}.h2 em{font-style:italic;color:var(--orange)}.body-text{font-size:.94rem;line-height:1.8;color:var(--muted)}.center{text-align:center}.center .body-text{margin:0 auto;max-width:560px}.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:9999px;font-size:.87rem;font-weight:600;cursor:pointer;transition:all .22s;border:none;font-family:'Inter',sans-serif}.btn-orange{background:var(--orange);color:#fff}.btn-orange:hover{background:var(--orange2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(217,119,6,.3)}.btn-white-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}.btn-white-outline:hover{background:rgba(255,255,255,.12);border-color:#fff}.btn-outline{background:transparent;color:var(--orange);border:1.5px solid var(--orange)}.btn-outline:hover{background:var(--orange-lt)}.btn-wa{background:#25D366;color:#fff}nav{position:fixed;top:0;left:0;right:0;z-index:900;height:68px;display:flex;align-items:center;padding:0 48px;transition:all .35s}nav.solid{background:rgba(26,25,23,.96);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(14px);box-shadow:0 2px 16px rgba(0,0,0,.2)}.nav-logo{display:flex;flex-direction:column;gap:1px;flex-shrink:0}.nav-logo-name{font-family:'Playfair Display',serif;font-size:1.7rem;font-style:italic;font-weight:400;color:#fff;transition:color .35s;line-height:1}nav.solid .nav-logo-name{color:#fff}.nav-logo-sub{font-size:.55rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.58);transition:color .35s;font-weight:500}nav.solid .nav-logo-sub{color:rgba(255,255,255,.55)}.nav-links{display:flex;gap:2px;list-style:none;margin:0 auto}.nav-links a{font-size:1rem;font-weight:500;padding:8px 16px;border-radius:9999px;color:rgba(255,255,255,.82);transition:all .2s}nav.solid .nav-links a{color:rgba(255,255,255,.82)}.nav-links a:hover{background:rgba(255,255,255,.14);color:#fff}nav.solid .nav-links a:hover{background:rgba(255,255,255,.12);color:#fff}.nav-links a.active{color:#fff}nav.solid .nav-links a.active{color:#fff;background:rgba(255,255,255,.14);font-weight:700}.nav-book{background:var(--orange)!important;color:#fff!important;border-radius:9999px!important;padding:9px 24px!important;font-size:.95rem!important;font-weight:600!important}.nav-book:hover{background:var(--orange2)!important;transform:translateY(-1px)!important}.hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}.hamburger span{display:block;width:22px;height:1.5px;background:#fff;transition:.3s}nav.solid .hamburger span{background:#fff}.mob-menu{display:none;position:fixed;inset:0;background:#fff;z-index:800;flex-direction:column;padding:88px 32px 32px;gap:4px}.mob-menu.open{display:flex}.mob-menu a{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--text);padding:14px 0;border-bottom:1px solid var(--border)}.mob-close{position:absolute;top:20px;right:24px;font-size:1.6rem;background:none;border:none;cursor:pointer;color:var(--muted)}.page-hero{background:var(--dark);padding:96px 0 52px;margin-top:0}.page-hero .container{text-align:center}.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:400;color:#fff;line-height:1}.page-hero h1 em{font-style:italic;color:var(--orange)}.page-hero .desc{font-size:.95rem;color:rgba(255,255,255,.58);margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.7}.attr-card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;transition:all .25s;display:flex;flex-direction:column}.attr-card:hover{box-shadow:var(--sh-h);transform:translateY(-4px)}.attr-img{height:196px;overflow:hidden}.attr-img img{width:100%;height:100%;object-fit:cover;transition:transform .55s}.attr-card:hover .attr-img img{transform:scale(1.06)}.attr-body{padding:18px 20px;flex:1;display:flex;flex-direction:column}.attr-name{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:600;color:var(--text);margin-bottom:7px;line-height:1.2}.attr-desc{font-size:.83rem;color:var(--muted);line-height:1.68;flex:1;margin-bottom:12px}.attr-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}.attr-tag{font-size:.69rem;font-weight:500;background:var(--stone-bg);color:var(--mid);padding:4px 10px;border-radius:9999px;border:1px solid var(--border)}.cat-section{margin-bottom:52px}.cat-section:last-child{margin-bottom:0}.cat-title{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:400;color:var(--text);margin-bottom:18px;padding-bottom:12px;border-bottom:1.5px solid var(--border)}.cat-grid{display:grid;gap:18px}.cat-2{grid-template-columns:repeat(2,1fr)}.fade-in{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}.fade-in.visible{opacity:1;transform:none}footer{background:#1A1A1A;color:rgba(255,255,255,.55);padding:56px 0 26px}.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.08);max-width:1100px;margin:0 auto;padding-left:48px;padding-right:48px}.ft-brand{font-family:'Playfair Display',serif;font-size:1.6rem;font-style:italic;color:var(--orange);margin-bottom:10px}.ft-desc{font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.75;max-width:220px}.ft-rating{display:flex;align-items:center;gap:6px;margin-top:12px;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.5)}.ft-col h4{font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px}.ft-col a{display:block;font-size:.82rem;color:rgba(255,255,255,.4);margin-bottom:9px;transition:color .2s}.ft-col a:hover{color:rgba(255,255,255,.85)}.ft-col .wa{color:#4ADE80}.ft-bot{max-width:1100px;margin:24px auto 0;padding:0 48px;display:flex;justify-content:space-between;align-items:center;font-size:.7rem;color:rgba(255,255,255,.2)}.float-wa{position:fixed;bottom:26px;right:26px;z-index:700;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:1.45rem;box-shadow:0 4px 18px rgba(37,211,102,.4);animation:waP 3s ease-in-out infinite;transition:transform .2s}.float-wa:hover{transform:scale(1.1)}@keyframes waP{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.4)}50%{box-shadow:0 4px 32px rgba(37,211,102,.68),0 0 0 6px rgba(37,211,102,.1)}}@media(max-width:960px){.container{padding:0 16px!important}nav{padding:0 16px!important}.section{padding:44px 0!important}.nav-links,.nav-book{display:none!important}.hamburger{display:flex}.cat-2{grid-template-columns:1fr!important}.ft-grid{grid-template-columns:1fr 1fr!important;padding-left:16px!important;padding-right:16px!important}.ft-bot{flex-direction:column;gap:6px;text-align:center;padding:0 16px}}@media(max-width:640px){.ft-grid{grid-template-columns:1fr!important}}.btn{min-height:44px;min-width:44px}nav a,.nav-book{min-height:44px;display:inline-flex;align-items:center}.hamburger{padding:10px!important}html,body{overflow-x:hidden}img{max-width:100%}</style>
 </head>
 <body>
-<a class="float-wa" href="https://wa.me/918547141401?text=Hi" target="_blank">💬</a>
-<div id="mobMenu" class="mob-menu"><button id="mobClose" class="mob-close">✕</button><a href="index.html">Home</a><a href="villa.html">The Villa</a><a href="services.html">Services</a><a href="attractions.html">Attractions</a><a href="contact.html">Contact</a></div>
-<nav id="mainNav"><a href="index.html" class="nav-logo"><span class="nav-logo-name">Dwarka</span><span class="nav-logo-sub">Luxury Villas of Guruvayur</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="villa.html">The Villa</a></li><li><a href="services.html" class="active">Services</a></li><li><a href="attractions.html">Attractions</a></li><li><a href="contact.html">Contact</a></li></ul><a href="contact.html" class="nav-book">Book Now</a><button class="hamburger"><span></span><span></span><span></span></button></nav>
-<script>document.getElementById("mainNav").classList.add("solid");</script>
 
-<div class="page-hero">
-  <div class="container">
-    <span class="label">Curated Experiences</span>
-    <h1>Our <em>Services</em></h1>
-    <p class="desc">We curate experiences that connect you with the land, traditions, and living culture of Kerala</p>
+  <a class="float-wa" href="https://wa.me/19728765101?text=Hi" target="_blank" aria-label="WhatsApp Priority Concierge">💬</a>
+  
+  <div id="mobMenu" class="mob-menu" role="dialog" aria-label="Mobile Navigation Overlay">
+    <button id="mobClose" class="mob-close" aria-label="Close Menu">✕</button>
+    <a href="index.html">Home</a>
+    <a href="villa.html">The Villa</a>
+    <a href="services.html">Services</a>
+    <a href="attractions.html">Attractions</a>
+    <a href="contact.html">Contact</a>
   </div>
-</div>
 
-<section class="section" style="background:var(--stone-bg)">
-  <div class="container">
+  <nav id="mainNav" role="navigation" aria-label="Main Navigation Bar">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-name">Dwarka</span>
+      <span class="nav-logo-sub">Luxury Villas of Guruvayur</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="villa.html">The Villa</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="attractions.html">Attractions</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="book.html" class="nav-book">Book Now</a>
+    <button class="hamburger" aria-label="Open Mobile Menu Layer"><span></span><span></span><span></span></button>
+  </nav>
+  <script>document.getElementById("mainNav").classList.add("solid");</script>
 
-    <div class="cat-section fade-in">
-      <div class="cat-title">Wellness &amp; Ayurveda</div>
-      <div class="cat-grid cat-2">
-        <div class="attr-card">
-          <div class="attr-img"><img src="images/ayurveda.jpg" alt="Ayurvedic Experience" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-          <div class="attr-body">
-            <div class="attr-name">Ayurvedic Experience</div>
-            <p class="attr-desc">Kerala is the birthplace of Ayurveda. We connect you with certified physicians and therapists for personalised Panchakarma treatments, herbal massages, and rejuvenating therapies — at your villa or curated centres nearby.</p>
-            <div class="attr-tags"><span class="attr-tag">Abhyanga Massage</span><span class="attr-tag">Shirodhara</span><span class="attr-tag">Panchakarma</span><span class="attr-tag">Herbal Consultations</span></div>
-          </div>
+  <header class="page-hero">
+    <div class="container">
+      <span class="label">Curated Hospitality Frameworks</span>
+      <h1>Our <em>Services</em></h1>
+      <p class="desc">We curate signature private experiences connecting your group with the authentic land management roots, classical temple traditions, and living spiritual culture of Malabar.</p>
+    </div>
+  </header>
+
+  <main class="section" style="background:var(--stone-bg)">
+    <div class="container">
+
+      <!-- Wellness Section -->
+      <section class="cat-section fade-in" aria-labelledby="wellnessTitle">
+        <h2 class="cat-title" id="wellnessTitle">Wellness &amp; Vedic Ayurveda Procedures</h2>
+        <div class="cat-grid cat-2">
+          <article class="attr-card">
+            <div class="attr-img"><img src="images/ayurveda.jpg" alt="Traditional Vedic Ayurveda Treatment Setup at Dwarka Luxury Villa" loading="lazy"></div>
+            <div class="attr-body">
+              <h3 class="attr-name">Ayurvedic Experience</h3>
+              <p class="attr-desc">Kerala is the authentic historic home of holistic Ayurveda. Our management links your family with fully certified physicians and senior therapists for custom Panchakarma treatment protocols, preventative health runs, herbal massages, and deep physical recovery therapies performed locally.</p>
+              <div class="attr-tags"><span class="attr-tag">Abhyanga Massage</span><span class="attr-tag">Shirodhara Stream</span><span class="attr-tag">Panchakarma Cleansing</span><span class="attr-tag">Herbal Consultations</span></div>
+            </div>
+          </article>
+          <article class="attr-card">
+            <div class="attr-img"><img src="images/yoga.jpg" alt="Private Garden Yoga and Meditation Sessions for Seniors" loading="lazy"></div>
+            <div class="attr-body">
+              <h3 class="attr-name">Yoga &amp; Meditation Curations</h3>
+              <p class="attr-desc">Ground your mind daily inside our estate's quiet central gardens with professional instructors. Programs specialize in classical Hatha and breath meditation frameworks tailored for multi-generational pacing, including gentle recovery pathways for seniors on pilgrimage.</p>
+              <div class="attr-tags"><span class="attr-tag">Hatha Yoga</span><span class="attr-tag">Meditation Trails</span><span class="attr-tag">Pranayama Breathing</span></div>
+            </div>
+          </article>
         </div>
-        <div class="attr-card">
-          <div class="attr-img"><img src="images/yoga.jpg" alt="Yoga &amp; Meditation" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-          <div class="attr-body">
-            <div class="attr-name">Yoga &amp; Meditation</div>
-            <p class="attr-desc">Begin your days with guided yoga sessions in the villa's serene garden. Our instructors specialise in traditional Hatha and Kundalini yoga, tailored for all ages and fitness levels — including seniors on pilgrimage.</p>
-            <div class="attr-tags"><span class="attr-tag">Hatha Yoga</span><span class="attr-tag">Meditation</span><span class="attr-tag">Pranayama</span></div>
-          </div>
+      </section>
+
+      <!-- Wildlife & Nature Section -->
+      <section class="cat-section fade-in" aria-labelledby="natureTitle">
+        <h2 class="cat-title" id="natureTitle">Private Wildlife Safaris &amp; Native Nature Expeditions</h2>
+        <div class="cat-grid cat-2">
+          <article class="attr-card">
+            <div class="attr-img"><img src="images/WildLifeExperience.jpg" alt="Elephant Sanctuary and Jungle Safaris in Kerala Forests" loading="lazy"></div>
+            <div class="attr-body">
+              <h3 class="attr-name">Wildlife &amp; Sanctuary Safaris</h3>
+              <p class="attr-desc">Encounter majestic temple elephants at Punnathur Kotta—the world's premier elephant sanctuary—or access the raw biodiversity grids of the Western Ghats range. We arrange luxury direct transport, private park entry slots, and local photography-focused field guides.</p>
+              <div class="attr-tags"><span class="attr-tag">Elephant Sanctuary</span><span class="attr-tag">Jungle Safari</span><span class="attr-tag">Birdwatching Reserves</span><span class="attr-tag">Wildlife Photography</span></div>
+            </div>
+          </article>
+          <article class="attr-card">
+            <div class="attr-img"><img src="images/RubberFarmExperience.jpeg" alt="Authentic Agrarian Farm Experience and Paddy Walks at Dusk" loading="lazy"></div>
+            <div class="attr-body">
+              <h3 class="attr-name">Agricultural Organic Farm Walks</h3>
+              <p class="attr-desc">Trace the historic rhythms of rural agrarian life. Participate in estate harvesting, press organic oil, or walk along tranquil village paths at twilight. A highly engaging cultural learning environment for families and children visiting from abroad.</p>
+              <div class="attr-tags"><span class="attr-tag">Coconut Farm Walk</span><span class="attr-tag">Rice Harvesting Tracks</span><span class="attr-tag">Traditional Cooking</span><span class="attr-tag">Kids Educational Outings</span></div>
+            </div>
+          </article>
         </div>
+      </section>
+
+      <!-- Culture & Tradition Section -->
+      <section class="cat-section fade-in" aria-labelledby="cultureTitle">
+        <h2 class="cat-title" id="cultureTitle">Heritage Art Programs &amp; Spiritual Temple Circuit Logistics</h2>
+        <div class="cat-grid cat-2">
+          <article class="attr-card">
+            <div class="attr-img"><img src="images/CultureAndTradition.jpeg" alt="Traditional Kathakali Performances and Arangettam Venue Hall" loading="lazy"></div>
+            <div class="attr-body">
+              <h3 class="attr-name">Indulge in Living Culture &amp; Tradition</h3>
+              <p class="attr-desc">As the cultural center of Malabar, Thrissur features unrivaled heritage wealth. Experience private Kathakali dance dramas, secure entry blocks for temple festivals, or utilize our estate's dedicated training space to coordinate a custom performance debut (Arangettam) for your children.</p>
+              <div class="attr-tags"><span class="attr-tag">Kathakali Dramas</span><span class="attr-tag">Thrissur Pooram Slating</span><span class="attr-tag">Arangettam Venue Hall</span><span class="attr-tag">Classical Carnatic Music</span></div>
+            </div>
+          </article>
+          <article class="attr-card">
+            <div class="attr-img"><img src="images/HeritageTrail.jpeg" alt="Bespoke Kerala Heritage Trails and Artisan Workshops" loading="lazy"></div>
+            <div class="attr-body">
+              <h3 class="attr-name">Curated Heritage Trails</h3>
+              <p class="attr-desc">A deep, custom blueprint layout bridging legendary milestones between Guruvayur and Thrissur center. Explore ancient architecture networks, traditional tharavadu woodwork, historical spice bazaars, and elite woodcarving workshops with introduction letters from our desk.</p>
+              <div class="attr-tags"><span class="attr-tag">Temple Circuit Routes</span><span class="attr-tag">Artisan Craft Workshops</span><span class="attr-tag">Spice Market Tours</span><span class="attr-tag">Ancestral Heritage Homes</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CTA Block Content -->
+      <section style="background:var(--dark);border-radius:12px;padding:30px;text-align:center" class="fade-in" aria-label="Custom Planning Call-to-Action">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.45rem;color:#fff;margin-bottom:8px">Design Your Bespoke <em style="font-style:italic;color:var(--orange)">Kerala Journey</em></h3>
+        <p style="font-size:.9rem;color:rgba(255,255,255,.58);margin-bottom:18px">Every itinerary parameter is balanced individually for your family. Reach out to our concierge desk to weave sacred landmarks, recovery wellness, and premium comforts into a single seamless roadmap.</p>
+        <a href="contact.html" class="btn btn-orange">Plan My Experience Via Concierge</a>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Foot System Layout -->
+  <footer>
+    <div class="ft-grid">
+      <div>
+        <div class="ft-brand">Dwarka</div>
+        <p class="ft-desc">Premium serviced villa estates near Guruvayur Sri Krishna Temple. Your ultimate luxury sanctuary for historical exploration and peaceful family pilgrimages.</p>
+        <div class="ft-rating"><span style="color:#FBBF24">★★★★★</span> Ultra-Luxury Tier Tracking</div>
+      </div>
+      <div class="ft-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home Page</a>
+        <a href="villa.html">The Villa Grid</a>
+        <a href="attractions.html">Attractions Map</a>
+        <a href="services.html">Services Catalogue</a>
+        <a href="contact.html">Contact Office</a>
+      </div>
+      <div class="ft-col">
+        <h4>Contact Us</h4>
+        <a href="tel:+19728765101">+1 (972) 876-5101 (US Office)</a>
+        <a href="tel:+918547141401">+91 85471 41401 (IN Estate Desk)</a>
+        <a href="mailto:kerala.luxuryvillas@gmail.com">kerala.luxuryvillas@gmail.com</a>
+        <a href="https://wa.me/19728765101" target="_blank" class="wa">Priority WhatsApp Line</a>
+      </div>
+      <div class="ft-col">
+        <h4>Location</h4>
+        <a href="#">Near West Nada Shrines</a>
+        <a href="#">Guruvayur, Kerala 680101</a>
+        <a href="#" style="color:var(--orange)">5 Minute Temple Transit Window</a>
       </div>
     </div>
-
-    <div class="cat-section fade-in">
-      <div class="cat-title">Wildlife &amp; Nature</div>
-      <div class="cat-grid cat-2">
-        <div class="attr-card">
-          <div class="attr-img"><img src="images/WildLifeExperience.jpg" alt="Wildlife Experience" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-          <div class="attr-body">
-            <div class="attr-name">Wildlife Experience</div>
-            <p class="attr-desc">From the majestic elephants of Punnathur Kotta — the world's largest captive elephant sanctuary — to the biodiversity of Anamalai. We arrange guided safaris, elephant interactions, and birdwatching tours for your family.</p>
-            <div class="attr-tags"><span class="attr-tag">Elephant Sanctuary</span><span class="attr-tag">Jungle Safari</span><span class="attr-tag">Birdwatching</span><span class="attr-tag">Wildlife Photography</span></div>
-          </div>
-        </div>
-        <div class="attr-card">
-          <div class="attr-img"><img src="images/RubberFarmExperience.jpeg" alt="Farm Experience" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-          <div class="attr-body">
-            <div class="attr-name">Farm Experience</div>
-            <p class="attr-desc">Connect with Kerala's agricultural roots — pick coconuts, harvest rice, press coconut oil, or walk through paddy fields at golden hour. Ideal for children wanting to experience the authentic rhythms of rural Kerala life.</p>
-            <div class="attr-tags"><span class="attr-tag">Coconut Farm Walk</span><span class="attr-tag">Rice Harvest</span><span class="attr-tag">Traditional Cooking</span><span class="attr-tag">Kids Activity</span></div>
-          </div>
-        </div>
-      </div>
+    <div class="ft-bot">
+      <span>&copy; 2026 Guruvayur Estates — Private Luxury Curation. All rights reserved.</span>
+      <span>www.luxuryvillasofguruvayur.com</span>
     </div>
+  </footer>
 
-    <div class="cat-section fade-in">
-      <div class="cat-title">Culture &amp; Tradition</div>
-      <div class="cat-grid cat-2">
-        <div class="attr-card">
-          <div class="attr-img"><img src="images/CultureAndTradition.jpeg" alt="Culture and Tradition" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-          <div class="attr-body">
-            <div class="attr-name">Indulge in Culture &amp; Tradition</div>
-            <p class="attr-desc">Thrissur is the cultural capital of Kerala — and Dwarka places you at its heart. Witness Kathakali performances, attend Thrissur Pooram, or arrange an Arangettam (dance debut) for your child at the villa's dedicated practice hall.</p>
-            <div class="attr-tags"><span class="attr-tag">Kathakali</span><span class="attr-tag">Thrissur Pooram</span><span class="attr-tag">Arangettam Venue</span><span class="attr-tag">Classical Music</span><span class="attr-tag">Temple Festivals</span></div>
-          </div>
-        </div>
-        <div class="attr-card">
-          <div class="attr-img"><img src="images/HeritageTrail.jpeg" alt="Heritage Trail" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-          <div class="attr-body">
-            <div class="attr-name">Heritage Trail</div>
-            <p class="attr-desc">A curated trail connecting historically significant sites between Guruvayur and Thrissur — ancient temples, traditional Kerala homes (tharavadus), spice markets, and artisan workshops. We provide detailed maps and introduction letters.</p>
-            <div class="attr-tags"><span class="attr-tag">Temple Circuit</span><span class="attr-tag">Artisan Workshops</span><span class="attr-tag">Spice Markets</span><span class="attr-tag">Heritage Homes</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div style="background:var(--dark);border-radius:12px;padding:30px;text-align:center" class="fade-in">
-      <h3 style="font-family:'Playfair Display',serif;font-size:1.45rem;color:#fff;margin-bottom:8px">Tell Us What You <em style="font-style:italic;color:var(--orange)">Dream Of</em></h3>
-      <p style="font-size:.9rem;color:rgba(255,255,255,.58);margin-bottom:18px">Every experience is arranged personally for your group. We'll craft an itinerary that blends your interests with the soul of Kerala.</p>
-      <a href="contact.html" class="btn btn-orange">Plan My Experience</a>
-    </div>
-
-  </div>
-</section>
-
-<footer><div class="ft-grid"><div><div class="ft-brand">Dwarka</div><p class="ft-desc">Premium serviced villa near Guruvayur Sri Krishna Temple. Your home away from home for a peaceful pilgrimage experience.</p><div class="ft-rating"><span style="color:#FBBF24">★★★★★</span> Highly Rated</div></div><div class="ft-col"><h4>Quick Links</h4><a href="index.html">Home</a><a href="villa.html">Villa</a><a href="attractions.html">Attractions</a><a href="services.html">Services</a><a href="contact.html">Contact</a></div><div class="ft-col"><h4>Contact Us</h4><a href="tel:+918547141401">+91 85471 41401</a><a href="tel:+19728765101">+1 972 876 5101</a><a href="mailto:kerala.luxuryvillas@gmail.com">kerala.luxuryvillas@gmail.com</a><a href="https://wa.me/918547141401" target="_blank" class="wa">WhatsApp Us</a></div><div class="ft-col"><h4>Location</h4><a href="#">Near West Nada</a><a href="#">Guruvayur, Kerala 680101</a><a href="#" style="color:var(--orange)">5 min from Temple</a></div></div><div class="ft-bot"><span>© 2025 Dwarka Luxury Villas of Guruvayur. All rights reserved.</span><span>www.luxuryvillasofguruvayur.com</span></div></footer>
-
-<script>
-(function(){
-  const nav = document.getElementById('mainNav');
-  if(!nav) return;
-  function upd(){ nav.classList.toggle('solid', window.scrollY > 55); }
-  window.addEventListener('scroll', upd, {passive:true});
-  upd();
-})();
-(function(){
-  const ham  = document.querySelector('.hamburger');
-  const menu = document.getElementById('mobMenu');
-  const cls  = document.getElementById('mobClose');
-  if(!ham||!menu) return;
-  ham.addEventListener('click', ()=>menu.classList.add('open'));
-  if(cls) cls.addEventListener('click', ()=>menu.classList.remove('open'));
-  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
-})();
-(function(){
-  const els = document.querySelectorAll('.fade-in');
-  if(!els.length) return;
-  const obs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
-    });
-  },{threshold:.08});
-  els.forEach(el=>obs.observe(el));
-})();
-</script>
+  <script>
+  (function(){
+    const nav = document.getElementById('mainNav');
+    if(!nav) return;
+    function upd(){ nav.classList.toggle('solid', window.scrollY > 55); }
+    window.addEventListener('scroll', upd, {passive:true});
+    upd();
+  })();
+  (function(){
+    const ham  = document.querySelector('.hamburger');
+    const menu = document.getElementById('mobMenu');
+    const cls  = document.getElementById('mobClose');
+    if(!ham||!menu) return;
+    ham.addEventListener('click', ()=>menu.classList.add('open'));
+    if(cls) cls.addEventListener('click', ()=>menu.classList.remove('open'));
+    menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+  })();
+  (function(){
+    const els = document.querySelectorAll('.fade-in');
+    if(!els.length) return;
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    },{threshold:.08});
+    els.forEach(el=>obs.observe(el));
+  })();
+  </script>
 </body>
 </html>

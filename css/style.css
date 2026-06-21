@@ -180,7 +180,6 @@ nav.solid .hamburger span{background:#fff}
 .faq-item{background:var(--card);border-radius:var(--r);padding:18px 22px;box-shadow:var(--sh);margin-bottom:10px;cursor:pointer;transition:box-shadow .2s}
 .faq-item:hover{box-shadow:var(--sh-h)}
 .faq-q{font-weight:600;font-size:.93rem;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:12px}
-.faq-q::after{content:'＋';font-size:.95rem;color:var(--orange);flex-shrink:0;font-weight:400}
 .faq-a{font-size:.86rem;color:var(--muted);line-height:1.7;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
 
 /* Services */

@@ -916,6 +916,7 @@
     if (nationality === 'Indian') {
       if (!v('idType'))   return 'Please select your ID type'
       if (!v('idNumber')) return 'Please enter your ID number'
+      if (!uploadData.id) return 'Please upload a photo or PDF of your ID'
     } else {
       if (!v('passportNo'))    return 'Passport number is required'
       if (!v('passportExpiry')) return 'Passport expiry date is required'

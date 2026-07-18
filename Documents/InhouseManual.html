@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guest Welcome & Contact Card</title>
+  <style>
+    @media print {
+      body {
+        width: 4in; /* Tailor to your specific frame size */
+        margin: 0;
+        padding: 0.25in;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+    
+    body {
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      color: #1a1a1a;
+      background-color: #ffffff;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      border: 1px solid #e5e7eb;
+      padding: 24px;
+      border-radius: 12px;
+      max-width: 350px;
+      margin: 0 auto;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      font-size: 22pt;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+
+    p {
+      font-size: 11pt;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #475569;
+      margin-bottom: 24px;
+    }
+
+    .qr-container {
+      background-color: #f8fafc;
+      padding: 16px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .qr-code {
+      width: 200px;
+      height: 200px;
+      display: block;
+    }
+
+    .footer-text {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Connect With Us</h1>
+    <p>Scan the QR code below to connect directly with concierge support via WhatsApp during your stay.</p>
+    
+    <div class="qr-container">
+      <!-- Insert your cropped WhatsApp QR code image source here -->
+      <img class="qr-code" src="whatsapp-qr.png" alt="WhatsApp Contact QR">
+    </div>
+    
+    <div class="footer-text">IDE International Estates</div>
+  </div>
+
+</body>
+</html>

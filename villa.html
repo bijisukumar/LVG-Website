@@ -129,6 +129,9 @@
     .fade-in{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
     .fade-in.visible{opacity:1;transform:none}
 
+    .about-wrap{grid-template-columns:1fr 300px}
+    .feat-grid{grid-template-columns:repeat(2,1fr)}
+
     @media(max-width:960px){
       .container{padding:0 16px}
       nav{padding:0 16px; background:#fff !important; border-bottom:1px solid var(--border)}
@@ -145,11 +148,14 @@
       .event-matrix{grid-template-columns:1fr}
       .ft-grid{grid-template-columns:1fr}
       .gallery-row{grid-template-columns:1fr!important}
+      .feat-grid{grid-template-columns:1fr}
+      .room-grid{grid-template-columns:1fr!important}
       .gallery-hero-img{height:300px!important}
       .gallery-img-wrap{height:250px!important}
       .gallery-img-wrap-lg{height:300px!important}
     }
   </style>
+<style>/* Larger small text on phones */@media(max-width:640px){.nav-logo-sub{font-size:.6rem!important;letter-spacing:.3em!important}.attr-tag,.svc-tag{font-size:.78rem}.attr-drive{font-size:.8rem}.spec-lbl{font-size:.72rem}.spec-sub{font-size:.8rem}.about-badge-sub{font-size:.78rem}.loc-lbl{font-size:.76rem}.ci-lbl{font-size:.74rem}.ci-sub{font-size:.8rem}}</style>
 </head>
 <body>
 
@@ -237,14 +243,14 @@
 
 <section style="background:var(--stone-bg);padding:44px 0">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 300px;gap:36px;align-items:start" class="fade-in">
+    <div style="display:grid;gap:36px;align-items:start" class="fade-in about-wrap">
       <div>
         <h2 class="h2" style="margin-bottom:12px">About the <em>Villa</em></h2>
         <p class="body-text">Dwarka Villa is a beautifully maintained Kerala heritage property offering a genuine home experience for families visiting the sacred temple town. Traditional Kerala architecture &mdash; terracotta tiles, carved teak, brass accents &mdash; combined with every modern comfort.</p>
         <p class="body-text" style="margin-top:10px">Our dedicated caretaker lives nearby, provides local insights, helps with temple visit planning, and ensures your stay is comfortable and hassle-free from arrival to departure.</p>
         
         <h3 style="font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--text);margin:22px 0 12px">Room &amp; Bed Configuration</h3>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px 20px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px 20px" class="room-grid">
           <div style="display:flex;gap:7px;font-size:.83rem;color:var(--mid)"><span style="color:var(--orange);font-weight:700">&#x2713;</span>Master bedroom &mdash; king &amp; attached bath</div>
           <div style="display:flex;gap:7px;font-size:.83rem;color:var(--mid)"><span style="color:var(--orange);font-weight:700">&#x2713;</span>Second bedroom &mdash; queen-size bed</div>
           <div style="display:flex;gap:7px;font-size:.83rem;color:var(--mid)"><span style="color:var(--orange);font-weight:700">&#x2713;</span>Third bedroom &mdash; twin beds for kids</div>
@@ -401,7 +407,7 @@
 <section style="background:var(--stone-bg);padding:44px 0">
   <div class="container">
     <div class="center fade-in"><span class="label">The Experience</span><h2 class="h2">What Makes Dwarka <em>Special</em></h2></div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:22px" class="fade-in">
+    <div style="display:grid;gap:16px;margin-top:22px" class="fade-in feat-grid">
       <div class="feat-card"><div class="feat-icon">&#x1F6D5;</div><div class="feat-name">Temple Proximity</div><div class="feat-desc">Just 5 minutes to Guruvayur Sree Krishna Temple &mdash; attend morning darshan without any rush</div></div>
       <div class="feat-card"><div class="feat-icon">&#x1F33F;</div><div class="feat-name">Lush Frontyard &amp; Garden</div><div class="feat-desc">Spacious paved frontyard with tropical garden &mdash; perfect for children to play and families to relax after temple visits</div></div>
       <div class="feat-card"><div class="feat-icon">&#x1F3AD;</div><div class="feat-name">Arangettam Practice Area</div><div class="feat-desc">Spacious hall for dance/music rehearsals with your full team &mdash; a rare facility in Guruvayur</div></div>

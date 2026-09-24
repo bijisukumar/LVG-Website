@@ -413,6 +413,7 @@
         <textarea id="custNotes" style="min-height:90px" placeholder="Please list your primary areas of interest (e.g., temples, wildlife safari, nature trails, beaches, cultural arts) along with any specific requirements (seniors traveling, specific pacing, etc.)..."></textarea>
       </div>
       <button class="btn-gold" style="width:100%;justify-content:center;border:none;cursor:pointer" onclick="sendWhatsAppRequest()">💬 Submit Trip Inquiry via WhatsApp</button>
+      <p style="margin-top:14px;text-align:center;font-size:.85rem;color:var(--muted)">Concierge Service to the World of God's Own Country — <a href="https://wa.me/919995043283" target="_blank" style="color:var(--gold)">💬 +91 99950 43283</a></p>
     </section>
   </section>
 
@@ -434,7 +435,7 @@
       });
     })();
 
-    // WhatsApp Form Submission Routing to US Concierge Line
+    // WhatsApp Form Submission Routing to the Concierge Line (+91 99950 43283)
     function sendWhatsAppRequest(){
       const n = document.getElementById('custName').value.trim();
       const p = document.getElementById('custPhone').value.trim();
@@ -454,13 +455,14 @@
         (text ? `💬 *Specific Notes & Interests:* ${text}` : '')
       );
 
-      window.open(`https://wa.me/19728765101?text=${encoded}`, '_blank');
+      window.open(`https://wa.me/919995043283?text=${encoded}`, '_blank');
     }
   </script>
 
   <!-- Page Footer Strip -->
   <footer class="page-footer">
     <span>&copy; 2026 Guruvayur Estates — Private Concierge Curation. All rights reserved.</span>
+    <span>Concierge Service to the World of God's Own Country: <a href="https://wa.me/919995043283" target="_blank" style="color:var(--gold)">+91 99950 43283</a></span>
     <a href="index.html" style="color:var(--gold)">Back to Main Portal →</a>
   </footer>
 </body>

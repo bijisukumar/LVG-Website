@@ -139,8 +139,6 @@ body{
   border-radius:var(--r);padding:32px;margin-bottom:32px;
 }
 
-/* Date row */
-.date-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
 .field-group{display:flex;flex-direction:column;gap:7px}
 .field-label{
   font-size:.68rem;font-weight:600;letter-spacing:.14em;
@@ -160,18 +158,6 @@ body{
   background:rgba(255,255,255,.09);
 }
 
-/* Guest counters */
-.guest-row{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:16px;margin-bottom:28px;
-}
-.guest-counter{
-  background:rgba(255,255,255,.04);border:1px solid var(--border);
-  border-radius:10px;padding:16px;
-  display:flex;flex-direction:column;gap:10px;
-}
-.guest-counter-label{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.guest-counter-sub{font-size:.68rem;color:rgba(154,144,128,.7);margin-top:-6px}
 .counter-ctrl{display:flex;align-items:center;gap:12px}
 .counter-btn{
   width:32px;height:32px;border-radius:50%;
@@ -341,13 +327,60 @@ body{
   font-size:.75rem;color:var(--muted);
 }
 
+/* ── BOOKING WIDGET (price, dates, guests) ── */
+.booking-widget{max-width:520px;margin-left:auto;margin-right:auto}
+.bw-price{margin-bottom:16px;min-height:42px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.bw-amt{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);letter-spacing:-.01em;line-height:1.1}
+.bw-amt-muted{font-family:'DM Sans',sans-serif;font-size:1.05rem;color:var(--muted);letter-spacing:0}
+.bw-amt-no{font-family:'DM Sans',sans-serif;font-size:1.25rem;color:var(--red);font-weight:600;letter-spacing:0}
+.bw-per{font-size:.95rem;color:var(--muted)}
+.bw-box{border:1px solid rgba(255,255,255,.28);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.03)}
+.bw-dates{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(255,255,255,.28)}
+.bw-cell{display:flex;flex-direction:column;gap:3px;padding:11px 14px;cursor:pointer}
+.bw-cell-r{border-left:1px solid rgba(255,255,255,.28)}
+.bw-cell:focus-within,.bw-guests:focus-visible{background:rgba(255,255,255,.07);outline:none}
+.bw-lbl{display:block;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cream)}
+.bw-input{background:transparent;border:0;outline:0;padding:0;font-family:'DM Sans',sans-serif;font-size:.92rem;color:var(--cream);color-scheme:dark;width:100%;min-height:24px}
+.bw-guests{display:flex;align-items:center;justify-content:space-between;width:100%;padding:11px 14px;background:transparent;border:0;color:var(--cream);cursor:pointer;text-align:left;font-family:inherit}
+.bw-guest-sum{display:block;font-size:.92rem;margin-top:3px}
+.bw-chev{transition:transform .2s;flex-shrink:0}
+.bw-guests[aria-expanded="true"] .bw-chev{transform:rotate(180deg)}
+.bw-panel{padding:6px 14px 14px;border-top:1px solid rgba(255,255,255,.14)}
+.bw-panel[hidden]{display:none}
+.bw-prow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.bw-pname{font-size:.9rem;font-weight:600}
+.bw-psub{font-size:.72rem;color:var(--muted);line-height:1.5}
+.bw-cta{width:100%;justify-content:center;margin-top:14px;min-height:50px;font-size:.95rem}
+.bw-fine{text-align:center;font-size:.78rem;color:var(--muted);margin:10px 0 18px}
+.bw-wa{text-align:center;font-size:.82rem;color:var(--muted);margin-top:14px}
+.bw-wa a{color:var(--gold);text-decoration:none}
+.bw-wa a:hover{text-decoration:underline}
+@media(max-width:640px){.booking-widget{max-width:none}.bw-amt{font-size:1.7rem}}
+
+/* ── LIVE ESTIMATE: availability, request form ── */
+.avail-banner{margin:0 0 14px;padding:12px 16px;border-radius:12px;font-size:.88rem;line-height:1.5;border:1px solid var(--border);background:var(--card)}
+.avail-banner.ok{background:var(--green-bg);border-color:rgba(74,222,128,.3);color:var(--green)}
+.avail-banner.no{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3);color:var(--red)}
+.avail-banner.wait{color:var(--muted)}
+.result-note{margin:10px 0 0;font-size:.78rem;color:var(--muted);line-height:1.5}
+.alt-box{margin-top:14px;padding:14px 16px;border-radius:12px;border:1px solid var(--gold-bd);background:var(--gold-lt);font-size:.85rem}
+.alt-box .alt-title{font-weight:600;margin-bottom:8px;color:var(--gold)}
+.alt-chip{display:inline-block;margin:0 8px 8px 0;padding:8px 14px;border-radius:9999px;border:1.5px solid var(--gold-bd);background:transparent;color:var(--cream);font-size:.82rem;cursor:pointer;font-family:inherit}
+.alt-chip:hover{background:var(--gold-lt);border-color:var(--gold)}
+.req-form,.req-done{margin-top:16px;padding:20px;border-radius:var(--r);border:1px solid var(--gold-bd);background:var(--card)}
+.req-form{position:relative}
+.req-title{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--gold)}
+.req-sub{font-size:.84rem;color:var(--muted);margin:6px 0 14px;line-height:1.55}
+.req-form .field-group{margin-bottom:12px}
+.req-form textarea.field-input{resize:vertical;font-family:inherit}
+.req-error{margin:0 0 12px;padding:10px 14px;border-radius:10px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:var(--red);font-size:.82rem}
+.btn[disabled]{opacity:.6;cursor:not-allowed;transform:none}
+
 /* ── RESPONSIVE ── */
 @media(max-width:640px){
   .header{padding:16px 18px}
   .hero-strip{padding:36px 18px 28px}
   .main{padding:28px 18px 60px}
-  .date-row{grid-template-columns:1fr}
-  .guest-row{grid-template-columns:1fr}
   .addons-grid{grid-template-columns:1fr}
   .cta-row{flex-direction:column}
   .cta-row .btn{justify-content:center}
@@ -373,7 +406,7 @@ body{
   <div class="hero-strip-inner">
     <span class="hero-eyebrow">Stay Estimate</span>
     <h1 class="hero-title">Plan Your <em>Guruvayur</em> Stay</h1>
-    <p class="hero-desc">Get an instant estimate for your dates and group. All rates are per night for the entire villa — your private home just 0.5 km from Guruvayur Temple's West Nada.</p>
+    <p class="hero-desc">See live availability and get an approximate price for your dates and group — for the entire villa, your private home just 0.5 km from Guruvayur Temple's West Nada.</p>
     <div class="hero-badge-row">
       <span class="hero-badge">📍 0.5 km from West Nada Gate</span>
       <span class="hero-badge">🏡 Entire Villa — 100% Private</span>
@@ -388,51 +421,63 @@ body{
 
   <!-- SECTION 1: CALCULATOR -->
   <div class="sec-title">Your <em>Estimate</em></div>
-  <p class="sec-sub">Select your dates and group size — the estimate updates instantly.</p>
+  <p class="sec-sub">Select your dates and group size — we check live availability and show an approximate price.</p>
 
-  <div class="calc-card">
+  <div class="calc-card booking-widget">
 
-    <!-- Dates -->
-    <div class="date-row">
-      <div class="field-group">
-        <label class="field-label" for="checkin">Check-in Date</label>
-        <input class="field-input" type="date" id="checkin">
+    <!-- Price line: updates as soon as dates and guests are chosen -->
+    <div class="bw-price" id="bwPrice"><span class="bw-amt bw-amt-muted">Add dates for price</span></div>
+
+    <!-- Dates + guests, one bordered box -->
+    <div class="bw-box">
+      <div class="bw-dates">
+        <label class="bw-cell" for="checkin">
+          <span class="bw-lbl">Check-in</span>
+          <input class="bw-input" type="date" id="checkin">
+        </label>
+        <label class="bw-cell bw-cell-r" for="checkout">
+          <span class="bw-lbl">Checkout</span>
+          <input class="bw-input" type="date" id="checkout">
+        </label>
       </div>
-      <div class="field-group">
-        <label class="field-label" for="checkout">Check-out Date</label>
-        <input class="field-input" type="date" id="checkout">
+      <button type="button" class="bw-guests" id="guestToggle" aria-expanded="false" aria-controls="guestPanel" onclick="toggleGuests()">
+        <span>
+          <span class="bw-lbl">Guests</span>
+          <span class="bw-guest-sum" id="guestSummary">2 guests</span>
+        </span>
+        <svg class="bw-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="bw-panel" id="guestPanel" hidden>
+        <div class="bw-prow">
+          <div><div class="bw-pname">Adults</div><div class="bw-psub">Age 13+</div></div>
+          <div class="counter-ctrl">
+            <button type="button" class="counter-btn" aria-label="Fewer adults" onclick="adjust('adults',-1)">−</button>
+            <span class="counter-val" id="val-adults">2</span>
+            <button type="button" class="counter-btn" aria-label="More adults" onclick="adjust('adults',1)">+</button>
+          </div>
+        </div>
+        <div class="bw-prow">
+          <div><div class="bw-pname">Children</div><div class="bw-psub">Ages 2–12</div></div>
+          <div class="counter-ctrl">
+            <button type="button" class="counter-btn" aria-label="Fewer children" onclick="adjust('children',-1)">−</button>
+            <span class="counter-val" id="val-children">0</span>
+            <button type="button" class="counter-btn" aria-label="More children" onclick="adjust('children',1)">+</button>
+          </div>
+        </div>
+        <div class="bw-prow">
+          <div><div class="bw-pname">Infants</div><div class="bw-psub">Under 2 · not counted</div></div>
+          <div class="counter-ctrl">
+            <button type="button" class="counter-btn" aria-label="Fewer infants" onclick="adjust('infants',-1)">−</button>
+            <span class="counter-val" id="val-infants">0</span>
+            <button type="button" class="counter-btn" aria-label="More infants" onclick="adjust('infants',1)">+</button>
+          </div>
+        </div>
+        <div class="bw-psub" style="padding-top:4px">The whole villa is yours — it sleeps up to 12 guests; a few more can be accommodated for an extra charge.</div>
       </div>
     </div>
 
-    <!-- Guest counters -->
-    <div class="guest-row">
-      <div class="guest-counter">
-        <div class="guest-counter-label">Adults</div>
-        <div class="counter-ctrl">
-          <button class="counter-btn" onclick="adjust('adults',-1)">−</button>
-          <span class="counter-val" id="val-adults">2</span>
-          <button class="counter-btn" onclick="adjust('adults',1)">+</button>
-        </div>
-      </div>
-      <div class="guest-counter">
-        <div class="guest-counter-label">Children</div>
-        <div class="guest-counter-sub">Ages 2–12</div>
-        <div class="counter-ctrl">
-          <button class="counter-btn" onclick="adjust('children',-1)">−</button>
-          <span class="counter-val" id="val-children">0</span>
-          <button class="counter-btn" onclick="adjust('children',1)">+</button>
-        </div>
-      </div>
-      <div class="guest-counter">
-        <div class="guest-counter-label">Infants</div>
-        <div class="guest-counter-sub">Under 2 · Not counted</div>
-        <div class="counter-ctrl">
-          <button class="counter-btn" onclick="adjust('infants',-1)">−</button>
-          <span class="counter-val" id="val-infants">0</span>
-          <button class="counter-btn" onclick="adjust('infants',1)">+</button>
-        </div>
-      </div>
-    </div>
+    <button type="button" class="btn btn-gold bw-cta" id="reqBtn" onclick="openRequest()" disabled>Request Final Quote</button>
+    <div class="bw-fine" id="bwFine">You won't be charged — this is an approximate price</div>
 
     <!-- Recommendation tip -->
     <div class="night-tip" id="nightTip" style="display:none">
@@ -445,11 +490,14 @@ body{
       ⚠️ We recommend a minimum of 2–3 nights to enjoy Guruvayur's morning darshan, the elephant sanctuary, and the temples at a relaxed pace — without rushing.
     </div>
 
+    <!-- Live availability / status line -->
+    <div class="avail-banner" id="availBanner" style="display:none"></div>
+
     <!-- Result card -->
     <div class="result-card" id="resultCard">
       <div class="result-header">
         <div>
-          <div class="result-label">Estimated Stay Cost</div>
+          <div class="result-label">Price details</div>
           <div class="result-nights" id="resultNights"></div>
         </div>
         <div style="font-size:1.6rem">🏡</div>
@@ -460,7 +508,7 @@ body{
           <span id="resGuests"></span>
         </div>
         <div class="result-row">
-          <span>Nightly rate</span>
+          <span>Approx. nightly rate</span>
           <span id="resNightly"></span>
         </div>
         <div class="result-row">
@@ -468,19 +516,57 @@ body{
           <span id="resNights"></span>
         </div>
       </div>
+      <div id="resNotes"></div>
       <div class="result-total-row">
-        <div class="result-total-label">Estimated Total</div>
+        <div class="result-total-label">Approximate Total</div>
         <div class="result-total-val" id="resTotal"></div>
       </div>
       <div class="result-disclaimer">
-        💬 This is an indicative estimate only. Your final rate will be confirmed when you contact us — rates may vary based on season, special occasions, or longer-stay discounts. Direct bookings always get the best rate.
+        💬 <strong>This is an approximate estimate, not a final quote.</strong> Your final price depends on your exact dates, the season, the number of guests and any services you add. Send us a request and we will confirm your final quote — usually the same day.
       </div>
     </div>
 
+    <!-- Free dates nearby, when the chosen ones are taken -->
+    <div class="alt-box" id="altBox" style="display:none"></div>
+
     <!-- CTAs -->
-    <div class="cta-row" id="ctaRow" style="display:none">
-      <a class="btn btn-gold" id="waBtn" href="#" target="_blank">💬 WhatsApp to Confirm</a>
-      <a class="btn btn-outline" href="book.html">Request to Book →</a>
+    <div class="bw-wa" id="ctaRow" style="display:none">
+      Prefer to chat? <a id="waBtn" href="#" target="_blank" rel="noopener">WhatsApp us your dates →</a>
+    </div>
+
+    <!-- Request form -->
+    <form class="req-form" id="reqForm" style="display:none" onsubmit="return submitRequest(event)" novalidate>
+      <div class="req-title">Request your final quote</div>
+      <p class="req-sub">Tell us how to reach you — we will reply on WhatsApp or by email with the confirmed price for your dates.</p>
+      <div class="field-group">
+        <label class="field-label" for="reqName">Your name</label>
+        <input class="field-input" id="reqName" type="text" autocomplete="name" maxlength="80" required>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="reqPhone">Phone / WhatsApp number</label>
+        <input class="field-input" id="reqPhone" type="tel" autocomplete="tel" placeholder="+91 …" maxlength="20" required>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="reqEmail">Email <span style="opacity:.6">(optional)</span></label>
+        <input class="field-input" id="reqEmail" type="email" autocomplete="email" maxlength="120">
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="reqMsg">Anything we should know? <span style="opacity:.6">(optional)</span></label>
+        <textarea class="field-input" id="reqMsg" rows="3" maxlength="600" placeholder="Occasion, early check-in, food, pickup…"></textarea>
+      </div>
+      <!-- Honeypot: real visitors never see or fill this -->
+      <div style="position:absolute;left:-9999px;height:0;overflow:hidden" aria-hidden="true">
+        <label>Website <input id="reqWebsite" type="text" tabindex="-1" autocomplete="off"></label>
+      </div>
+      <div class="req-error" id="reqError" style="display:none"></div>
+      <button type="submit" class="btn btn-gold" id="reqSubmit" style="width:100%;justify-content:center">Send request</button>
+    </form>
+
+    <!-- Thank-you -->
+    <div class="req-done" id="reqDone" style="display:none">
+      <div style="font-size:2rem">🙏</div>
+      <div class="req-title" style="margin-top:6px">Request received</div>
+      <p class="req-sub" id="reqDoneText"></p>
     </div>
 
   </div>
@@ -627,156 +713,265 @@ body{
 
 <script>
 /* ============================================================
-   ESTIMATE CALCULATOR
-   Rate table: keyed by total billable guest count (adults + children)
-   Infants are NOT counted in pricing per owner instruction
-   ROLLBACK: remove this entire <script> block
+   LIVE ESTIMATE
+   Availability and the approximate price come from the villa's own
+   booking system (stayvibe), so what a guest sees here is what we
+   would quote — not a copy of last season's rate card.
+   ROLLBACK: restore estimate.html from git (static RATES version)
    ============================================================ */
 
-// ── Rate table (INR per night, entire villa) ──────────────────
-// Update these values if rates change
-const RATES = {
-  1:  5400,
-  2:  5400,
-  3:  6400,
-  4:  7700,
-  5:  8700,
-  6:  10000,
-  7:  11000,
-  8:  12000,
-  9:  13400,
-  10: 14400,
-  11: 15600,
-  12: 16500,
-};
-const MAX_GUESTS = 12;
-const WA_NUMBER  = '918547141401';
+const API_BASE  = 'https://dwarka.stayvibe360.com/api';
+const MAX_GUESTS = 12;            // billable (adults + children); the system adds an extra-guest charge above this
+const MAX_BILLABLE_PICKER = 16;
+const WA_NUMBER = '918547141401';
 
 // ── Guest counts ──────────────────────────────────────────────
 const counts = { adults: 2, children: 0, infants: 0 };
+let lastEstimate = null;          // the answer currently on screen
+
+function guestSummary() {
+  const g = counts.adults + counts.children;
+  return g + ' guest' + (g > 1 ? 's' : '') + (counts.infants ? ', ' + counts.infants + ' infant' + (counts.infants > 1 ? 's' : '') : '');
+}
+function toggleGuests(force) {
+  const panel = $('guestPanel'), btn = $('guestToggle');
+  const open = typeof force === 'boolean' ? force : panel.hidden;
+  panel.hidden = !open;
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
 
 function adjust(type, delta) {
   const billable = counts.adults + counts.children;
   if (delta > 0) {
-    if (type === 'adults' || type === 'children') {
-      if (billable >= MAX_GUESTS) return; // cap at 12 billable
-    }
-    if (type === 'adults'   && counts.adults   >= MAX_GUESTS) return;
-    if (type === 'children' && counts.children >= MAX_GUESTS) return;
-    if (type === 'infants'  && counts.infants  >= 4)          return;
+    if ((type === 'adults' || type === 'children') && billable >= MAX_BILLABLE_PICKER) return;
+    if (type === 'infants' && counts.infants >= 4) return;
   }
   if (delta < 0) {
-    if (type === 'adults'   && counts.adults   <= (type === 'adults' ? 1 : 0)) {
-      if (counts.adults <= 1) return;
-    }
+    if (type === 'adults' && counts.adults <= 1) return;
     if (type === 'children' && counts.children <= 0) return;
-    if (type === 'infants'  && counts.infants  <= 0) return;
+    if (type === 'infants' && counts.infants <= 0) return;
   }
-  counts[type] = Math.max(type === 'adults' ? 1 : 0, counts[type] + delta);
+  counts[type] += delta;
   document.getElementById('val-' + type).textContent = counts[type];
+  $('guestSummary').textContent = guestSummary();
   recalculate();
 }
 
-// ── Date helpers ──────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
 function getNights() {
-  const ci = document.getElementById('checkin').value;
-  const co = document.getElementById('checkout').value;
+  const ci = $('checkin').value, co = $('checkout').value;
   if (!ci || !co) return 0;
   const diff = (new Date(co) - new Date(ci)) / 86400000;
-  return diff > 0 ? diff : 0;
+  return diff > 0 ? Math.round(diff) : 0;
+}
+function formatINR(n) { return '₹' + Number(n).toLocaleString('en-IN'); }
+function dm(ymd) { return new Date(ymd + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }); }
+function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+
+async function api(action, payload) {
+  const res = await fetch(API_BASE + '/' + action, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  const data = await res.json().catch(() => null);
+  if (!res.ok || !data || data.success === false) {
+    const e = new Error((data && data.error) || 'Something went wrong — please try again');
+    e.status = res.status;
+    throw e;
+  }
+  return data.data;
 }
 
-function formatINR(n) {
-  return '₹' + n.toLocaleString('en-IN');
+function nightTip(nights) {
+  const tip = $('nightTip'), warn = $('nightWarn');
+  if (!(nights > 0)) { tip.style.display = 'none'; warn.classList.remove('visible'); return; }
+  tip.style.display = 'flex';
+  if (nights === 1) {
+    $('nightTipText').textContent = 'We recommend 2–3 nights to attend the early Nirmalyam darshan, visit the Elephant Sanctuary, and enjoy the temples at a relaxed pace.';
+    warn.classList.add('visible');
+  } else if (nights <= 3) {
+    $('nightTipText').textContent = nights + ' nights is ideal — enough time for morning darshans, the elephant sanctuary, and Chavakkad Beach at a relaxed pace. 🙏';
+    warn.classList.remove('visible');
+  } else {
+    $('nightTipText').textContent = nights + ' nights is a wonderful extended stay — perfect for exploring all of Guruvayur\'s sacred sites and natural beauty.';
+    warn.classList.remove('visible');
+  }
 }
 
-// ── Main recalculate ──────────────────────────────────────────
+function setPrice(kind, amount, per) {
+  const el = $('bwPrice');
+  if (kind === 'amount') el.innerHTML = '<span class="bw-amt">≈ ' + formatINR(amount) + '</span><span class="bw-per">' + per + '</span>';
+  else if (kind === 'no') el.innerHTML = '<span class="bw-amt bw-amt-no">' + per + '</span>';
+  else el.innerHTML = '<span class="bw-amt bw-amt-muted">' + per + '</span>';
+}
+
+function resetResult() {
+  $('reqBtn').disabled = true;
+  $('reqBtn').style.display = '';
+  $('resultCard').classList.remove('visible');
+  $('ctaRow').style.display = 'none';
+  $('altBox').style.display = 'none';
+  $('reqForm').style.display = 'none';
+  $('reqDone').style.display = 'none';
+  lastEstimate = null;
+}
+function banner(kind, html) {
+  const b = $('availBanner');
+  b.className = 'avail-banner ' + kind;
+  b.innerHTML = html;
+  b.style.display = 'block';
+}
+
+function waLink(est) {
+  const nights = est ? est.nights : getNights();
+  const msg = encodeURIComponent(
+    '🏡 *Dwarka Villa Enquiry*\n\n' +
+    '📅 Check-in: ' + $('checkin').value + '\n' +
+    '📅 Check-out: ' + $('checkout').value + ' (' + nights + ' night' + (nights > 1 ? 's' : '') + ')\n' +
+    '👥 Adults: ' + counts.adults + (counts.children ? ' · Children: ' + counts.children : '') + (counts.infants ? ' · Infants: ' + counts.infants : '') + '\n' +
+    (est && est.approxTotal ? '💰 Approx. estimate: ' + formatINR(est.approxTotal) + '\n' : '') +
+    '\nPlease share the final quote.'
+  );
+  return 'https://wa.me/' + WA_NUMBER + '?text=' + msg;
+}
+
+// ── Main: ask the booking system ──────────────────────────────
+let seq = 0, timer = null;
 function recalculate() {
-  const nights   = getNights();
-  const billable = Math.min(counts.adults + counts.children, MAX_GUESTS);
-  const rate     = RATES[billable] || RATES[MAX_GUESTS];
-  const total    = rate * nights;
+  clearTimeout(timer);
+  const nights = getNights();
+  nightTip(nights);
+  resetResult();
+  if (!(nights > 0)) { $('availBanner').style.display = 'none'; setPrice('muted', 0, 'Add dates for price'); return; }
+  setPrice('muted', 0, 'Checking…');
+  banner('wait', 'Checking availability and prices…');
+  timer = setTimeout(fetchEstimate, 350);
+}
 
-  const resultCard = document.getElementById('resultCard');
-  const nightWarn  = document.getElementById('nightWarn');
-  const nightTip   = document.getElementById('nightTip');
-  const ctaRow     = document.getElementById('ctaRow');
+async function fetchEstimate() {
+  const mine = ++seq;
+  try {
+    const est = await api('getPublicEstimate', {
+      checkIn: $('checkin').value, checkOut: $('checkout').value,
+      adults: counts.adults, children: counts.children,
+    });
+    if (mine !== seq) return;          // a newer choice is already on its way
+    render(est);
+  } catch (e) {
+    if (mine !== seq) return;
+    setPrice('muted', 0, 'Price unavailable');
+    banner('no', esc(e.message || 'We could not get an estimate right now.') +
+      ' You can still <a href="' + waLink() + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">WhatsApp us</a> with your dates.');
+  }
+}
 
-  // Night recommendation tip
-  if (nights > 0) {
-    nightTip.style.display = 'flex';
-    if (nights === 1) {
-      document.getElementById('nightTipText').textContent =
-        'We recommend 2–3 nights to attend the early Nirmalyam darshan, visit the Elephant Sanctuary, and enjoy the temples at a relaxed pace.';
-      nightWarn.classList.add('visible');
-    } else if (nights >= 2 && nights <= 3) {
-      document.getElementById('nightTipText').textContent =
-        nights + ' nights is ideal — enough time for morning darshans, the elephant sanctuary, and Chavakkad Beach at a relaxed pace. 🙏';
-      nightWarn.classList.remove('visible');
-    } else {
-      document.getElementById('nightTipText').textContent =
-        nights + ' nights is a wonderful extended stay — perfect for exploring all of Guruvayur\'s sacred sites and natural beauty.';
-      nightWarn.classList.remove('visible');
+function render(est) {
+  lastEstimate = est;
+  const span = dm(est.checkIn) + ' → ' + dm(est.checkOut);
+
+  if (!est.available) {
+    const taken = est.takenNights.map(dm).join(', ');
+    banner('no', '😔 Sorry — the villa is not free for all of those dates' + (taken ? ' (' + esc(taken) + ' taken)' : '') + '.');
+    const alts = [].concat(est.alternatives ? est.alternatives.before : [], est.alternatives ? est.alternatives.after : []);
+    if (alts.length) {
+      $('altBox').innerHTML = '<div class="alt-title">Free for the same length of stay:</div>' +
+        alts.map(a => '<button type="button" class="alt-chip" data-ci="' + a.checkIn + '" data-co="' + a.checkOut + '">' + dm(a.checkIn) + ' → ' + dm(a.checkOut) + '</button>').join('');
+      $('altBox').style.display = 'block';
+      $('altBox').querySelectorAll('.alt-chip').forEach(btn => btn.addEventListener('click', () => {
+        $('checkin').value = btn.dataset.ci; $('checkout').value = btn.dataset.co;
+        $('checkout').min = btn.dataset.ci;
+        recalculate();
+      }));
     }
-  } else {
-    nightTip.style.display = 'none';
-    nightWarn.classList.remove('visible');
+    setPrice('no', 0, 'Not available');
+    $('ctaRow').style.display = 'block';
+    $('waBtn').href = waLink(est);          // the request button stays disabled: nothing to quote for taken dates
+    return;
   }
 
-  // Show result only when both dates selected
-  if (nights > 0) {
-    resultCard.classList.add('visible');
-    ctaRow.style.display = 'flex';
+  banner('ok', '✅ Good news — the villa is free for ' + span + '.');
+  $('reqBtn').disabled = false;
+  $('ctaRow').style.display = 'block';
+  $('waBtn').href = waLink(est);
 
-    const infantNote = counts.infants > 0
-      ? ` + ${counts.infants} infant${counts.infants > 1 ? 's' : ''} (no charge)`
-      : '';
+  $('resultNights').textContent = est.nights + ' night' + (est.nights > 1 ? 's' : '') + ' · ' + span;
+  const infantNote = counts.infants > 0 ? ' + ' + counts.infants + ' infant' + (counts.infants > 1 ? 's' : '') + ' (no charge)' : '';
+  $('resGuests').textContent = est.billableGuests + ' billable' + infantNote;
+  $('resNights').textContent = est.nights + ' night' + (est.nights > 1 ? 's' : '');
 
-    document.getElementById('resultNights').textContent =
-      nights + ' night' + (nights > 1 ? 's' : '') +
-      ' · ' + new Date(document.getElementById('checkin').value).toLocaleDateString('en-IN',{day:'numeric',month:'short'}) +
-      ' → ' + new Date(document.getElementById('checkout').value).toLocaleDateString('en-IN',{day:'numeric',month:'short'});
-
-    document.getElementById('resGuests').textContent =
-      billable + ' billable' + infantNote;
-    document.getElementById('resNightly').textContent = formatINR(rate) + ' / night';
-    document.getElementById('resNights').textContent  = nights + ' night' + (nights > 1 ? 's' : '');
-    document.getElementById('resTotal').textContent   = formatINR(total);
-
-    // Build WhatsApp message
-    const ci = document.getElementById('checkin').value;
-    const co = document.getElementById('checkout').value;
-    const msg = encodeURIComponent(
-      '🏡 *Dwarka Villa Enquiry*\n\n' +
-      '📅 Check-in: ' + ci + '\n' +
-      '📅 Check-out: ' + co + ' (' + nights + ' night' + (nights>1?'s':'') + ')\n' +
-      '👥 Adults: ' + counts.adults +
-      (counts.children ? ' · Children: ' + counts.children : '') +
-      (counts.infants  ? ' · Infants: '  + counts.infants  : '') + '\n' +
-      '💰 Estimate: ' + formatINR(total) + '\n\n' +
-      'Please confirm availability and rates.'
-    );
-    document.getElementById('waBtn').href = 'https://wa.me/' + WA_NUMBER + '?text=' + msg;
-
+  const notes = [];
+  if (est.quotable) {
+    $('resNightly').textContent = '≈ ' + formatINR(est.approxPerNight) + ' / night';
+    $('resTotal').textContent = '≈ ' + formatINR(est.approxTotal);
+    setPrice('amount', est.approxTotal, 'for ' + est.nights + ' night' + (est.nights > 1 ? 's' : ''));
+    if (est.seasons.length) notes.push('Includes ' + est.seasons.map(s => esc(s.name) + ' (' + s.nights + ' night' + (s.nights > 1 ? 's' : '') + ')').join(', ') + ' pricing.');
+    if (est.extraGuests > 0) notes.push('Includes an extra-guest charge for ' + est.extraGuests + ' guest' + (est.extraGuests > 1 ? 's' : '') + ' above the villa\'s standard ' + MAX_GUESTS + '.');
   } else {
-    resultCard.classList.remove('visible');
-    ctaRow.style.display = 'none';
+    $('resNightly').textContent = 'Personal quote';
+    $('resTotal').textContent = 'On request';
+    setPrice('muted', 0, 'Personal quote — send us a request');
+    notes.push('A group this size needs a personal quote — send us a request and we will come back with the price.');
   }
+  (est.minNightsNotes || []).forEach(n => notes.push(esc(n)));
+  $('resNotes').innerHTML = notes.map(n => '<div class="result-note">ℹ️ ' + n + '</div>').join('');
+  $('resultCard').classList.add('visible');
+}
+
+// ── Request a final quote ─────────────────────────────────────
+function openRequest() {
+  $('reqForm').style.display = 'block';
+  $('reqBtn').style.display = 'none';
+  $('reqName').focus();
+  $('reqForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+async function submitRequest(ev) {
+  ev.preventDefault();
+  const err = $('reqError'), btn = $('reqSubmit');
+  err.style.display = 'none';
+  const name = $('reqName').value.trim(), phone = $('reqPhone').value.trim();
+  if (name.length < 2) { err.textContent = 'Please tell us your name.'; err.style.display = 'block'; return false; }
+  if (phone.replace(/\D/g, '').length < 10) { err.textContent = 'Please enter a phone / WhatsApp number we can reach you on.'; err.style.display = 'block'; return false; }
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    const r = await api('submitQuoteRequest', {
+      guestName: name, phone: phone, email: $('reqEmail').value.trim(), message: $('reqMsg').value.trim(),
+      website: $('reqWebsite').value,
+      checkIn: $('checkin').value, checkOut: $('checkout').value,
+      adults: counts.adults, children: counts.children, infants: counts.infants,
+    });
+    $('reqForm').style.display = 'none';
+    $('ctaRow').style.display = 'none';
+    $('reqDoneText').innerHTML = 'Thank you, ' + esc(name) + '. We have your request for ' + esc(dm($('checkin').value) + ' → ' + dm($('checkout').value)) +
+      ' and will send your final quote on WhatsApp or email shortly.' +
+      (r && r.reference && r.reference !== 'RECEIVED' ? '<br><span style="opacity:.7">Reference: ' + esc(r.reference) + '</span>' : '');
+    $('reqDone').style.display = 'block';
+    $('reqDone').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } catch (e) {
+    err.innerHTML = esc(e.message || 'We could not send your request.') + ' You can also <a href="' + waLink(lastEstimate) + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">WhatsApp us</a>.';
+    err.style.display = 'block';
+    btn.disabled = false; btn.textContent = 'Send request';
+  }
+  return false;
 }
 
 // ── Set min dates & wire up date inputs ───────────────────────
 (function init() {
-  const today = new Date().toISOString().split('T')[0];
-  const ci    = document.getElementById('checkin');
-  const co    = document.getElementById('checkout');
-  ci.min = today;
-  co.min = today;
+  const d = new Date();
+  const today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  const ci = $('checkin'), co = $('checkout');
+  ci.min = today; co.min = today;
   ci.addEventListener('change', function () {
     co.min = this.value;
     if (co.value && co.value <= this.value) co.value = '';
     recalculate();
   });
   co.addEventListener('change', recalculate);
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.bw-box')) toggleGuests(false);
+  });
 })();
 </script>
 

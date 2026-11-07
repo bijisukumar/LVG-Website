@@ -423,12 +423,12 @@ body{
 
   <!-- SECTION 1: CALCULATOR -->
   <div class="sec-title">Your <em>Estimate</em></div>
-  <p class="sec-sub">Select your dates and group size — we check live availability and show an approximate price.</p>
+  <p class="sec-sub">Choose your dates and group size, then tap Calculate — we check live availability and show an approximate price.</p>
 
   <div class="calc-card booking-widget">
 
     <!-- Price line: updates as soon as dates and guests are chosen -->
-    <div class="bw-price" id="bwPrice"><span class="bw-amt bw-amt-muted">Add dates for price</span></div>
+    <div class="bw-price" id="bwPrice"><span class="bw-amt bw-amt-muted">Choose your dates and guests</span></div>
 
     <!-- Dates + guests, one bordered box -->
     <div class="bw-box">
@@ -478,7 +478,8 @@ body{
       </div>
     </div>
 
-    <button type="button" class="btn btn-gold bw-cta" id="reqBtn" onclick="openRequest()" disabled>Request Final Quote</button>
+    <button type="button" class="btn btn-gold bw-cta" id="calcBtn" onclick="calculate()" disabled>Calculate Estimated Tariff</button>
+    <button type="button" class="btn btn-gold bw-cta" id="reqBtn" onclick="openRequest()" style="display:none" disabled>Request Final Quote</button>
     <div class="bw-fine" id="bwFine">You won't be charged — this is an approximate price</div>
 
     <!-- Live availability / status line -->
@@ -814,8 +815,9 @@ function setPrice(kind, amount, per) {
 }
 
 function resetResult() {
+  $('calcBtn').style.display = '';
   $('reqBtn').disabled = true;
-  $('reqBtn').style.display = '';
+  $('reqBtn').style.display = 'none';
   $('resultCard').classList.remove('visible');
   $('ctaRow').style.display = 'none';
   $('altBox').style.display = 'none';
@@ -843,17 +845,30 @@ function waLink(est) {
   return 'https://wa.me/' + WA_NUMBER + '?text=' + msg;
 }
 
-// ── Main: ask the booking system ──────────────────────────────
-let seq = 0, timer = null;
+// ── Main: ask the booking system — only when the guest taps Calculate ──
+let seq = 0;
+
+// Any change to dates or guests clears the old answer: a stale price must never sit beside new choices.
 function recalculate() {
-  clearTimeout(timer);
-  const nights = getNights();
-  nightTip(nights);
+  ++seq;                              // an answer still on its way belongs to choices that have since changed
   resetResult();
-  if (!(nights > 0)) { $('availBanner').style.display = 'none'; setPrice('muted', 0, 'Add dates for price'); return; }
+  $('nightTip').style.display = 'none';
+  $('availBanner').style.display = 'none';
+  const nights = getNights();
+  const btn = $('calcBtn');
+  btn.disabled = !(nights > 0);
+  btn.textContent = 'Calculate Estimated Tariff';
+  setPrice('muted', 0, nights > 0 ? 'Tap Calculate to see the price' : 'Choose your dates and guests');
+}
+
+function calculate() {
+  if (!(getNights() > 0)) { $('checkin').focus(); return; }
+  const btn = $('calcBtn');
+  btn.disabled = true;
+  btn.textContent = 'Calculating…';
   setPrice('muted', 0, 'Checking…');
   banner('wait', 'Checking availability and prices…');
-  timer = setTimeout(fetchEstimate, 350);
+  fetchEstimate();
 }
 
 async function fetchEstimate() {
@@ -863,18 +878,23 @@ async function fetchEstimate() {
       checkIn: $('checkin').value, checkOut: $('checkout').value,
       adults: counts.adults, children: counts.children,
     });
-    if (mine !== seq) return;          // a newer choice is already on its way
+    if (mine !== seq) return;          // the choices changed while we waited
     render(est);
   } catch (e) {
     if (mine !== seq) return;
     setPrice('muted', 0, 'Price unavailable');
     banner('no', esc(e.message || 'We could not get an estimate right now.') +
       ' You can still <a href="' + waLink() + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">WhatsApp us</a> with your dates.');
+    const btn = $('calcBtn');
+    btn.disabled = false;
+    btn.textContent = 'Calculate Estimated Tariff';
   }
 }
 
 function render(est) {
   lastEstimate = est;
+  nightTip(est.nights);
+  $('calcBtn').style.display = 'none';
   const span = dm(est.checkIn) + ' → ' + dm(est.checkOut);
 
   if (!est.available) {
@@ -889,6 +909,7 @@ function render(est) {
         $('checkin').value = btn.dataset.ci; $('checkout').value = btn.dataset.co;
         $('checkout').min = btn.dataset.ci;
         recalculate();
+        calculate();
       }));
     }
     setPrice('no', 0, 'Not available');
@@ -898,6 +919,7 @@ function render(est) {
   }
 
   banner('ok', '✅ Good news — the villa is free for ' + span + '.');
+  $('reqBtn').style.display = '';
   $('reqBtn').disabled = false;
   $('ctaRow').style.display = 'block';
   $('waBtn').href = waLink(est);

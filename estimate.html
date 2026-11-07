@@ -232,6 +232,8 @@ body{
   font-size:.8rem;color:#F8A0A0;line-height:1.5;
 }
 .night-warn.visible{display:block}
+.night-tip{margin:14px 0 0}
+.night-tip.warn{background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.2);color:#F8A0A0}
 
 /* ── CTA BUTTONS ── */
 .cta-row{display:flex;gap:12px;flex-wrap:wrap}
@@ -479,17 +481,6 @@ body{
     <button type="button" class="btn btn-gold bw-cta" id="reqBtn" onclick="openRequest()" disabled>Request Final Quote</button>
     <div class="bw-fine" id="bwFine">You won't be charged — this is an approximate price</div>
 
-    <!-- Recommendation tip -->
-    <div class="night-tip" id="nightTip" style="display:none">
-      <span class="night-tip-icon">🛕</span>
-      <span id="nightTipText"></span>
-    </div>
-
-    <!-- 1-night warning -->
-    <div class="night-warn" id="nightWarn">
-      ⚠️ We recommend a minimum of 2–3 nights to enjoy Guruvayur's morning darshan, the elephant sanctuary, and the temples at a relaxed pace — without rushing.
-    </div>
-
     <!-- Live availability / status line -->
     <div class="avail-banner" id="availBanner" style="display:none"></div>
 
@@ -528,6 +519,12 @@ body{
 
     <!-- Free dates nearby, when the chosen ones are taken -->
     <div class="alt-box" id="altBox" style="display:none"></div>
+
+    <!-- Stay-length hint (one message, below the price) -->
+    <div class="night-tip" id="nightTip" style="display:none">
+      <span class="night-tip-icon" id="nightTipIcon">🛕</span>
+      <span id="nightTipText"></span>
+    </div>
 
     <!-- CTAs -->
     <div class="bw-wa" id="ctaRow" style="display:none">
@@ -769,11 +766,24 @@ function formatINR(n) { return '₹' + Number(n).toLocaleString('en-IN'); }
 function dm(ymd) { return new Date(ymd + 'T00:00:00').toLocaleDateString('en-IN', { day: 'numeric', month: 'short' }); }
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
 
+// An anonymous random id kept in this browser, so we can tell that the searches and the
+// quote request came from the same visitor. No personal details; skipped if storage is blocked.
+function visitorId() {
+  try {
+    let v = localStorage.getItem('lvg_vid');
+    if (!v) {
+      v = (window.crypto && crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2) + Date.now()).replace(/-/g, '').slice(0, 24);
+      localStorage.setItem('lvg_vid', v);
+    }
+    return v;
+  } catch (e) { return ''; }
+}
+
 async function api(action, payload) {
   const res = await fetch(API_BASE + '/' + action, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(Object.assign({ visitorId: visitorId() }, payload)),
   });
   const data = await res.json().catch(() => null);
   if (!res.ok || !data || data.success === false) {
@@ -785,19 +795,15 @@ async function api(action, payload) {
 }
 
 function nightTip(nights) {
-  const tip = $('nightTip'), warn = $('nightWarn');
-  if (!(nights > 0)) { tip.style.display = 'none'; warn.classList.remove('visible'); return; }
+  const tip = $('nightTip');
+  if (!(nights > 0)) { tip.style.display = 'none'; return; }
   tip.style.display = 'flex';
-  if (nights === 1) {
-    $('nightTipText').textContent = 'We recommend 2–3 nights to attend the early Nirmalyam darshan, visit the Elephant Sanctuary, and enjoy the temples at a relaxed pace.';
-    warn.classList.add('visible');
-  } else if (nights <= 3) {
-    $('nightTipText').textContent = nights + ' nights is ideal — enough time for morning darshans, the elephant sanctuary, and Chavakkad Beach at a relaxed pace. 🙏';
-    warn.classList.remove('visible');
-  } else {
-    $('nightTipText').textContent = nights + ' nights is a wonderful extended stay — perfect for exploring all of Guruvayur\'s sacred sites and natural beauty.';
-    warn.classList.remove('visible');
-  }
+  tip.classList.toggle('warn', nights === 1);
+  $('nightTipIcon').textContent = nights === 1 ? '⚠️' : '🛕';
+  $('nightTipText').textContent =
+    nights === 1 ? 'We recommend a minimum of 2–3 nights to enjoy Guruvayur\'s morning darshan, the elephant sanctuary, and the temples at a relaxed pace — without rushing.'
+    : nights <= 3 ? nights + ' nights is ideal — enough time for morning darshans, the elephant sanctuary, and Chavakkad Beach at a relaxed pace. 🙏'
+    : nights + ' nights is a wonderful extended stay — perfect for exploring all of Guruvayur\'s sacred sites and natural beauty.';
 }
 
 function setPrice(kind, amount, per) {

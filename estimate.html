@@ -354,6 +354,8 @@ body{
 .bw-psub{font-size:.72rem;color:var(--muted);line-height:1.5}
 .bw-cta{width:100%;justify-content:center;margin-top:14px;min-height:50px;font-size:.95rem}
 .bw-fine{text-align:center;font-size:.78rem;color:var(--muted);margin:10px 0 18px}
+.bw-note{margin:0 0 14px;padding:11px 14px;border-radius:10px;border:1px solid var(--gold-bd);background:var(--gold-lt);font-size:.8rem;line-height:1.55;color:var(--warm)}
+.bw-note strong{color:var(--gold)}
 .bw-wa{text-align:center;font-size:.82rem;color:var(--muted);margin-top:14px}
 .bw-wa a{color:var(--gold);text-decoration:none}
 .bw-wa a:hover{text-decoration:underline}
@@ -481,6 +483,9 @@ body{
     <button type="button" class="btn btn-gold bw-cta" id="calcBtn" onclick="calculate()" disabled>Calculate Estimated Tariff</button>
     <button type="button" class="btn btn-gold bw-cta" id="reqBtn" onclick="openRequest()" style="display:none" disabled>Request Final Quote</button>
     <div class="bw-fine" id="bwFine">You won't be charged — this is an approximate price</div>
+    <div class="bw-note">
+      ℹ️ <strong>Please note:</strong> the tariff varies with the number of guests, the time of year, and the villa's availability at the time you request it. The price shown is an estimate — we confirm your final quote after you send a request.
+    </div>
 
     <!-- Live availability / status line -->
     <div class="avail-banner" id="availBanner" style="display:none"></div>

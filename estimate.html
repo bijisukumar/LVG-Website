@@ -601,7 +601,7 @@ body{
           </td>
           <td><span class="distance-badge dist-best">📍 0.7 km — Closest</span></td>
           <td>
-            <span class="rate-val">₹16,300</span>
+            <span class="rate-val" id="cmpDwarkaRate">₹16,300</span>
             <span class="rate-sub">Entire 4BR villa · 4.5 baths</span>
           </td>
           <td></td>
@@ -614,10 +614,10 @@ body{
           </td>
           <td><span class="distance-badge dist-near">📍 ~2.0 km</span></td>
           <td>
-            <span class="rate-val">₹22,824</span>
+            <span class="rate-val" id="cmpCompetitorRate" data-rate="22824">₹22,824</span>
             <span class="rate-sub">Entire villa</span>
           </td>
-          <td><span class="savings-badge">You save ₹6,524</span></td>
+          <td><span class="savings-badge" id="cmpSaving">You save ₹6,524</span></td>
         </tr>
         <!-- COMPETITOR 2: Guruvayur Heritage Homestay -->
         <tr>
@@ -984,6 +984,23 @@ async function submitRequest(ev) {
   }
   return false;
 }
+
+// ── Comparison table: Dwarka's rate is read live from the booking system ──
+// The figures typed into the HTML stay as the fallback, so a slow or failed lookup changes nothing on screen.
+(function liveComparisonRate() {
+  fetch(API_BASE + '/getPublicBaseRate')
+    .then(function (r) { return r.json(); })
+    .then(function (res) {
+      if (!res || !res.success || res.data.guests !== MAX_GUESTS || !(res.data.perNight > 0)) return;
+      var rate = res.data.perNight;
+      $('cmpDwarkaRate').textContent = formatINR(rate);
+      var theirs = Number($('cmpCompetitorRate').dataset.rate);
+      var saving = theirs - rate;
+      if (saving > 0) $('cmpSaving').textContent = 'You save ' + formatINR(saving);
+      else $('cmpSaving').style.display = 'none';
+    })
+    .catch(function () { /* keep the typed-in figures */ });
+})();
 
 // ── Set min dates & wire up date inputs ───────────────────────
 (function init() {

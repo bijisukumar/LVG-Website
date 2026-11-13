@@ -371,6 +371,11 @@ body{
 .alt-box .alt-title{font-weight:600;margin-bottom:8px;color:var(--gold)}
 .alt-chip{display:inline-block;margin:0 8px 8px 0;padding:8px 14px;border-radius:9999px;border:1.5px solid var(--gold-bd);background:transparent;color:var(--cream);font-size:.82rem;cursor:pointer;font-family:inherit}
 .alt-chip:hover{background:var(--gold-lt);border-color:var(--gold)}
+.alt-chip.sel{background:var(--gold);border-color:var(--gold);color:#1a1205;font-weight:700}
+.alt-chip.sel::before{content:'\2713\00a0'}
+.alt-help{margin-top:4px;font-size:.8rem;line-height:1.5;color:var(--muted)}
+.alt-price{display:block;width:100%;margin-top:10px;padding:10px;border-radius:9999px;border:1px solid var(--gold-bd);background:transparent;color:var(--gold);font-size:.82rem;font-family:inherit;cursor:pointer}
+.alt-price:hover{background:var(--gold-lt)}
 .flex-note{margin-top:14px;padding:12px 16px;border-radius:12px;border:1px solid var(--gold-bd);background:var(--gold-lt);font-size:.84rem;line-height:1.6;color:var(--cream)}
 .flex-note a{color:var(--gold);font-weight:600;text-decoration:none;white-space:nowrap}
 .flex-note a:hover{text-decoration:underline}
@@ -758,6 +763,9 @@ let lastEstimate = null;          // the answer currently on screen
 // re-ask a question whose answer cannot have changed: whether the villa is free depends on the
 // dates and on nothing else.
 let lastAvail = null;
+// The open stretches the guest has ticked on a taken-dates answer. A request for nights somebody
+// else has wastes their time and ours, so this is what the request is actually for.
+let altPicks = [];
 
 function guestSummary() {
   const g = counts.adults + counts.children;
@@ -851,6 +859,7 @@ function datesKey() { return $('checkin').value + '|' + $('checkout').value; }
 function resetResult() {
   $('calcBtn').style.display = '';
   $('flexNote').style.display = 'none';
+  altPicks = [];
   $('reqBtn').disabled = true;
   $('reqBtn').style.display = 'none';
   $('resultCard').classList.remove('visible');
@@ -875,6 +884,7 @@ function waLink(est) {
     '📅 Check-out: ' + $('checkout').value + ' (' + nights + ' night' + (nights > 1 ? 's' : '') + ')\n' +
     '👥 Adults: ' + counts.adults + (counts.children ? ' · Children: ' + counts.children : '') + (counts.infants ? ' · Infants: ' + counts.infants : '') + '\n' +
     (est && est.approxTotal ? '💰 Approx. estimate: ' + formatINR(est.approxTotal) + '\n' : '') +
+    (altPicks.length ? '🔄 Those dates are taken — could also do: ' + altPicks.map(a => dm(a.checkIn) + ' → ' + dm(a.checkOut)).join(', ') + '\n' : '') +
     '\nPlease share the final quote.'
   );
   return 'https://wa.me/' + WA_NUMBER + '?text=' + msg;
@@ -942,21 +952,58 @@ function showUnavailable(a) {
   const taken = (a.takenNights || []).map(dm).join(', ');
   banner('no', '😔 Sorry — the villa is not free for all of those dates' + (taken ? ' (' + esc(taken) + ' taken)' : '') + '.');
   const alts = [].concat(a.alternatives ? a.alternatives.before : [], a.alternatives ? a.alternatives.after : []);
+  altPicks = [];
   if (alts.length) {
-    $('altBox').innerHTML = '<div class="alt-title">Free for the same length of stay:</div>' +
-      alts.map(x => '<button type="button" class="alt-chip" data-ci="' + x.checkIn + '" data-co="' + x.checkOut + '">' + dm(x.checkIn) + ' → ' + dm(x.checkOut) + '</button>').join('');
+    $('altBox').innerHTML =
+      '<div class="alt-title">These are free for the same length of stay:</div>' +
+      alts.map(x => '<button type="button" class="alt-chip" data-ci="' + x.checkIn + '" data-co="' + x.checkOut + '">' + dm(x.checkIn) + ' → ' + dm(x.checkOut) + '</button>').join('') +
+      '<div class="alt-help" id="altHelp"></div>' +
+      '<button type="button" class="alt-price" id="altPriceBtn" style="display:none"></button>';
     $('altBox').style.display = 'block';
+    // Tapping a chip CHOOSES it. It no longer jumps the dates up into the boxes: the guest may take
+    // more than one of these, and the request is only worth sending for dates they would accept.
     $('altBox').querySelectorAll('.alt-chip').forEach(btn => btn.addEventListener('click', () => {
-      $('checkin').value = btn.dataset.ci; $('checkout').value = btn.dataset.co;
-      $('checkout').min = btn.dataset.ci;
+      btn.classList.toggle('sel');
+      syncPicks();
+    }));
+    // Pricing one of them is a separate, named action rather than something a tap does by surprise.
+    $('altPriceBtn').addEventListener('click', () => {
+      if (altPicks.length !== 1) return;
+      $('checkin').value = altPicks[0].checkIn; $('checkout').value = altPicks[0].checkOut;
+      $('checkout').min = altPicks[0].checkIn;
       recalculate(false);             // the estimate below carries the availability answer too
       calculate();
-    }));
+    });
   }
   setPrice('no', 0, 'Not available');
   $('calcBtn').style.display = 'none';
   $('ctaRow').style.display = 'block';
-  $('waBtn').href = waLink(a);        // the request button stays disabled: nothing to quote for taken dates
+  syncPicks();
+}
+
+// What is ticked, what that means, and whether there is anything worth sending.
+function syncPicks() {
+  altPicks = [].slice.call(document.querySelectorAll('.alt-chip.sel')).map(b => ({ checkIn: b.dataset.ci, checkOut: b.dataset.co }));
+  const n = altPicks.length;
+  const span = x => dm(x.checkIn) + ' → ' + dm(x.checkOut);
+  const help = $('altHelp');
+  if (help) {
+    help.textContent = n === 0
+      ? 'Tap the dates that would work for you, and we will quote those.'
+      : n === 1 ? 'We will quote you for ' + span(altPicks[0]) + '.'
+      : 'We will quote you for all ' + n + ' of these.';
+  }
+  const pb = $('altPriceBtn');
+  if (pb) {
+    pb.style.display = n === 1 ? 'block' : 'none';
+    if (n === 1) pb.textContent = 'See the price for ' + span(altPicks[0]);
+  }
+  // Nothing ticked, nothing to ask for. The form closes again rather than sitting there half filled
+  // in against dates the guest has just taken back.
+  $('reqBtn').style.display = n ? '' : 'none';
+  $('reqBtn').disabled = !n;
+  if (!n) $('reqForm').style.display = 'none';
+  $('waBtn').href = waLink(lastEstimate || lastAvail);
 }
 
 function calculate() {
@@ -1048,6 +1095,12 @@ async function submitRequest(ev) {
   const name = $('reqName').value.trim(), phone = $('reqPhone').value.trim();
   if (name.length < 2) { err.textContent = 'Please tell us your name.'; err.style.display = 'block'; return false; }
   if (phone.replace(/\D/g, '').length < 10) { err.textContent = 'Please enter a phone / WhatsApp number we can reach you on.'; err.style.display = 'block'; return false; }
+  // Belt and braces: the button is hidden without a pick, but a request for nights somebody else
+  // already has is the one thing this form must never send.
+  if (lastAvail && !lastAvail.available && !altPicks.length) {
+    err.textContent = 'Please tap the dates that would work for you first.';
+    err.style.display = 'block'; return false;
+  }
   btn.disabled = true; btn.textContent = 'Sending…';
   try {
     const r = await api('submitQuoteRequest', {
@@ -1055,12 +1108,18 @@ async function submitRequest(ev) {
       website: $('reqWebsite').value,
       flexibility: $('reqFlex').checked,
       checkIn: $('checkin').value, checkOut: $('checkout').value,
+      alternatives: altPicks,
       adults: counts.adults, children: counts.children, infants: counts.infants,
     });
     $('reqForm').style.display = 'none';
     $('ctaRow').style.display = 'none';
-    $('reqDoneText').innerHTML = 'Thank you, ' + esc(name) + '. We have your request for ' + esc(dm($('checkin').value) + ' → ' + dm($('checkout').value)) +
-      ' and will send your final quote on WhatsApp or email shortly.' +
+    // The dates named back are the ones that will actually be quoted, which is not always the pair
+    // in the boxes: a guest whose dates were taken is quoted the open stretch they picked.
+    const forDates = (r && r.checkIn && r.checkOut) ? dm(r.checkIn) + ' → ' + dm(r.checkOut)
+      : dm($('checkin').value) + ' → ' + dm($('checkout').value);
+    $('reqDoneText').innerHTML = 'Thank you, ' + esc(name) + '. We have your request for ' + esc(forDates) +
+      (altPicks.length > 1 ? ' and the other dates you picked.' : '.') +
+      ' We will send your final quote on WhatsApp or by email shortly.' +
       (r && r.reference && r.reference !== 'RECEIVED' ? '<br><span style="opacity:.7">Reference: ' + esc(r.reference) + '</span>' : '');
     $('reqDone').style.display = 'block';
     $('reqDone').scrollIntoView({ behavior: 'smooth', block: 'center' });

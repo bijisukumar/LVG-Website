@@ -32,7 +32,9 @@
     '.pc-msg{max-width:86%;padding:10px 13px;border-radius:14px;font-size:.9rem;line-height:1.5}' +
     '.pc-bot{background:#fff;border-top-left-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.07);align-self:flex-start}' +
     '.pc-me{background:#D97706;color:#fff;border-top-right-radius:4px;align-self:flex-end}' +
-    '.pc-price{font-size:1.5rem;font-weight:700;color:#B45309;display:block;margin:4px 0 2px}' +
+    '.pc-price{font-size:1.9rem;font-weight:800;color:#B45309;display:block;margin:6px 0 0;line-height:1.15}' +
+    '.pc-price small{font-size:.9rem;font-weight:700;color:#78716C}' +
+    '.pc-total{display:block;font-size:.95rem;margin-top:4px}' +
     '.pc-small{font-size:.78rem;color:#78716C;display:block;margin-top:4px}' +
     '.pc-foot{padding:12px 14px;border-top:1px solid #E7E5E4;background:#fff}' +
     '.pc-chips{display:flex;flex-wrap:wrap;gap:8px}' +
@@ -111,14 +113,17 @@
   }
   function waHref(est) {
     var n = nightsOf(state.checkIn, state.checkOut);
-    var msg = '🏡 *Dwarka Villa Enquiry*\n\n' +
+    var c = savedContact();
+    var priced = est && est.quotable && est.approxTotal;
+    var msg = '🌐 *Web Enquiry: Request to book Dwarka Villa*\n\n' +
+      (c.name ? '🙋 Name: ' + c.name + '\n' : '') +
+      (c.phone ? '📞 Phone: ' + c.phone + '\n' : '') +
+      (c.email ? '✉️ Email: ' + c.email + '\n' : '') +
       '📅 Check-in: ' + nice(state.checkIn) + '\n' +
       '📅 Check-out: ' + nice(state.checkOut) + ' (' + plural(n, 'night') + ')\n' +
       '👥 Guests: ' + state.guests + '\n' +
-      (est && est.quotable && est.approxTotal ? '💰 Approx. estimate: ' + inr(est.approxTotal) + '\n' : '') +
-      '\nPlease share the final quote.';
-    var c = savedContact();
-    if (c.name) msg = msg.replace('\n\nPlease', '\n🙋 Name: ' + c.name + '\n\nPlease');
+      (priced ? '💰 Approx. ' + inr(est.approxPerNight) + ' / night · total ' + inr(est.approxTotal) + '\n' : '') +
+      '\nI would like to book these dates. Please confirm the final rate.';
     return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
   }
 
@@ -127,17 +132,19 @@
     body.innerHTML = '';
     state.asked = null;
     say('Namaste 🙏 Let me get you an approximate price for <b>Dwarka Villa</b>. Just 3 quick questions.');
-    say('When would you like to <b>check in</b>?');
+    say('When would you like to <b>check in</b>? <span class="pc-small">Please note: we don\'t take same-day bookings. The earliest check-in is tomorrow.</span>');
     askCheckIn();
   }
 
   function askCheckIn() {
-    var today = ymd(new Date());
+    // No same-day bookings: the earliest check-in is tomorrow.
+    var today = addDays(ymd(new Date()), 1);
     var input = el('input', 'pc-date'); input.type = 'date'; input.min = today;
     input.value = state.checkIn && state.checkIn >= today ? state.checkIn : '';
     input.setAttribute('aria-label', 'Check-in date');
     var go = chip('Next', function () {
       if (!input.value) { input.focus(); return; }
+      if (input.value < today) { say('Sorry, we don\'t take same-day bookings. Please pick tomorrow or a later date.'); input.value = ''; input.focus(); return; }
       state.checkIn = input.value;
       say(nice(state.checkIn), 'me');
       say('And how many <b>nights</b>?');
@@ -299,16 +306,16 @@
       if (est.extraGuests > 0) extra.push('Includes an extra-guest charge for ' + plural(est.extraGuests, 'guest') + '.');
       (est.minNightsNotes || []).forEach(function (n) { extra.push(esc(n)); });
       say('Thank you, ' + first + '. Here\'s your approximate price for <b>' + nice(est.checkIn) + ' → ' + nice(est.checkOut) + '</b>:' +
-        '<span class="pc-price">≈ ' + inr(est.approxTotal) + '</span>' +
-        '<span class="pc-small">' + plural(est.nights, 'night') + ' · ' + plural(est.billableGuests, 'guest') + ' · about ' + inr(est.approxPerNight) + ' / night</span>' +
+        '<span class="pc-price">≈ ' + inr(est.approxPerNight) + ' <small>/ night</small></span>' +
+        '<span class="pc-total">Total <b>' + inr(est.approxTotal) + '</b> for ' + plural(est.nights, 'night') + ' · ' + plural(est.billableGuests, 'guest') + '</span>' +
         (extra.length ? '<span class="pc-small">' + extra.join(' ') + '</span>' : ''));
       say(sent
-        ? 'This is the direct-booking price. We have your request and will WhatsApp you the confirmed rate shortly. Or message us now to book faster.'
-        : 'This is the direct-booking price. Send it to us on WhatsApp and we\'ll confirm your final rate.');
+        ? 'This is the direct-booking price. We have your details and will confirm your final rate shortly. Ready to go ahead? Tap <b>Send a request to book</b>.'
+        : 'This is the direct-booking price. Ready to go ahead? Tap <b>Send a request to book</b> and we\'ll confirm your final rate.');
     } else {
       say(sent
         ? 'Thank you, ' + first + '. We have your request and will come back with your personal quote shortly.'
-        : 'Thank you, ' + first + '. Message us on WhatsApp and we\'ll come straight back with your personal quote.');
+        : 'Thank you, ' + first + '. Tap <b>Send a request to book</b> and we\'ll come straight back with your personal quote.');
     }
     endButtons(est);
   }
@@ -316,10 +323,10 @@
   function endButtons(est) {
     var wrap = el('div');
     var box = el('div', 'pc-chips');
-    var wa = el('a', 'pc-chip wa', '💬 Send on WhatsApp');
+    var wa = el('a', 'pc-chip solid', '📩 Send a request to book');
     wa.href = waHref(est); wa.target = '_blank'; wa.rel = 'noopener';
     wa.style.textDecoration = 'none'; wa.style.display = 'inline-flex'; wa.style.alignItems = 'center';
-    wa.addEventListener('click', function () { track('price_chat_whatsapp'); });
+    wa.addEventListener('click', function () { track('price_chat_request_to_book'); });
     box.appendChild(wa);
     box.appendChild(chip('Change details', start));
     wrap.appendChild(box);

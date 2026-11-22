@@ -286,7 +286,7 @@
         ? { checkIn: state.asked.checkIn, checkOut: state.asked.checkOut, alternatives: [{ checkIn: state.checkIn, checkOut: state.checkOut }] }
         : { checkIn: state.checkIn, checkOut: state.checkOut, alternatives: [] };
       api('submitQuoteRequest', Object.assign(dates, {
-        guestName: d.name, phone: d.phone, email: d.email, website: hp.value,
+        guestName: d.name, phone: d.phone, email: d.email, website: hp.value, source: 'chat',
         message: 'Price checked in the website chat (' + location.pathname + ')',
         adults: state.guests, children: 0, infants: 0,
       }))
@@ -359,7 +359,7 @@
     panel.setAttribute('aria-label', 'Get a price');
     var head = el('div', 'pc-head',
       '<div class="pc-head-ico" aria-hidden="true">🏡</div>' +
-      '<div><div class="pc-head-t">Dwarka Villa</div><div class="pc-head-s">Instant price check</div></div>');
+      '<div><div class="pc-head-t">Dwarka Villa</div><div class="pc-head-s">Price Assistant · instant price check</div></div>');
     var x = el('button', 'pc-x', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Close');
     x.addEventListener('click', close);
     head.appendChild(x);

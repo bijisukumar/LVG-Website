@@ -252,7 +252,7 @@
     }
     var name = field('text', 'Your name', c.name, 'name');
     var phone = field('tel', 'WhatsApp / phone number', c.phone, 'tel');
-    var email = field('email', 'Email (optional)', c.email, 'email');
+    var email = field('email', 'Email address', c.email, 'email');
     var hp = el('input', 'pc-hp'); hp.type = 'text'; hp.tabIndex = -1; hp.autocomplete = 'off'; hp.setAttribute('aria-hidden', 'true');
     form.appendChild(hp);
     var errBox = el('div', 'pc-err');
@@ -266,7 +266,8 @@
       var digits = d.phone.replace(/\D/g, '').length;
       var bad = d.name.length < 2 ? 'Please tell us your name.'
         : (digits < 10 || digits > 15) ? 'Please enter a phone / WhatsApp number we can reach you on.'
-        : (d.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) ? 'That email address does not look right.' : '';
+        : !d.email ? 'Please enter your email address.'
+        : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email) ? 'That email address does not look right.' : '';
       if (bad) { errBox.textContent = bad; errBox.style.display = 'block'; return; }
       saveContact(d);
       say(esc(d.name) + ' · ' + esc(d.phone) + (d.email ? ' · ' + esc(d.email) : ''), 'me');
